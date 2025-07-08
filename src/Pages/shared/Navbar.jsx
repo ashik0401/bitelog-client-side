@@ -4,9 +4,14 @@ import logo from '../../assets/B.png'
 import useAuth from '../../hooks/useAuth';
 
 const Navbar = () => {
-    const { user } = useAuth();
+    const { user, logOut } = useAuth();
     console.log(user);
 
+    const handleLogOut = () => {
+        logOut()
+            .then(result => { console.log(result) })
+            .catch(error => console.log(error))
+    }
 
     const links = <>
 
@@ -38,9 +43,13 @@ const Navbar = () => {
                             {links}
                         </ul>
                     </div>
-                    <img
-                        className='w-15 h-15 text-primary '
-                        src={logo} alt="" />
+                    <Link
+                    to='/'
+                    >
+                        <img
+                            className='w-15 h-15 text-primary '
+                            src={logo} alt="" />
+                    </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -72,12 +81,13 @@ const Navbar = () => {
                             </div>
                             <div className="dropdown dropdown-end">
                                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                                    <div className="w-10 rounded-full">
+                                    <div className="w-10 rounded-full border border-green-500">
                                         <img
-                                            alt="Tailwind CSS Navbar component"
-                                            src={user.photoURL} />
-
+                                            alt="User profile"
+                                            src={user?.photoURL || "https://i.ibb.co/V0bwF2W1/User-Profile-PNG-High-Quality-Image.png"}
+                                        />
                                     </div>
+
                                 </div>
                                 <ul
                                     tabIndex={0}
@@ -89,7 +99,7 @@ const Navbar = () => {
                                         </a>
                                     </li>
                                     <li><a>Settings</a></li>
-                                    <li><a>Logout</a></li>
+                                    <li><button onClick={handleLogOut}>Logout</button></li>
                                 </ul>
                             </div>
                         </div> : <Link
