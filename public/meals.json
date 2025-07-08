@@ -1,0 +1,75 @@
+[
+    {
+        "id": 1,
+        "category": "Breakfast",
+        "title": "Pancakes",
+        "image": "https://i.ibb.co/Lz761jnZ/bhg-recipe-pancakes-waffles-pancakes-Hero-01-372c4cad318d4373b6288e993a60ca62.jpg",
+        "rating": 4.5,
+        "price": 120
+    },
+    {
+        "id": 2,
+        "category": "Breakfast",
+        "title": "Omelette",
+        "image": "https://i.ibb.co/Q7QSBWvL/1400x919-Tesco-5-For15-13273-Rainbow-Omelette-b3f0c3cc-2f15-40a7-98b1-07af0609f99e-0-1400x919.jpg",
+        "rating": 4.2,
+        "price": 100
+    },
+    {
+        "id": 3,
+        "category": "Breakfast",
+        "title": "French Toast",
+        "image": "https://i.ibb.co/NgP2Bm7Y/french-toast-9-996865330eda4fcd9bf5377d40e9eebd.jpg",
+        "rating": 4.7,
+        "price": 130
+    },
+    {
+        "id": 4,
+        "category": "Lunch",
+        "title": "Chicken Biryani",
+        "image": "https://i.ibb.co/TxyyRYHV/SES-chicken-biryani-recipe-7367850-hero-A-ed211926bb0e4ca1be510695c15ce111.jpg",
+        "rating": 4.8,
+        "price": 180
+    },
+    {
+        "id": 5,
+        "category": "Lunch",
+        "title": "Beef Curry",
+        "image": "https://i.ibb.co/v6TPWKT4/beef-curry.jpg",
+        "rating": 4.6,
+        "price": 200
+    },
+    {
+        "id": 6,
+        "category": "Lunch",
+        "title": "Vegetable Stir Fry",
+        "image": "https://i.ibb.co/M55kj20d/Thai-Vegetable-Stir-Fry-with-Lime-and-Ginger-done.png",
+        "rating": 4.3,
+        "price": 150
+    },
+    {
+        "id": 7,
+        "category": "Dinner",
+        "title": "Grilled Salmon",
+        "image": "https://i.ibb.co/GDVTY08/R3022-final-photo-3.webp",
+        "rating": 4.9,
+        "price": 300
+    },
+    {
+        "id": 8,
+        "category": "Dinner",
+        "title": "Pasta Alfredo",
+        "image": "https://i.ibb.co/B2bC1yZg/Pasta-Alfredo.jpg",
+        "rating": 4.4,
+        "price": 220
+    },
+    {
+        "id": 9,
+        "category": "Dinner",
+        "title": "Garlic Butter Steak",
+        "image": " https://i.ibb.co/8DsjvDQt/steakhouse-garlic-butter-recipe-101899-8-preview-5b0ed96043a10300361904a1.jpg",
+        "rating": 4.8,
+        "price": 350
+    }
+]
+
