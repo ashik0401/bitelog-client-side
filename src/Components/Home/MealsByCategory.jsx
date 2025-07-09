@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const MealsByCategory = () => {
   const [category, setCategory] = useState('All');
-  const [mealsData, setMeals] = useState([]);
+  const [meals, setMeals] = useState([]);
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
-    fetch('/meals.json')
-      .then(res => res.json())
-      .then(data => setMeals(data))
-      .catch(err => console.error('Failed to load meals:', err));
+    axiosSecure.get('/meals')
+      .then(res => setMeals(res.data))
+      .catch(err => console.error('Error fetching meals:', err));
   }, []);
-
   const filteredMeals =
     category === 'All'
-      ? mealsData
-      : mealsData.filter((meal) => meal.category === category);
+      ? meals
+      : meals.filter((meal) => meal.category === category);
 
   return (
     <div className="px-4 my-7 py-8 max-w-6xl mx-auto">
@@ -45,7 +45,7 @@ const MealsByCategory = () => {
             <div className="card-body">
               <h2 className="card-title">{meal.title}</h2>
               <p>⭐ Rating: {meal.rating}</p>
-              <p>💰 Price: ৳{meal.price}</p>
+              <p>💰 Price: ${meal.price}</p>
               <div className="card-actions justify-end">
                 <button className="btn btn-sm btn-primary">Details</button>
               </div>

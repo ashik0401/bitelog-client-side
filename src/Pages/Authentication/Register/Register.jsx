@@ -31,6 +31,7 @@ const Register = () => {
                     email: data.email,
                     name: data.name,
                     role: 'user',
+                    image: profilePic,
                     created_at: new Date().toISOString(),
                     last_log_in: new Date().toISOString()
                 }
@@ -104,9 +105,9 @@ const Register = () => {
                         <label className="label">Email</label>
                         <input type="email"
                             {...register('email', { required: true })}
-                            className="input" placeholder="Email" 
+                            className="input" placeholder="Email"
                             required
-                            />
+                        />
                         {
                             errors.email?.type === 'required' && <p className='text-red-500'>Email is required</p>
                         }

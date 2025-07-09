@@ -2,10 +2,31 @@ import React from 'react';
 import { Link, NavLink } from 'react-router';
 import logo from '../../assets/B.png'
 import useAuth from '../../hooks/useAuth';
+import useAxios from '../../hooks/useAxios';
+import { useQuery } from '@tanstack/react-query';
 
 const Navbar = () => {
-    const { user, logOut } = useAuth();
-    console.log(user);
+    const { user, loading: authLoading, logOut } = useAuth();
+    const axiosInstance = useAxios();
+
+    const { data: userInfo, isLoading, error } = useQuery({
+        enabled: !!user?.email && !authLoading,
+        queryKey: ['currentUser', user?.email],
+        queryFn: async () => {
+            const res = await axiosInstance.get(`/users/${user.email}`);
+            return res.data;
+        }
+    });
+
+    if (authLoading || isLoading) {
+        return <div className="text-center p-6"><span className="loading loading-ring loading-sm"></span></div>;
+    }
+
+    if (error) {
+        return <div className="text-center p-6 text-red-500">Failed to load profile.</div>;
+    }
+
+    const photoURL = userInfo?.photoURL || user?.photoURL || 'https://i.ibb.co/V0bwF2W1/User-Profile-PNG-High-Quality-Image.png';
 
     const handleLogOut = () => {
         logOut()
@@ -26,6 +47,19 @@ const Navbar = () => {
             </NavLink>
         </li>
 
+        {
+            user && <li>
+                <NavLink
+                    to="/dashboard"
+                    className={({ isActive }) =>
+                        isActive ? 'text-primary font-bold' : ''
+                    }
+                >
+                    Dashboard
+                </NavLink>
+            </li>
+        }
+
 
     </>
 
@@ -33,9 +67,9 @@ const Navbar = () => {
         <div className='  '>
             <div className="navbar bg-base-100 shadow-md lg:px-20">
                 <div className="navbar-start ">
-                    <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+                    <div className="dropdown" >
+                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden px-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 " fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
                         </div>
                         <ul
                             tabIndex={0}
@@ -44,10 +78,10 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <Link
-                    to='/'
+                        to='/'
                     >
                         <img
-                            className='w-15 h-15 text-primary '
+                            className='w-8 h-8 text-primary '
                             src={logo} alt="" />
                     </Link>
                 </div>
@@ -84,7 +118,7 @@ const Navbar = () => {
                                     <div className="w-10 rounded-full border border-green-500">
                                         <img
                                             alt="User profile"
-                                            src={user?.photoURL || "https://i.ibb.co/V0bwF2W1/User-Profile-PNG-High-Quality-Image.png"}
+                                            src={photoURL}
                                         />
                                     </div>
 

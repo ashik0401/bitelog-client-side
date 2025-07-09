@@ -7,6 +7,11 @@ import Login from "../Pages/Authentication/Login/Login";
 import Register from "../Pages/Authentication/Register/Register";
 import RootLayout from "../Layouts/RootLayout";
 import Home from "../Pages/Home/Home";
+import PrivateRoute from "../Routes/PrivateRoutes";
+import DashboardLayout from "../Layouts/DashboardLayout";
+import Users from "../Pages/Admin/Users";
+import AddMeal from "../Pages/Admin/AddMeals/AddMeals";
+
 
 
 export const router = createBrowserRouter([
@@ -17,6 +22,10 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 Component: Home
+            },
+            {
+                path:'/addMeals',
+                Component:AddMeal
             }
         ]
     },
@@ -34,4 +43,18 @@ export const router = createBrowserRouter([
             }
         ]
     },
+    {
+        path: '/dashboard',
+        element:
+            <PrivateRoute>
+                <DashboardLayout />
+            </PrivateRoute>,
+            children:[
+                {
+                    index:true,
+                    Component:Users
+                }
+            ]
+            
+    }
 ]);
