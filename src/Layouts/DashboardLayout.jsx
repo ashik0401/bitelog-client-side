@@ -56,19 +56,33 @@ const DashboardLayout = () => {
                                         isActive ? 'text-primary font-bold' : 'font-semibold'
                                     }
                                 >
-                                   Home
+                                    Home
                                 </NavLink>
                             </li>
                             <li>
                                 <NavLink
                                     to="/dashboard"
+                                    end
                                     className={({ isActive }) =>
                                         isActive ? 'text-primary font-bold' : 'font-semibold'
                                     }
                                 >
-                                   Users
+                                    All Meals
                                 </NavLink>
                             </li>
+
+                            <li>
+                                <NavLink
+                                    to="/dashboard/manageUsers"
+                                    className={({ isActive }) =>
+                                        isActive ? 'text-primary font-bold' : 'font-semibold'
+                                    }
+                                >
+                                    Manage Users
+                                </NavLink>
+                            </li>
+
+
                             <li><a>Sidebar Item 2</a></li>
                         </ul>
                     </div>

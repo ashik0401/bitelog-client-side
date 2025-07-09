@@ -41,7 +41,7 @@ const MealsTable = () => {
         }
     };
 
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading) return <div className='flex items-center justify-center h-screen'><span className="loading loading-ring loading-md "></span></div>;
 
     return (
         <div className=" p-4">

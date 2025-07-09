@@ -11,6 +11,9 @@ import PrivateRoute from "../Routes/PrivateRoutes";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import AddMeal from "../Pages/Admin/AddMeals/AddMeals";
 import MealsTable from "../Pages/Admin/MealsTable";
+import ManageUsers from "../Pages/Admin/ManageUsers";
+;
+
 
 
 
@@ -24,9 +27,10 @@ export const router = createBrowserRouter([
                 Component: Home
             },
             {
-                path:'/addMeals',
-                Component:AddMeal
-            }
+                path: '/addMeals',
+                Component: AddMeal
+            },
+
         ]
     },
     {
@@ -49,12 +53,17 @@ export const router = createBrowserRouter([
             <PrivateRoute>
                 <DashboardLayout />
             </PrivateRoute>,
-            children:[
-                {
-                    index:true,
-                    Component:MealsTable 
-                }
-            ]
-            
+        children: [
+            {
+                index: true,
+                Component: MealsTable
+            },
+            {
+                path: '/dashboard/manageUsers',
+                Component: ManageUsers
+            }
+
+        ]
+
     }
 ]);

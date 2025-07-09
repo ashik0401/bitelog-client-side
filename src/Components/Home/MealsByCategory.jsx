@@ -10,7 +10,9 @@ const MealsByCategory = () => {
     axiosSecure.get('/meals')
       .then(res => setMeals(res.data))
       .catch(err => console.error('Error fetching meals:', err));
-  }, []);
+  }, [axiosSecure]);
+
+
   const filteredMeals =
     category === 'All'
       ? meals
