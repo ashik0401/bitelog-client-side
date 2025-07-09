@@ -6,7 +6,7 @@ import AdminProfile from '../Pages/Admin/AdminProfile';
 const DashboardLayout = () => {
     return (
         <div>
-            <div className="drawer lg:drawer-open">
+            <div className="drawer lg:drawer-open ">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col ">
 
@@ -49,6 +49,16 @@ const DashboardLayout = () => {
                         </div>
 
                         <ul className="menu bg-orange-200 text-base-content  w-80 p-4 ">
+                            <li>
+                                <NavLink
+                                    to="/"
+                                    className={({ isActive }) =>
+                                        isActive ? 'text-primary font-bold' : 'font-semibold'
+                                    }
+                                >
+                                   Home
+                                </NavLink>
+                            </li>
                             <li>
                                 <NavLink
                                     to="/dashboard"

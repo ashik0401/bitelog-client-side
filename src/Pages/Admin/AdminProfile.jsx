@@ -1,21 +1,30 @@
 import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../hooks/useAuth';
-import useAxios from '../../hooks/useAxios';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+;
 
 const AdminProfile = () => {
     const { user, loading: authLoading } = useAuth();
-    const axiosInstance = useAxios();
-
+    const axiosSecure = useAxiosSecure();
     const { data: userInfo, isLoading, error } = useQuery({
         enabled: !!user?.email && !authLoading,
         queryKey: ['currentUser', user?.email],
         queryFn: async () => {
-            const res = await axiosInstance.get(`/users/${user.email}`);
+            const res = await axiosSecure.get(`/users/${user.email}`);
             return res.data;
         }
     });
 
-    if (authLoading || isLoading) {
+    const { data: mealCountData = { count: 0 }, isLoading: mealCountLoading } = useQuery({
+        enabled: !!user?.email && !authLoading,
+        queryKey: ['mealCount', user?.email],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/meals/count/${user.email}`);
+            return res.data;
+        }
+    });
+
+    if (authLoading || isLoading || mealCountLoading) {
         return <div className="text-center p-6"><span className="loading loading-ring loading-sm"></span></div>;
     }
 
@@ -28,7 +37,7 @@ const AdminProfile = () => {
 
     const photoURL = userInfo?.photoURL || user?.photoURL || 'https://i.ibb.co/V0bwF2W1/User-Profile-PNG-High-Quality-Image.png';
     const email = userInfo?.email || user?.email || 'No email';
-    const mealsAdded = userInfo?.mealsAdded ?? 0;
+    const mealsAdded = mealCountData.count;
     const badge = userInfo?.badge || 'User'
 
     return (

@@ -9,8 +9,8 @@ import RootLayout from "../Layouts/RootLayout";
 import Home from "../Pages/Home/Home";
 import PrivateRoute from "../Routes/PrivateRoutes";
 import DashboardLayout from "../Layouts/DashboardLayout";
-import Users from "../Pages/Admin/Users";
 import AddMeal from "../Pages/Admin/AddMeals/AddMeals";
+import MealsTable from "../Pages/Admin/MealsTable";
 
 
 
@@ -52,7 +52,7 @@ export const router = createBrowserRouter([
             children:[
                 {
                     index:true,
-                    Component:Users
+                    Component:MealsTable 
                 }
             ]
             
