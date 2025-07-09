@@ -12,6 +12,8 @@ import DashboardLayout from "../Layouts/DashboardLayout";
 import AddMeal from "../Pages/Admin/AddMeals/AddMeals";
 import MealsTable from "../Pages/Admin/MealsTable";
 import ManageUsers from "../Pages/Admin/ManageUsers";
+import Meals from "../Pages/Meals/Meals";
+import MealDetail from "../Pages/Meals/MealDetail";
 ;
 
 
@@ -30,6 +32,16 @@ export const router = createBrowserRouter([
                 path: '/addMeals',
                 Component: AddMeal
             },
+            {
+                path: '/allMeals',
+                Component: Meals,
+                children: [
+                    {
+                        index: true,
+                        Component: MealDetail
+                    }
+                ]
+            }
 
         ]
     },

@@ -93,7 +93,7 @@ const ManageUsers = () => {
                       <span className="text-green-600 font-semibold">Admin</span>
                     ) : (
                       <button
-                        className="btn btn-xs btn-warning"
+                        className="btn btn-xs btn-warning "
                         onClick={() => makeAdmin(user._id)}
                       >
                         Make Admin

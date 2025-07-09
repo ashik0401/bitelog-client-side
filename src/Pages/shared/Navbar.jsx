@@ -29,6 +29,16 @@ const Navbar = () => {
                 Home
             </NavLink>
         </li>
+        <li>
+            <NavLink
+                to="/allMeals"
+                className={({ isActive }) =>
+                    isActive ? 'text-primary font-bold' : ''
+                }
+            >
+                All Meal
+            </NavLink>
+        </li>
         {
             user && <li>
                 <NavLink
