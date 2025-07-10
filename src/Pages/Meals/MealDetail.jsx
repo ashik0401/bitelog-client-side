@@ -1,117 +1,150 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
+
 import useAxiosSecure from '../../hooks/useAxiosSecure';
-
-
-import Swal from 'sweetalert2';
 import useAuth from '../../hooks/useAuth';
 
 const MealDetail = () => {
     const { id } = useParams();
+    const axiosSecure = useAxiosSecure();
+    const { user } = useAuth();
+    const navigate = useNavigate();
+
+
     const [meal, setMeal] = useState(null);
     const [reviews, setReviews] = useState([]);
     const [reviewText, setReviewText] = useState('');
-   const {user}=useAuth()
-    const axiosSecure = useAxiosSecure();
+    const [likes, setLikes] = useState(0);
+    const [reviewCount, setReviewCount] = useState(0);
+    const [loading, setLoading] = useState(true);
+    const [requesting, setRequesting] = useState(false);
 
-    useEffect(() => {
-        axiosSecure.get(`/meals/${id}`).then(res => setMeal(res.data));
-        axiosSecure.get(`/reviews/${id}`).then(res => setReviews(res.data));
-    }, [id, axiosSecure]);
+useEffect(() => {
+  setLoading(true)
+  axiosSecure.get(`/meals/${id}`)
+    .then(res => {
+      setMeal(res.data.meal)
+      setReviews(res.data.reviews)
+      setReviewCount(res.data.reviewCount)
+      setLikes(res.data.meal.likes)
+      setLoading(false)
+    })
+    .catch(() => setLoading(false))
+}, [id, axiosSecure])
 
-    const handleLike = async () => {
-        if (!user) return Swal.fire('Login required', 'You must be logged in to like.', 'warning');
+
+const handleLike = async () => {
+  if (!user) {
+    navigate('/login')
+    return
+  }
+
+  try {
+    const res = await axiosSecure.post(`/meals/${id}/like`, {
+      email: user.email,
+    })
+    console.log('Like success:', res.data)
+    setLikes(res.data.likes)
+  } catch (err) {
+    console.error('Like error:', err)
+    alert('Error liking meal: ' + (err.response?.data?.message || err.message))
+  }
+}
+
+
+
+
+    const handleRequestMeal = async () => {
+        if (!user) {
+            navigate('/login');
+            return;
+        }
+        setRequesting(true);
         try {
-            await axiosSecure.patch(`/meals/${id}/like`, { email: user.email });
-            setMeal(prev => ({ ...prev, likes: prev.likes + 1 }));
+            await axiosSecure.post(`/meals/${id}/request`);
+            alert('Meal request sent. Pending approval.');
         } catch (err) {
-            Swal.fire('Error', 'Could not update like.', 'error',err);
-        }
-    };
-
-    const handleMealRequest = async () => {
-        if (!user) return Swal.fire('Login required', 'Please login to request a meal.', 'warning');
-
-        try {
-            const res = await axiosSecure.post('/mealRequests', {
-                mealId: id,
-                userEmail: user.email,
-                status: 'pending'
-            });
-            if (res.data.insertedId) {
-                Swal.fire('Requested!', 'Your meal request is submitted.', 'success');
+            if (err.response && err.response.data.message) {
+                alert(err.response.data.message);
+            } else {
+                alert('Error requesting meal');
             }
-        } catch (error) {
-            Swal.fire('Error', 'Failed to request the meal.', 'error' , error);
+        } finally {
+            setRequesting(false);
         }
     };
 
-    const handleReviewSubmit = async (e) => {
+    const handleReviewSubmit = async e => {
         e.preventDefault();
-        if (!user) return Swal.fire('Login required', 'Please login to post a review.', 'warning');
+        if (!user) {
+            navigate('/login');
+            return;
+        }
+        if (!reviewText.trim()) return;
 
         try {
-            const res = await axiosSecure.post('/reviews', {
-                mealId: id,
-                email: user.email,
-                review: reviewText,
-                time: new Date().toISOString()
-            });
+            const res = await axiosSecure.post(`/meals/${id}/reviews`, { text: reviewText });
+            setReviews(prev => [res.data, ...prev]);
+            setReviewCount(prev => prev + 1);
             setReviewText('');
-            setReviews([...reviews, res.data]);
-        } catch (error) {
-            Swal.fire('Error', 'Failed to submit review.', 'error' , error);
+        } catch {
+            alert('Failed to post review');
         }
     };
 
-    if (!meal) return <div className="text-center mt-10">Loading meal details...</div>;
+    if (loading) return <div className="p-6 text-center">Loading...</div>;
+    if (!meal) return <div className="p-6 text-center">Meal not found</div>;
 
     return (
-        <div className="max-w-4xl mx-auto px-4 py-8">
-            <img src={meal.image} alt={meal.title} className="w-full h-64 object-cover rounded-xl mb-6" />
-
-            <h2 className="text-3xl font-bold mb-2">{meal.title}</h2>
-            <p className="text-gray-600">Posted by: <span className="font-semibold">{meal.distributorName}</span></p>
-            <p className="text-sm text-gray-500 mb-2">Posted on: {new Date(meal.postTime).toLocaleString()}</p>
-
-            <p className="my-4">{meal.description}</p>
-
-            <p><span className="font-semibold">Ingredients:</span> {meal.ingredients?.join(', ')}</p>
-            <p className="mt-2"><span className="font-semibold">Rating:</span> {meal.rating}/5</p>
-
-            <div className="flex items-center gap-4 mt-4">
-                <button onClick={handleLike} className="px-4 py-2 bg-pink-500 text-white rounded hover:bg-pink-600">
-                    ❤️ Like ({meal.likes})
-                </button>
-                <button onClick={handleMealRequest} className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
-                    Request Meal
-                </button>
-            </div>
-
-            <div className="mt-8">
-                <h3 className="text-xl font-semibold mb-3">Reviews ({reviews.length})</h3>
-                {user && (
-                    <form onSubmit={handleReviewSubmit} className="mb-4">
-                        <textarea
-                            className="w-full p-2 border rounded mb-2"
-                            placeholder="Write your review here..."
-                            value={reviewText}
-                            onChange={(e) => setReviewText(e.target.value)}
-                            required
-                        />
-                        <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                            Submit Review
+        <div className="max-w-4xl mx-auto p-6">
+            <div className="card bg-base-100 shadow-xl">
+                <figure><img src={meal.image} alt={meal.title} className="w-full h-64 md:h-96 object-cover rounded-t-lg" /></figure>
+                <div className="card-body">
+                    <h2 className="card-title">{meal.title}</h2>
+                    <p className="text-sm text-gray-500">Distributor: {(meal.distributorName).toUpperCase()}</p>
+                    <p className="my-3">{meal.description}</p>
+                    <p><strong>Ingredients:</strong> {meal.ingredients.join(', ')}</p>
+                    <p className="text-sm text-gray-400 mt-2">Posted: {new Date(meal.postTime).toLocaleString()}</p>
+                    <p className="mt-1">Rating: {meal.rating.toFixed(1)} ⭐</p>
+                    <div className="flex gap-4 mt-4">
+                        <button
+                            onClick={handleLike}
+                            className="btn btn-primary"
+                        >
+                            👍 Like ({likes})
                         </button>
-                    </form>
-                )}
-                <div className="space-y-4">
-                    {reviews.map((r, index) => (
-                        <div key={index} className="p-4 border rounded">
-                            <p className="font-semibold">{r.email}</p>
-                            <p className="text-sm text-gray-600">{new Date(r.time).toLocaleString()}</p>
-                            <p className="mt-1">{r.review}</p>
+                        <button
+                            onClick={handleRequestMeal}
+                            className={`btn btn-secondary text-black ${requesting ? 'loading' : ''}`}
+                            disabled={requesting}
+                        >
+                            Request Meal
+                        </button>
+                    </div>
+                    <div className="mt-8">
+                        <h3 className="text-xl font-semibold">Reviews ({reviewCount})</h3>
+                        <form onSubmit={handleReviewSubmit} className="my-4">
+                            <textarea
+                                className="textarea textarea-bordered w-full"
+                                placeholder="Write your review..."
+                                value={reviewText}
+                                onChange={e => setReviewText(e.target.value)}
+                                rows={3}
+                                required
+                            />
+                            <button type="submit" className="btn btn-success mt-2">Submit Review</button>
+                        </form>
+                        <div className="space-y-4 max-h-96 overflow-y-auto">
+                            {reviews.length === 0 && <p>No reviews yet.</p>}
+                            {reviews.map(review => (
+                                <div key={review._id} className="p-4 bg-gray-50 rounded shadow">
+                                    <p className="font-semibold">{review.username}</p>
+                                    <p className="text-gray-700">{review.text}</p>
+                                    <p className="text-xs text-gray-400">{new Date(review.createdAt).toLocaleString()}</p>
+                                </div>
+                            ))}
                         </div>
-                    ))}
+                    </div>
                 </div>
             </div>
         </div>

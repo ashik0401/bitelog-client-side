@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { Link } from 'react-router';
 
 const MealsByCategory = () => {
   const [category, setCategory] = useState('All');
@@ -49,7 +50,8 @@ const MealsByCategory = () => {
               <p>⭐ Rating: {meal.rating}</p>
               <p>💰 Price: ${meal.price}</p>
               <div className="card-actions justify-end">
-                <button className="btn btn-sm btn-primary">Details</button>
+                  <Link to={`/Meals/${meal._id}`}>
+                <button className="btn btn-sm btn-primary">Details</button></Link>
               </div>
             </div>
           </div>

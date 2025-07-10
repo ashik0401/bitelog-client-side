@@ -31,7 +31,7 @@ const Navbar = () => {
         </li>
         <li>
             <NavLink
-                to="/allMeals"
+                to="/Meals"
                 className={({ isActive }) =>
                     isActive ? 'text-primary font-bold' : ''
                 }

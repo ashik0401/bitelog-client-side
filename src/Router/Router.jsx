@@ -33,14 +33,15 @@ export const router = createBrowserRouter([
                 Component: AddMeal
             },
             {
-                path: '/allMeals',
+                path: '/Meals',
                 Component: Meals,
-                children: [
-                    {
-                        index: true,
-                        Component: MealDetail
-                    }
-                ]
+            },
+            {
+
+                path: '/Meals/:id',
+                Component: MealDetail,
+                loader: ({ params }) => fetch(`http://localhost:3000/Meals/${params.id}`)
+
             }
 
         ]
