@@ -15,6 +15,7 @@ import ManageUsers from "../Pages/Admin/ManageUsers";
 import Meals from "../Pages/Meals/Meals";
 import MealDetail from "../Pages/Meals/MealDetail";
 import Payments from "../Pages/Payments/Payments";
+import PaymentHistory from "../Pages/User/PaymentHistory";
 ;
 
 
@@ -46,9 +47,10 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/payment/:id',
-                Component:Payments
+                Component: Payments
 
-            }
+            },
+
 
         ]
     },
@@ -63,7 +65,8 @@ export const router = createBrowserRouter([
             {
                 path: '/register',
                 Component: Register
-            }
+            },
+
         ]
     },
     {
@@ -80,7 +83,12 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/manageUsers',
                 Component: ManageUsers
+            },
+            {
+                path: '/dashboard/paymentHistory',
+                Component: PaymentHistory
             }
+
 
         ]
 

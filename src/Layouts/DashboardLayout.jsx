@@ -82,8 +82,19 @@ const DashboardLayout = () => {
                                 </NavLink>
                             </li>
 
+                            <li>
+                                <NavLink
+                                    to="/dashboard/paymentHistory"
+                                    className={({ isActive }) =>
+                                        isActive ? 'text-primary font-bold' : 'font-semibold'
+                                    }
+                                >
+                                    Payment History 
+                                </NavLink>
+                            </li>
 
-                            <li><a>Sidebar Item 2</a></li>
+
+                            
                         </ul>
                     </div>
                 </div>
