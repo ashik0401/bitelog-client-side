@@ -45,7 +45,7 @@ const ManageUsers = () => {
 
   return (
     <div className="p-4">
-      <h2 className="text-2xl font-semibold mb-4">Manage Users</h2>
+      <h2 className="text-3xl font-bold mb-4">Manage Users</h2>
 
       <form onSubmit={handleSearch} className="mb-4 flex flex-wrap gap-2 items-center">
         <input
@@ -68,8 +68,8 @@ const ManageUsers = () => {
       )}
 
       {!isFetching && users.length > 0 && (
-        <div className="overflow-x-auto">
-          <table className="table w-full border border-gray-300">
+        <div className="overflow-x-auto border rounded-xl border-gray-300 shadow-xl">
+          <table className="table w-full border border-gray-300 r">
             <thead>
               <tr>
                 <th className="border border-gray-300 text-center">User Name</th>

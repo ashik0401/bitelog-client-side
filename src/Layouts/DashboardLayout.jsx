@@ -37,7 +37,9 @@ const DashboardLayout = () => {
                                 src={logo} alt="" /></Link>
 
                     </div>
-                    <Outlet />
+                    <div className=''>
+                        <Outlet />
+                    </div>
                 </div>
 
                 <div className="drawer-side overflow-hidden">
@@ -72,8 +74,19 @@ const DashboardLayout = () => {
                             </li>
                             <li>
                                 <NavLink
+                                    to="/dashboard/upcomingMeals"
+                                    
+                                    className={({ isActive }) =>
+                                        isActive ? 'text-primary font-bold' : 'font-semibold'
+                                    }
+                                >
+                                    Upcoming Meals
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
                                     to="/dashboard/serveMeals"
-                                    end
+                                    
                                     className={({ isActive }) =>
                                         isActive ? 'text-primary font-bold' : 'font-semibold'
                                     }

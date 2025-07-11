@@ -27,7 +27,7 @@ const ServeMeals = () => {
 
   return (
     <div className="p-4">
-      <h2 className="text-xl font-bold mb-4">Requested Meals</h2>
+      <h2 className="text-3xl font-bold mb-4">Requested Meals</h2>
       <div className="flex gap-2 mb-4">
         <input
           type="text"
@@ -45,25 +45,25 @@ const ServeMeals = () => {
           <span className="loading loading-ring loading-md"></span>
         </div>
       ) : (
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto shadow-xl border border-gray-200 rounded-xl">
           <table className="table table-zebra w-full">
             <thead>
               <tr>
-                <th>Meal Title</th>
-                <th>User Name</th>
-                <th>User Email</th>
-                <th>Status</th>
-                <th>Serve</th>
+                <th className="text-center">Meal Title</th>
+                <th className="text-center">User Name</th>
+                <th className="text-center">User Email</th>
+                <th className="text-center">Status</th>
+                <th className="text-center">Serve</th>
               </tr>
             </thead>
             <tbody>
               {requests.map((req) => (
                 <tr key={req._id}>
-                  <td>{req.mealTitle}</td>
-                  <td>{(req.userName).toUpperCase()}</td>
-                  <td>{req.userEmail}</td>
-                  <td>{req.status}</td>
-                  <td>
+                  <td className="text-center" >{req.mealTitle}</td>
+                  <td className="text-center" >{(req.userName).toUpperCase()}</td>
+                  <td className="text-center" >{req.userEmail}</td>
+                  <td className="text-center" >{req.status}</td>
+                  <td className="text-center" >
                     {req.status !== 'delivered' ? (
                       <button
                         className="btn btn-sm btn-success"

@@ -26,7 +26,7 @@ const PaymentHistory = () => {
     }
 
     return (
-        <div className="overflow-x-auto shadow-md rounded-xl mt-6">
+        <div className="overflow-x-auto shadow-md rounded-xl mt-6 mx-5">
             <table className="table table-zebra w-full">
                 <thead className="bg-base-200 text-base font-semibold">
                     <tr>
@@ -45,7 +45,7 @@ const PaymentHistory = () => {
                                 <td className="truncate" title={p.membershipId}>
                                     {String(p.membershipId)}...
                                 </td>
-                                <td>৳{p.amount}</td>
+                                <td >${p.amount}</td>
                                 <td className="font-mono text-sm" title={p.transactionId}>
                                     {p.transactionId}...
                                 </td>

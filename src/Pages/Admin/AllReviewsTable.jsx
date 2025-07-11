@@ -57,11 +57,11 @@ const AllReviewsTable = () => {
                     Sort by Reviews {sortBy === "reviews_count" ? (order === "asc" ? "↑" : "↓") : ""}
                 </button>
             </div>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto shadow-xl border border-gray-200 rounded-xl">
                 <table className="table table-zebra w-full">
                     <thead>
                         <tr>
-                            <th>Title</th>
+                            <th className="text-center">Title</th>
                             <th className="text-center">Likes</th>
                             <th className="text-center">Reviews</th>
                             <th className="text-center">Actions</th>
@@ -70,7 +70,7 @@ const AllReviewsTable = () => {
                     <tbody>
                         {meals.map((meal) => (
                             <tr key={meal._id}>
-                                <td>{meal.title}</td>
+                                <td className="text-center">{meal.title}</td>
                                 <td className="text-center">{meal.likes}</td>
                                 <td className="text-center">{meal.reviews_count}</td>
                                 <td className="flex items-center justify-center space-x-2">
