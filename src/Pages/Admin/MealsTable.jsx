@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 
@@ -74,15 +74,22 @@ const MealsTable = () => {
                                 <td className='border border-gray-300 text-center'>{meal.rating}</td>
                                 <td className='border border-gray-300 text-center'>{meal.distributorName.toUpperCase()}</td>
                                 <td className="space-x-2 space-y-1 md:space-y-0 md:text-center border border-gray-300 ">
-                                    <button
-                                        className="btn btn-xs btn-info"
-                                        onClick={() => navigate(`/dashboard/meals/${meal._id}`)}
+
+                                    <Link
+                                        to={`/Meals/${meal._id}`}
                                     >
-                                        View
-                                    </button>
+                                        <button
+                                            className="btn btn-xs btn-info"
+                                            onClick={() => navigate(`/dashboard/meals/${meal._id}`)}
+                                        >
+                                            View
+                                        </button>
+                                    </Link>
+
+
                                     <button
                                         className="btn btn-xs btn-warning"
-                                        onClick={() => navigate(`/dashboard/meals/update/${meal._id}`)}
+                                        onClick={() => navigate(`/dashboard/updateMeals/${meal._id}`)}
                                     >
                                         Update
                                     </button>

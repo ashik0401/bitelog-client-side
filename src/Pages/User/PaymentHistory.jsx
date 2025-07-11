@@ -43,11 +43,11 @@ const PaymentHistory = () => {
                             <tr key={p.transactionId}>
                                 <td>{index + 1}</td>
                                 <td className="truncate" title={p.membershipId}>
-                                    {String(p.membershipId).slice(0, 8)}...
+                                    {String(p.membershipId)}...
                                 </td>
                                 <td>৳{p.amount}</td>
                                 <td className="font-mono text-sm" title={p.transactionId}>
-                                    {p.transactionId.slice(0, 10)}...
+                                    {p.transactionId}...
                                 </td>
                                 <td>{formatDate(p.paid_at_string)}</td>
                             </tr>

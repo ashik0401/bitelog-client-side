@@ -81,6 +81,16 @@ const DashboardLayout = () => {
                                     Manage Users
                                 </NavLink>
                             </li>
+                            <li>
+                                <NavLink
+                                    to="/dashboard/addMeal"
+                                    className={({ isActive }) =>
+                                        isActive ? 'text-primary font-bold' : 'font-semibold'
+                                    }
+                                >
+                                    Add Meal
+                                </NavLink>
+                            </li>
 
                             <li>
                                 <NavLink
@@ -89,12 +99,12 @@ const DashboardLayout = () => {
                                         isActive ? 'text-primary font-bold' : 'font-semibold'
                                     }
                                 >
-                                    Payment History 
+                                    Payment History
                                 </NavLink>
                             </li>
 
 
-                            
+
                         </ul>
                     </div>
                 </div>

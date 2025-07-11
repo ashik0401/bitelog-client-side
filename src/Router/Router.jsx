@@ -16,6 +16,7 @@ import Meals from "../Pages/Meals/Meals";
 import MealDetail from "../Pages/Meals/MealDetail";
 import Payments from "../Pages/Payments/Payments";
 import PaymentHistory from "../Pages/User/PaymentHistory";
+import UpdateMeals from "../Pages/Admin/AddMeals/UpdateMeal";
 ;
 
 
@@ -30,10 +31,7 @@ export const router = createBrowserRouter([
                 index: true,
                 Component: Home
             },
-            {
-                path: '/addMeals',
-                Component: AddMeal
-            },
+
             {
                 path: '/Meals',
                 Component: Meals,
@@ -42,7 +40,7 @@ export const router = createBrowserRouter([
 
                 path: '/Meals/:id',
                 Component: MealDetail,
-                loader: ({ params }) => fetch(`http://localhost:3000/Meals/${params.id}`)
+               
 
             },
             {
@@ -87,8 +85,15 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/paymentHistory',
                 Component: PaymentHistory
-            }
-
+            },
+            {
+                path: '/dashboard/addMeal',
+                Component: AddMeal
+            },
+            {
+                path: '/dashboard/updateMeals/:id',
+                Component: UpdateMeals
+            },
 
         ]
 
