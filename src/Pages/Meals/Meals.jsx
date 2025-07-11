@@ -3,6 +3,7 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { FaFilter, FaTags } from 'react-icons/fa'
 import useAxiosSecure from '../../hooks/useAxiosSecure'
+import { Link } from 'react-router'
 
 const fetchMeals = async ({ pageParam = 1, queryKey }) => {
   const [, { search, category, priceRange }, axiosSecure] = queryKey
@@ -99,7 +100,7 @@ const Meals = () => {
           ))}
         </select>
 
-        
+
       </div>
 
       <InfiniteScroll
@@ -130,7 +131,11 @@ const Meals = () => {
                 <p>⭐ Rating: {meal.rating}</p>
                 <p>💰 Price: ${meal.price}</p>
                 <div className="card-actions justify-end">
-                  <button className="btn btn-sm btn-primary">Details</button>
+                  <Link
+                    to={`/Meals/${meal._id}`}
+                  >
+                    <button className="btn btn-sm btn-primary">Details</button>
+                  </Link>
                 </div>
               </div>
             </div>
