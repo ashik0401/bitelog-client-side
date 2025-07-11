@@ -78,7 +78,7 @@ const UpdateMeal = () => {
     try {
       await axiosSecure.put(`/meals/${id}`, updatedMeal)
       Swal.fire('Success', 'Meal updated successfully!', 'success')
-      navigate('/meals')
+      navigate('/dashboard')
     } catch {
       Swal.fire('Error', 'Something went wrong', 'error')
     }

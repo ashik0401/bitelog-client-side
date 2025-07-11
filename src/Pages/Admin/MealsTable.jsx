@@ -73,7 +73,7 @@ const MealsTable = () => {
                                 <td className='border border-gray-300 text-center'>{meal.reviews_count}</td>
                                 <td className='border border-gray-300 text-center'>{meal.rating}</td>
                                 <td className='border border-gray-300 text-center'>{meal.distributorName.toUpperCase()}</td>
-                                <td className="space-x-2 space-y-1 md:space-y-0 md:text-center border border-gray-300 ">
+                                <td className="space-x-2 flex items-center justify-center md:text-center border border-gray-300 ">
 
                                     <Link
                                         to={`/Meals/${meal._id}`}

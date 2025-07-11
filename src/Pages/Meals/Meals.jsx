@@ -29,7 +29,7 @@ const Meals = () => {
   useEffect(() => {
     axiosSecure.get('/meal-categories').then(res => setCategories(res.data))
     axiosSecure.get('/price-ranges').then(res => setPriceRanges(res.data))
-  }, [])
+  }, [axiosSecure])
 
   const {
     data,
