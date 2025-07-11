@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../hooks/useAuth';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 
-
 const AdminProfile = () => {
     const { user, loading: authLoading } = useAuth();
     const axiosSecure = useAxiosSecure();
@@ -13,11 +12,19 @@ const AdminProfile = () => {
         queryFn: async () => {
             const res = await axiosSecure.get(`/meals/count/${user.email}`);
             return res.data;
-            
         }
     });
 
-    if (authLoading || !user?.email || mealCountLoading) {
+    const { data: userInfo = {}, isLoading: userInfoLoading } = useQuery({
+        enabled: !!user?.email && !authLoading,
+        queryKey: ['userInfo', user?.email],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/users/${user.email}`);
+            return res.data;
+        }
+    });
+
+    if (authLoading || !user?.email || mealCountLoading || userInfoLoading) {
         return <div className="text-center p-6"><span className="loading loading-ring loading-sm"></span></div>;
     }
 
@@ -29,6 +36,8 @@ const AdminProfile = () => {
     const photoURL = user.photoURL || 'https://i.ibb.co/V0bwF2W1/User-Profile-PNG-High-Quality-Image.png';
     const email = user.email || 'No email';
     const mealsAdded = mealCountData.count;
+    const badge = userInfo.badge || 'Bronze';
+    const role = userInfo.role;
 
     return (
         <div className="w-full bg-orange-200 py-6 text-center space-y-4">
@@ -42,12 +51,14 @@ const AdminProfile = () => {
             <div>
                 <h2 className="font-semibold text-gray-800">
                     <span className="text-xl">{displayName}</span>{' '}
-                    <span className="text-md">(User)</span>
+                    {role === 'user' && <span className="text-md">({badge})</span>}
                 </h2>
                 <p className="text-gray-500">{email}</p>
-                <div className="mt-4 bg-indigo-100 text-primary rounded-full px-4 py-2 inline-block text-sm font-medium">
-                    Meals Added: {mealsAdded}
-                </div>
+                {
+                    role === 'admin' && <div className="mt-4 bg-indigo-100 text-primary rounded-full px-4 py-2 inline-block text-sm font-medium">
+                        Meals Added: {mealsAdded}
+                    </div>
+                }
             </div>
         </div>
     );

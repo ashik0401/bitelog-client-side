@@ -14,6 +14,7 @@ import MealsTable from "../Pages/Admin/MealsTable";
 import ManageUsers from "../Pages/Admin/ManageUsers";
 import Meals from "../Pages/Meals/Meals";
 import MealDetail from "../Pages/Meals/MealDetail";
+import Payments from "../Pages/Payments/Payments";
 ;
 
 
@@ -41,6 +42,11 @@ export const router = createBrowserRouter([
                 path: '/Meals/:id',
                 Component: MealDetail,
                 loader: ({ params }) => fetch(`http://localhost:3000/Meals/${params.id}`)
+
+            },
+            {
+                path: '/payment/:id',
+                Component:Payments
 
             }
 
