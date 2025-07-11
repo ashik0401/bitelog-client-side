@@ -42,8 +42,11 @@ const MealDetail = () => {
     }
     setRequesting(true);
     try {
-      await axiosSecure.post(`/meals/${id}/request`);
-      alert("Meal request sent. Pending approval.");
+      await axiosSecure.post(`/meals/${id}/request`, {
+        email: user.email,
+        username: user.displayName,
+        photoURL: user.photoURL
+      });
     } catch (err) {
       alert(err.response?.data?.message || "Error requesting meal");
     } finally {
@@ -143,11 +146,11 @@ const MealDetail = () => {
                   />
                   <div>
                     <p className="font-semibold">{(review.username).toUpperCase()}</p>
-                    <p className="text-xs text-gray-400 mb-2">
+                    <p className="text-xs text-gray-400">
                       {new Date(review.createdAt).toLocaleString()}
                     </p>
                     <p className="text-gray-700">{review.text}</p>
-                    
+
                   </div>
                 </div>
               ))}

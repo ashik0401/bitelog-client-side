@@ -10,7 +10,7 @@ const Banner = () => {
             }}
         >
             <div className="w-full sm:p-20 p-10 text-white text-center h-full bg-black/30 flex flex-col justify-center">
-                <h1 className="text-4xl md:text-5xl font-bold mb-4">Welcome to the BiteLog!</h1>
+                <h1 className="text-2xl md:text-5xl font-bold mb-4">Welcome to the BiteLog!</h1>
                 <p className="text-lg md:text-xl mb-6">
                     Find meals, manage reviews, and enjoy smart living.
                 </p>

@@ -18,6 +18,7 @@ import Payments from "../Pages/Payments/Payments";
 import PaymentHistory from "../Pages/User/PaymentHistory";
 import UpdateMeals from "../Pages/Admin/AddMeals/UpdateMeal";
 import AllReviewsTable from "../Pages/Admin/AllReviewsTable";
+import ServeMeals from "../Pages/Admin/ServeMeals";
 ;
 
 
@@ -98,6 +99,10 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/allReviews',
                 Component: AllReviewsTable
+            },
+            {
+                path: '/dashboard/serveMeals',
+                Component: ServeMeals
             }
         ]
 

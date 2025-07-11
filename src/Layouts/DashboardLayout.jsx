@@ -70,6 +70,17 @@ const DashboardLayout = () => {
                                     All Meals
                                 </NavLink>
                             </li>
+                            <li>
+                                <NavLink
+                                    to="/dashboard/serveMeals"
+                                    end
+                                    className={({ isActive }) =>
+                                        isActive ? 'text-primary font-bold' : 'font-semibold'
+                                    }
+                                >
+                                   Serve Meals
+                                </NavLink>
+                            </li>
 
 
                             <li>
