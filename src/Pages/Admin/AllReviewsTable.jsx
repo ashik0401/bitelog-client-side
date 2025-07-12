@@ -68,28 +68,31 @@ const AllReviewsTable = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {meals.map((meal) => (
-                            <tr key={meal._id}>
-                                <td className="text-center">{meal.title}</td>
-                                <td className="text-center">{meal.likes}</td>
-                                <td className="text-center">{meal.reviews_count}</td>
-                                <td className="flex items-center justify-center space-x-2">
-                                    <button
-                                        className="btn btn-xs btn-info"
-                                        onClick={() => navigate(`/Meals/${meal._id}`)}
-                                    >
-                                        View
-                                    </button>
-                                    <button
-                                        className="btn btn-xs btn-error"
-                                        onClick={() => deleteMeal(meal._id)}
-                                    >
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
+                        {meals
+                            .filter(meal => meal.reviews_count > 0)
+                            .map((meal) => (
+                                <tr key={meal._id}>
+                                    <td className="text-center">{meal.title}</td>
+                                    <td className="text-center">{meal.likes}</td>
+                                    <td className="text-center">{meal.reviews_count}</td>
+                                    <td className="flex items-center justify-center space-x-2">
+                                        <button
+                                            className="btn btn-xs btn-info"
+                                            onClick={() => navigate(`/Meals/${meal._id}`)}
+                                        >
+                                            View
+                                        </button>
+                                        <button
+                                            className="btn btn-xs btn-error"
+                                            onClick={() => deleteMeal(meal._id)}
+                                        >
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
                     </tbody>
+
                 </table>
             </div>
         </div>

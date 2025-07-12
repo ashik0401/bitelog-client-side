@@ -21,6 +21,7 @@ import AllReviewsTable from "../Pages/Admin/AllReviewsTable";
 import ServeMeals from "../Pages/Admin/ServeMeals";
 import UpcomingMeals from "../Pages/Admin/UpcomingMeals";
 import AddUpcomingMeal from "../Pages/Admin/AddUpcomingMeal";
+import MyReviews from "../Pages/User/MyReviews";
 ;
 
 
@@ -47,6 +48,7 @@ export const router = createBrowserRouter([
 
 
             },
+            
             {
                 path: '/payment/:id',
                 Component: Payments
@@ -113,7 +115,18 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/addUpcomingMeal',
                 Component: AddUpcomingMeal
-            }
+            },
+            {
+                path: '/dashboard/myReviews',
+                Component: MyReviews
+            },
+            {
+
+                path: '/dashboard/meals/:id',
+                Component: MealDetail,
+
+
+            },
         ]
 
     }
