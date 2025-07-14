@@ -6,7 +6,7 @@ import SocialLogin from '../SocialLogin/SocialLogin';
 import useAuth from '../../../hooks/useAuth';
 
 const Login = () => {
-    const { register, handleSubmit, formState: { errors }, setError, clearErrors } = useForm();
+    const { register, handleSubmit, formState: { errors },  clearErrors } = useForm();
     const { signIn } = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
@@ -21,10 +21,7 @@ const Login = () => {
             .then(() => {
                 navigate(from);
             })
-            .catch(() => {
-                setLoginError('Invalid email or password');
-                setError('password', { type: 'manual', message: 'Email or password is incorrect' });
-            });
+           
     };
 
     return (

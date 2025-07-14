@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import axios from 'axios';
 import useAxios from '../../../hooks/useAxios';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 
 const Register = () => {
@@ -15,6 +16,7 @@ const Register = () => {
     const navigate = useNavigate();
     const from = location.state?.from || '/';
     const axiosInstance = useAxios();
+    const [showPassword, setShowPassword] = useState(false);
 
 
 
@@ -79,15 +81,34 @@ const Register = () => {
 
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
             <div className="card-body">
-                <h1 className="text-5xl font-bold">Create Account</h1>
+                <h1 className="text-3xl font-bold">Create Account</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <fieldset className="fieldset">
 
 
                         <label className="label">Upload Image</label>
-                        <input type="file"
-                            onChange={handleImageUpload}
-                            className="input w-15 h-15 rounded-full" placeholder="Your Profile picture" />
+                        <div className="flex flex-col items-center gap-2">
+                            <label className="cursor-pointer group">
+                                {profilePic ? (
+                                    <img
+                                        src={profilePic}
+                                        alt="Profile"
+                                        className="w-24 h-24 rounded-full object-cover border-2 border-gray-300 group-hover:opacity-80 transition"
+                                    />
+                                ) : (
+                                    <div className="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 group-hover:bg-gray-300 transition">
+                                        Upload
+                                    </div>
+                                )}
+                                <input
+                                    type="file"
+                                    onChange={handleImageUpload}
+                                    className="hidden"
+                                />
+                            </label>
+                        </div>
+
+
 
 
 
@@ -113,17 +134,28 @@ const Register = () => {
                         }
 
                         <label className="label">Password</label>
-                        <input
-                            type="password"
-                            placeholder="Password"
-                            {...register("password", {
-                                required: true,
-                                minLength: 6,
-                                pattern: /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/
-                            })}
-                            className="input"
-                            required
-                        />
+                        <label className="label">Password</label>
+                        <div className="relative">
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                placeholder="Password"
+                                {...register("password", {
+                                    required: true,
+                                    minLength: 6,
+                                    pattern: /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/
+                                })}
+                                className="input w-full pr-10"
+                                required
+                            />
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword(!showPassword)}
+                                className="absolute right-2 top-1/2 transform -translate-y-1/2 text-lg text-gray-500 hover:text-black"
+                            >
+                                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                            </button>
+                        </div>
+
                         {errors.password?.type === 'required' && (
                             <p className="text-red-500">Password is required</p>
                         )}
@@ -140,7 +172,13 @@ const Register = () => {
                         <div><a className="link link-hover">Forgot password?</a></div>
                         <button className="btn btn-primary text-black mt-4">Register</button>
                     </fieldset>
-                    <p><small>Already have an account? <Link className="btn btn-link" to="/login">Login</Link></small></p>
+                    <p className="text-center mt-4 text-sm">
+                        Already have an account?
+                        <Link to="/login" state={{ from }} className="text-blue-600 font-semibold ml-1">
+                            Login
+                        </Link>
+                    </p>
+
                 </form>
                 <SocialLogin></SocialLogin>
             </div>

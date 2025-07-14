@@ -93,8 +93,8 @@ const MealDetail = () => {
         </figure>
         <div className="card-body">
           <h2 className="card-title">{meal.title}</h2>
-          <p className="text-sm text-gray-500">
-            Distributor: {meal.distributorName?.toUpperCase()}
+          <p className="text-sm  font-semibold">
+            Distributor: <span className="font-bold"> {meal.distributorName?.toUpperCase()}</span>
           </p>
           <p className="my-3">{meal.description}</p>
           <p>
@@ -103,7 +103,8 @@ const MealDetail = () => {
               ? meal.ingredients.join(", ")
               : "No ingredients listed"}
           </p>
-          <p className="text-sm text-gray-400 mt-2">
+          <p className="font-bold">Price: <span className="font-semibold">${meal.price}</span></p>
+          <p className="text-sm text-gray-500 mt-2">
             Posted: {new Date(meal.postTime).toLocaleString()}
           </p>
           <p className="mt-1">Rating: {meal.rating?.toFixed(1)} ⭐</p>

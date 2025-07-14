@@ -18,7 +18,23 @@ const MyReviews = () => {
     enabled: !!user?.email,
     queryFn: async () => {
       const res = await axiosSecure.get(`/reviews/user/${user.email}`);
-      return res.data;
+      const reviewsData = res.data;
+      const mealIds = [...new Set(reviewsData.map(r => r.mealId))];
+      if (mealIds.length === 0) return reviewsData;
+
+      const mealsRes = await axiosSecure.get('/meals', {
+        params: { ids: mealIds.join(',') }
+      });
+      const meals = mealsRes.data;
+      const mealsMap = {};
+      meals.forEach(meal => {
+        mealsMap[meal._id] = meal;
+      });
+
+      return reviewsData.map(review => ({
+        ...review,
+        likes: mealsMap[review.mealId]?.likes || 0
+      }));
     },
   });
 

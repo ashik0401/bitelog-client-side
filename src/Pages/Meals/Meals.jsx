@@ -113,7 +113,7 @@ const Meals = () => {
           ) : null
         }
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:w-11/12 mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:w-11/12 mx-auto mt-10">
           {allMeals.map(meal => (
             <div
               key={meal._id}

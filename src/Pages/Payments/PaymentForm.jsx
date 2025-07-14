@@ -1,6 +1,6 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useState } from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
@@ -14,7 +14,7 @@ const PaymentForm = () => {
     const { id } = useParams();
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
-
+    const navigate = useNavigate()
     const { data: membershipInfo = {}, isPending } = useQuery({
         queryKey: ['membership', id],
         queryFn: async () => {
@@ -93,9 +93,10 @@ const PaymentForm = () => {
                             title: 'Payment Successful!',
                             html: `<strong>Transaction ID:</strong> <code>${transactionId}</code>`,
                             confirmButtonText: 'Go to Dashboard',
-                        });
-                        console.log('payments successfull');
 
+                        });
+
+                        navigate('/dashboard')
                     }
                 }
             }

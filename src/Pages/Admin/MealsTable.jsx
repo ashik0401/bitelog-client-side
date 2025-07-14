@@ -75,14 +75,14 @@ const MealsTable = () => {
                 <td className=' text-center'>{meal.rating}</td>
                 <td className=' text-center'>{meal.distributorName.toUpperCase()}</td>
                 <td className="space-x-2 flex items-center justify-center md:text-center  ">
-                  <Link to={`/dashboard/meals/${meal._id}`}>
+                 
                     <button
                       className="btn btn-xs btn-info"
-                      onClick={() => navigate(`/dashboard/meals/${meal._id}`)}
+                      onClick={() => navigate(`/Meals/${meal._id}`)}
                     >
                       View
                     </button>
-                  </Link>
+                  
                   <button
                     className="btn btn-xs btn-warning"
                     onClick={() => navigate(`/dashboard/updateMeals/${meal._id}`)}

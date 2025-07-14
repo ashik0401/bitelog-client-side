@@ -4,10 +4,12 @@ import axios from 'axios';
 import useAuth from '../../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { useQueryClient } from '@tanstack/react-query';
 
 const AddMeal = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const queryClient = useQueryClient();
   const [imageURL, setImageURL] = useState('');
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
@@ -29,6 +31,9 @@ const AddMeal = () => {
       };
 
       await axiosSecure.post('/meals', meal);
+
+      queryClient.invalidateQueries(['user', user?.email]);
+
       Swal.fire({
         title: 'Success!',
         text: 'Meal added successfully!',
@@ -38,11 +43,10 @@ const AddMeal = () => {
       reset();
       setImageURL('');
     } catch (err) {
-      console.error('Error adding meal:', err);
       Swal.fire({
         title: 'Error!',
         text: 'Something went wrong. Please try again.',
-        icon: 'error',
+        icon: 'error', err,
         confirmButtonText: 'OK'
       });
     }
@@ -58,13 +62,11 @@ const AddMeal = () => {
       const res = await axios.post(imgbbUrl, formData);
       setImageURL(res.data.data.url);
     } catch (error) {
-      console.error('Image upload failed:', error);
       Swal.fire({
         title: 'Image Upload Failed!',
         text: 'Try uploading a different image.',
-        icon: 'error',
+        icon: 'error', error,
         confirmButtonText: 'OK'
-        
       });
     }
   };

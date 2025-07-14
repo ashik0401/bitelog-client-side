@@ -39,6 +39,16 @@ const Navbar = () => {
                 All Meal
             </NavLink>
         </li>
+        <li>
+            <NavLink
+                to="/upComingMeal"
+                className={({ isActive }) =>
+                    isActive ? 'text-primary font-bold' : ''
+                }
+            >
+                Upcoming Meals
+            </NavLink>
+        </li>
         {
             user && <li>
                 <NavLink
