@@ -58,10 +58,11 @@ const UpdateMeal = () => {
       setImageURL(res.data.data.url)
     } catch {
       Swal.fire({
+        icon: 'error',
         title: 'Image Upload Failed!',
         text: 'Try uploading a different image.',
-        icon: 'error',
-        confirmButtonText: 'OK',
+        showConfirmButton: false,
+        timer: 1500
       })
     } finally {
       setIsUploading(false)
@@ -77,10 +78,20 @@ const UpdateMeal = () => {
     }
     try {
       await axiosSecure.put(`/meals/${id}`, updatedMeal)
-      Swal.fire('Success', 'Meal updated successfully!', 'success')
+      Swal.fire({
+        icon: 'success',
+        title: 'Meal updated successfully!',
+        showConfirmButton: false,
+        timer: 1500
+      })
       navigate('/dashboard')
     } catch {
-      Swal.fire('Error', 'Something went wrong', 'error')
+      Swal.fire({
+        icon: 'error',
+        title: 'Something went wrong',
+        showConfirmButton: false,
+        timer: 1500
+      })
     }
   }
 
@@ -91,18 +102,10 @@ const UpdateMeal = () => {
     <div className="md:max-w-xl md:mx-auto p-6 bg-orange-100 rounded shadow-xl mt-20 mx-5">
       <h2 className="text-3xl font-bold mb-4 text-center">Update Meal</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <input
-          type="text"
-          {...register('title', { required: true })}
-          placeholder="Meal Title"
-          className="input input-bordered w-full"
-        />
+        <input type="text" {...register('title', { required: true })} placeholder="Meal Title" className="input input-bordered w-full" />
         {errors.title && <p className="text-red-500">Title is required</p>}
 
-        <select
-          {...register('category', { required: true })}
-          className="select select-bordered w-full"
-        >
+        <select {...register('category', { required: true })} className="select select-bordered w-full">
           <option value="">Select Category</option>
           <option value="Breakfast">Breakfast</option>
           <option value="Lunch">Lunch</option>
@@ -113,38 +116,19 @@ const UpdateMeal = () => {
         <input type="file" onChange={handleImageUpload} className="file-input file-input-bordered w-full" />
         {imageURL && <img src={imageURL} alt="Meal" className="h-24 w-24 object-cover mt-2" />}
 
-        <input
-          type="text"
-          {...register('ingredients', { required: true })}
-          placeholder="Ingredients (comma separated)"
-          className="input input-bordered w-full"
-        />
+        <input type="text" {...register('ingredients', { required: true })} placeholder="Ingredients (comma separated)" className="input input-bordered w-full" />
         {errors.ingredients && <p className="text-red-500">Ingredients are required</p>}
 
-        <textarea
-          {...register('description', { required: true })}
-          placeholder="Description"
-          className="textarea textarea-bordered w-full"
-        />
+        <textarea {...register('description', { required: true })} placeholder="Description" className="textarea textarea-bordered w-full" />
         {errors.description && <p className="text-red-500">Description is required</p>}
 
-        <input
-          type="number"
-          step="0.01"
-          {...register('price', { required: true })}
-          placeholder="Price"
-          className="input input-bordered w-full"
-        />
+        <input type="number" step="0.01" {...register('price', { required: true })} placeholder="Price" className="input input-bordered w-full" />
         {errors.price && <p className="text-red-500">Price is required</p>}
 
         <input type="text" value={user?.displayName} readOnly className="input input-bordered w-full bg-gray-100" />
         <input type="email" value={user?.email} readOnly className="input input-bordered w-full bg-gray-100" />
 
-        <button 
-          type="submit" 
-          className="btn btn-primary w-full"
-          disabled={isUploading}
-        >
+        <button type="submit" className="btn btn-primary w-full" disabled={isUploading}>
           {isUploading ? 'Updating...' : 'Update Meal'}
         </button>
       </form>

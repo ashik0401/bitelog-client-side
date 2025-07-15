@@ -78,9 +78,9 @@ const Register = () => {
     }
 
     return (
-
+ <div className="h-[87vh] flex justify-center items-center px-4">
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-            <div className="card-body">
+            <div className="card-body ">
                 <h1 className="text-3xl font-bold">Create Account</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <fieldset className="fieldset">
@@ -183,6 +183,8 @@ const Register = () => {
                 <SocialLogin></SocialLogin>
             </div>
         </div>
+       
+     </div >    
     );
 };
 

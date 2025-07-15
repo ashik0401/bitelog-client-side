@@ -1,14 +1,31 @@
 import React from "react";
 import useUserRole from "../../Pages/User/useUserRole";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const DashboardHome = () => {
   const { roleUser, loading } = useUserRole();
+  const axiosSecure = useAxiosSecure();
+
+  const email = roleUser?.email;
+  const role = roleUser?.role;
+
+  const {
+    data: totalMeals = 0,
+    isLoading: countLoading,
+  } = useQuery({
+    queryKey: ["adminMealCount", email],
+    enabled: !!email && role === "admin",
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/meals/count/${email}`);
+      return res.data.count;
+    },
+  });
 
   if (loading) return <div className="text-center mt-20">Loading...</div>;
   if (!roleUser) return <div className="text-center mt-20 text-red-500">User data not found.</div>;
 
-  const { name, email, image, role, badge } = roleUser;
-  const mealsAdded = roleUser?.mealsAdded ?? 0;
+  const { name, image, badge } = roleUser;
 
   return (
     <div className="max-w-4xl mx-auto p-8 rounded-xl shadow-lg">
@@ -23,7 +40,10 @@ const DashboardHome = () => {
           <p className="text-sm text-gray-500 text-center">{email}</p>
           {role === "admin" ? (
             <p className="mt-3 text-orange-600 text-center font-semibold">
-              Meals Added: <span className="text-gray-900">{mealsAdded}</span>
+              Meals Added:{" "}
+              <span className="text-white bg-primary rounded-full px-2">
+                {countLoading ? "..." : totalMeals}
+              </span>
             </p>
           ) : (
             <div className="mt-3 flex items-center justify-center space-x-3">

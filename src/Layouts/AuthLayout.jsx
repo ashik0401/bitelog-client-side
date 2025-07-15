@@ -1,21 +1,22 @@
 import React from 'react';
 import { Outlet } from 'react-router';
 import ScrollToTop from '../Pages/shared/ScrollToTop';
+import Lottie from 'lottie-react';
+import lottieAnimation from '.././assets/lottieFiles/login.json'
 
 const AuthLayout = () => {
     return (
-        <div className="p-12 bg-base-200">
-           <ScrollToTop />
-            <div className="hero-content flex-col lg:flex-row-reverse">
-                <div className='flex-1'>
-                    <img
-                        src=''
-                        className="max-w-sm rounded-lg shadow-2xl"
-                    />
-                </div>
+        <div className="md:p-12 bg-base-200">
+            <ScrollToTop />
+            <div className="flex items-center justify-center">
                 <div className='flex-1'>
                     <Outlet></Outlet>
                 </div>
+                <div className='flex-1 hidden md:block'>
+                    <Lottie animationData={lottieAnimation} loop={true} className="w-full  " />
+
+                </div>
+
             </div>
         </div>
     );

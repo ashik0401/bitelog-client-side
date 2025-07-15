@@ -31,23 +31,23 @@ const AddMeal = () => {
       };
 
       await axiosSecure.post('/meals', meal);
-
       queryClient.invalidateQueries(['user', user?.email]);
-
       Swal.fire({
-        title: 'Success!',
-        text: 'Meal added successfully!',
         icon: 'success',
-        confirmButtonText: 'OK'
+        title: 'Meal added successfully!',
+        showConfirmButton: false,
+        timer: 1500
       });
       reset();
       setImageURL('');
     } catch (err) {
+      console.log(err);
+      
       Swal.fire({
-        title: 'Error!',
-        text: 'Something went wrong. Please try again.',
-        icon: 'error', err,
-        confirmButtonText: 'OK'
+        icon: 'error',
+        title: 'Something went wrong. Please try again.',
+        showConfirmButton: false,
+        timer: 1500
       });
     }
   };
@@ -62,11 +62,13 @@ const AddMeal = () => {
       const res = await axios.post(imgbbUrl, formData);
       setImageURL(res.data.data.url);
     } catch (error) {
+      console.log(error);
+      
       Swal.fire({
-        title: 'Image Upload Failed!',
-        text: 'Try uploading a different image.',
-        icon: 'error', error,
-        confirmButtonText: 'OK'
+        icon: 'error',
+        title: 'Image upload failed. Try a different image.',
+        showConfirmButton: false,
+        timer: 1500
       });
     }
   };

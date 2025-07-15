@@ -1,18 +1,29 @@
 import React, { useState, useEffect } from 'react'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { FaFilter, FaTags } from 'react-icons/fa'
+import { FaTags } from 'react-icons/fa'
 import useAxiosSecure from '../../hooks/useAxiosSecure'
 import { Link } from 'react-router'
 
 const fetchMeals = async ({ pageParam = 1, queryKey }) => {
-  const [, { search, category, priceRange }, axiosSecure] = queryKey
+  const [, { search, category, priceRange }] = queryKey
+  const axiosSecure = queryKey[2]
   const res = await axiosSecure.get('/meals', {
-    params: { page: pageParam, search, category, priceRange },
+    params: {
+      page: pageParam,
+      limit: 10,
+      search,
+      category,
+      priceRange,
+    },
   })
+
+  const meals = Array.isArray(res.data.meals) ? res.data.meals : res.data
+  const hasNext = meals.length === 10
+
   return {
-    meals: res.data,
-    nextPage: res.data.length === 10 ? pageParam + 1 : undefined,
+    meals,
+    nextPage: hasNext ? pageParam + 1 : undefined,
   }
 }
 
@@ -37,6 +48,7 @@ const Meals = () => {
     hasNextPage,
     refetch,
     isFetchingNextPage,
+    isLoading,
   } = useInfiniteQuery({
     queryKey: ['meals', { search, category, priceRange }, axiosSecure],
     queryFn: fetchMeals,
@@ -49,12 +61,23 @@ const Meals = () => {
     refetch()
   }
 
-  const allMeals = data?.pages.flatMap(page => page.meals) || []
+  const handleCategoryChange = value => {
+    setCategory(value)
+    refetch()
+  }
+
+  const handlePriceChange = value => {
+    setPriceRange(value)
+    refetch()
+  }
+
+  const allMeals =
+    data?.pages?.flatMap(page => Array.isArray(page.meals) ? page.meals : []) || []
 
   return (
     <div className="p-4 mx-auto">
-      <div className="flex flex-col md:flex-row-reverse gap-3 mb-4 md:max-w-6xl mx-auto">
-        <div className='flex gap-2 w-full'>
+      <div className="flex flex-col md:flex-row-reverse gap-3 mb-4 md:w-11/12 mx-auto mt-10">
+        <div className="flex gap-2 w-full">
           <input
             value={input}
             onChange={e => setInput(e.target.value)}
@@ -80,7 +103,7 @@ const Meals = () => {
 
         <select
           value={category}
-          onChange={e => setCategory(e.target.value)}
+          onChange={e => handleCategoryChange(e.target.value)}
           className={`border rounded p-2 w-full sm:w-1/4 ${showFilters ? '' : 'hidden sm:block'}`}
         >
           <option value="">All Categories</option>
@@ -91,7 +114,7 @@ const Meals = () => {
 
         <select
           value={priceRange}
-          onChange={e => setPriceRange(e.target.value)}
+          onChange={e => handlePriceChange(e.target.value)}
           className={`border rounded p-2 w-full sm:w-1/4 ${showFilters ? '' : 'hidden sm:block'}`}
         >
           <option value="">All Prices</option>
@@ -99,19 +122,13 @@ const Meals = () => {
             <option key={i} value={pr.value}>{pr.label}</option>
           ))}
         </select>
-
-
       </div>
 
       <InfiniteScroll
         dataLength={allMeals.length}
         next={fetchNextPage}
         hasMore={!!hasNextPage}
-        loader={
-          isFetchingNextPage ? (
-            <p className="text-center">Loading more meals...</p>
-          ) : null
-        }
+        loader={isFetchingNextPage && <p className="text-center">Loading more meals...</p>}
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:w-11/12 mx-auto mt-10">
           {allMeals.map(meal => (
@@ -128,12 +145,20 @@ const Meals = () => {
               </figure>
               <div className="card-body">
                 <h2 className="card-title">{meal.title}</h2>
-                <p>⭐ Rating: {meal.rating}</p>
+                <p>⭐ Rating: {
+  (() => {
+    const ratings = meal.ratings || {};
+    const totalRatings = Object.values(ratings).reduce((a, b) => a + b, 0);
+    if (totalRatings === 0) return 0;
+    const totalScore = Object.entries(ratings).reduce(
+      (acc, [star, count]) => acc + Number(star) * count, 0
+    );
+    return (totalScore / totalRatings).toFixed(1);
+  })()
+}</p>
                 <p>💰 Price: ${meal.price}</p>
                 <div className="card-actions justify-end">
-                  <Link
-                    to={`/Meals/${meal._id}`}
-                  >
+                  <Link to={`/Meals/${meal._id}`}>
                     <button className="btn btn-sm btn-primary">Details</button>
                   </Link>
                 </div>
@@ -142,6 +167,10 @@ const Meals = () => {
           ))}
         </div>
       </InfiniteScroll>
+
+      {isLoading && !allMeals.length && (
+        <p className="text-center mt-10 text-lg text-primary">Loading meals...</p>
+      )}
     </div>
   )
 }

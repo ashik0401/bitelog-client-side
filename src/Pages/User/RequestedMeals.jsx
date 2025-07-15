@@ -3,17 +3,20 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
+import Pagination from '../../Components/Pagination/Pagination';
 
 const RequestedMeals = () => {
   const queryClient = useQueryClient();
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-
-  const [mealsStats, setMealsStats] = useState({}); // mealId -> { likes, reviews_count }
+  const [mealsStats, setMealsStats] = useState({});
+  const [page, setPage] = useState(1);
+  const limit = 10;
 
   const fetchRequestedMeals = async () => {
-    const { data } = await axiosSecure.get(`/meal-requests?email=${user?.email}`);
-    return data;
+    const res = await axiosSecure.get(`/meal-requests?email=${user?.email}&page=${page}&limit=${limit}`);
+    const { requests, totalCount } = res.data;
+    return { requests, totalCount };
   };
 
   const fetchMealStats = async (mealId) => {
@@ -25,11 +28,14 @@ const RequestedMeals = () => {
     };
   };
 
-  const { data: requests = [], isLoading, isError } = useQuery({
-    queryKey: ['requestedMeals', user?.email],
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['requestedMeals', user?.email, page],
     queryFn: fetchRequestedMeals,
     enabled: !!user?.email,
   });
+
+  const requests = data?.requests || [];
+  const totalCount = data?.totalCount || 0;
 
   useEffect(() => {
     const loadStats = async () => {
@@ -53,7 +59,7 @@ const RequestedMeals = () => {
   const mutation = useMutation({
     mutationFn: cancelMealRequest,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['requestedMeals', user?.email] });
+      queryClient.invalidateQueries({ queryKey: ['requestedMeals', user?.email, page] });
       Swal.fire('Cancelled', 'Your meal request has been cancelled.', 'success');
     },
     onError: () => {
@@ -77,11 +83,12 @@ const RequestedMeals = () => {
     });
   };
 
-  if (isLoading) return <div>Loading requested meals...</div>;
-  if (isError) return <div>Error loading requested meals.</div>;
+  if (isLoading) return <div className="text-center mt-20">Loading requested meals...</div>;
+  if (isError) return <div className="text-center text-red-500 mt-20">Error loading requested meals.</div>;
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto max-w-6xl mx-auto px-4">
+      <h2 className="text-2xl font-bold mb-4">Requested Meals</h2>
       <table className="table w-full border-collapse border border-gray-300">
         <thead>
           <tr className="bg-orange-200">
@@ -93,38 +100,46 @@ const RequestedMeals = () => {
           </tr>
         </thead>
         <tbody>
-          {requests.length === 0 && (
+          {requests.length === 0 ? (
             <tr>
               <td colSpan="5" className="text-center p-4">No requested meals found.</td>
             </tr>
+          ) : (
+            requests.map((req) => (
+              <tr key={req._id} className="hover:bg-orange-100">
+                <td className="border border-gray-300 px-4 py-2">{req.mealTitle}</td>
+                <td className="border border-gray-300 px-4 py-2 text-center">
+                  {mealsStats[req.mealId]?.likes ?? '...'}
+                </td>
+                <td className="border border-gray-300 px-4 py-2 text-center">
+                  {mealsStats[req.mealId]?.reviews_count ?? '...'}
+                </td>
+                <td className="border border-gray-300 px-4 py-2 text-center">{req.status}</td>
+                <td className="border border-gray-300 px-4 py-2 text-center">
+                  {req.status === 'pending' ? (
+                    <button
+                      onClick={() => handleCancel(req._id)}
+                      className="btn btn-sm btn-error"
+                      disabled={mutation.isLoading}
+                    >
+                      Cancel
+                    </button>
+                  ) : (
+                    <span className="text-gray-500">N/A</span>
+                  )}
+                </td>
+              </tr>
+            ))
           )}
-          {requests.map((req) => (
-            <tr key={req._id} className="hover:bg-orange-100">
-              <td className="border border-gray-300 px-4 py-2">{req.mealTitle}</td>
-              <td className="border border-gray-300 px-4 py-2 text-center">
-                {mealsStats[req.mealId]?.likes ?? '...'}
-              </td>
-              <td className="border border-gray-300 px-4 py-2 text-center">
-                {mealsStats[req.mealId]?.reviews_count ?? '...'}
-              </td>
-              <td className="border border-gray-300 px-4 py-2 text-center">{req.status}</td>
-              <td className="border border-gray-300 px-4 py-2 text-center">
-                {req.status === 'pending' ? (
-                  <button
-                    onClick={() => handleCancel(req._id)}
-                    className="btn btn-sm btn-error"
-                    disabled={mutation.isLoading}
-                  >
-                    Cancel
-                  </button>
-                ) : (
-                  <span className="text-gray-500">N/A</span>
-                )}
-              </td>
-            </tr>
-          ))}
         </tbody>
       </table>
+
+      <Pagination
+        totalItems={totalCount}
+        itemsPerPage={limit}
+        currentPage={page}
+        onPageChange={setPage}
+      />
     </div>
   );
 };

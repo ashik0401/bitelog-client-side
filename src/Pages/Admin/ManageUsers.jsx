@@ -2,27 +2,39 @@ import React, { useState } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import Pagination from '../../Components/Pagination/Pagination';
 
 const ManageUsers = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [querySearchTerm, setQuerySearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
 
-  const { data: users = [], isFetching } = useQuery({
-    queryKey: ['users', querySearchTerm],
+  const { data = {}, isFetching } = useQuery({
+    queryKey: ['users', querySearchTerm, currentPage],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/users?search=${encodeURIComponent(querySearchTerm)}`);
+      const res = await axiosSecure.get('/users', {
+        params: {
+          search: querySearchTerm,
+          page: currentPage,
+          limit: itemsPerPage,
+        },
+      });
       return res.data;
     },
-    enabled: true,
-    staleTime: 1000 * 60 * 5,
-    cacheTime: 1000 * 60 * 10,
+    keepPreviousData: true,
   });
+
+  const users = data.users || [];
+  const totalItems = data.totalCount || 0;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   const handleSearch = (e) => {
     e.preventDefault();
     setQuerySearchTerm(searchTerm.trim());
+    setCurrentPage(1);
   };
 
   const makeAdmin = async (userId, name) => {
@@ -32,15 +44,29 @@ const ManageUsers = () => {
       icon: 'question',
       showCancelButton: true,
       confirmButtonText: 'Yes, make admin',
+      allowOutsideClick: false,
+      allowEscapeKey: false,
     });
 
     if (!confirmed.isConfirmed) return;
 
     const res = await axiosSecure.patch(`/users/admin/${userId}`);
     if (res.data.modifiedCount > 0) {
-      Swal.fire('Success!', `${name} is now an admin.`, 'success');
-      queryClient.invalidateQueries(['users', querySearchTerm]);
+      await Swal.fire({
+        title: 'Success!',
+        text: `${name} is now an admin.`,
+        icon: 'success',
+        confirmButtonText: 'OK',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+      });
+      queryClient.invalidateQueries(['users', querySearchTerm, currentPage]);
     }
+  };
+
+  const handlePageChange = (page) => {
+    if (page < 1 || page > totalPages) return;
+    setCurrentPage(page);
   };
 
   return (
@@ -68,43 +94,51 @@ const ManageUsers = () => {
       )}
 
       {!isFetching && users.length > 0 && (
-        <div className="overflow-x-auto border rounded-xl border-gray-300 shadow-xl">
-          <table className="table w-full border border-gray-300 r">
-            <thead>
-              <tr>
-                <th className="border border-gray-300 text-center">User Name</th>
-                <th className="border border-gray-300 text-center">Email</th>
-                <th className="border border-gray-300 text-center">Subscription</th>
-                <th className="border border-gray-300 text-center">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((user) => (
-                <tr key={user._id}>
-                  <td className="border border-gray-200 text-center font-medium">
-                    {user.name?.toUpperCase()}
-                  </td>
-                  <td className="border border-gray-200 text-center">{user.email}</td>
-                  <td className="border border-gray-200 text-center">
-                    {user.subscriptionStatus || 'Not Subscribed'}
-                  </td>
-                  <td className="border border-gray-200 text-center">
-                    {user.role === 'admin' ? (
-                      <span className="text-green-600 font-semibold">Admin</span>
-                    ) : (
-                      <button
-                        className="btn  btn-warning"
-                        onClick={() => makeAdmin(user._id, user.name)}
-                      >
-                        Make Admin
-                      </button>
-                    )}
-                  </td>
+        <>
+          <div className="overflow-x-auto border rounded-xl border-gray-300 shadow-xl">
+            <table className="table w-full border border-gray-300">
+              <thead>
+                <tr>
+                  <th className="border border-gray-300 text-center">User Name</th>
+                  <th className="border border-gray-300 text-center">Email</th>
+                  <th className="border border-gray-300 text-center">Subscription</th>
+                  <th className="border border-gray-300 text-center">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {users.map((user) => (
+                  <tr key={user._id}>
+                    <td className="border border-gray-200 text-center font-medium">
+                      {user.name?.toUpperCase()}
+                    </td>
+                    <td className="border border-gray-200 text-center">{user.email}</td>
+                    <td className="border border-gray-200 text-center">
+                      {user.subscriptionStatus || 'Not Subscribed'}
+                    </td>
+                    <td className="border border-gray-200 text-center">
+                      {user.role === 'admin' ? (
+                        <span className="text-green-600 font-semibold">Admin</span>
+                      ) : (
+                        <button
+                          className="btn btn-warning"
+                          onClick={() => makeAdmin(user._id, user.name)}
+                        >
+                          Make Admin
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <Pagination
+            totalItems={totalItems}
+            itemsPerPage={itemsPerPage}
+            currentPage={currentPage}
+            onPageChange={handlePageChange}
+          />
+        </>
       )}
     </div>
   );

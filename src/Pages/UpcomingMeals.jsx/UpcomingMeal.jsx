@@ -3,7 +3,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import useUserRole from '../../Pages/User/useUserRole';
 import useAuth from '../../hooks/useAuth';
-import { useNavigate } from 'react-router';
+import { useNavigate, useLocation } from 'react-router';
 
 const UpcomingMeal = () => {
   const axiosSecure = useAxiosSecure();
@@ -11,12 +11,13 @@ const UpcomingMeal = () => {
   const { roleUser, loading } = useUserRole();
   const { user } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const { data: meals = [], isLoading } = useQuery({
     queryKey: ['upcomingMeals'],
     queryFn: async () => {
       const res = await axiosSecure.get('/upcoming-meals');
-      return res.data;
+      return Array.isArray(res.data) ? res.data : res.data.meals || [];
     },
   });
 
@@ -50,7 +51,7 @@ const UpcomingMeal = () => {
     <div className="p-4 md:p-8">
       <h2 className="text-3xl font-bold mb-6 text-center">Upcoming Meals</h2>
 
-      {meals.length === 0 ? (
+      {(!Array.isArray(meals) || meals.length === 0) ? (
         <p className="text-center text-gray-500">No upcoming meals found.</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -67,7 +68,7 @@ const UpcomingMeal = () => {
                 <div className="p-4 flex-grow flex flex-col justify-between">
                   <div>
                     <h3 className="text-xl font-semibold mb-1">{meal.title}</h3>
-                    <p className="text-sm text-gray-600 mb-1">By: {meal.distributorName}</p>
+                    <p className="text-sm text-gray-600 mb-1">By: {(meal.distributorName).toUpperCase()}</p>
                     <p className="text-sm text-gray-500 mb-2">Likes: {meal.likes}</p>
                     <p className="text-sm text-gray-700">
                       <span className="font-semibold">Ingredients:</span>{' '}
@@ -88,14 +89,14 @@ const UpcomingMeal = () => {
                       }`}
                       disabled={!isPremiumUser}
                     >
-                      {hasLiked ? 'Liked 🤍' : 'Like '}
+                      {hasLiked ? 'Liked 🤍' : 'Like'}
                     </button>
                   ) : (
                     <button
-                      onClick={() => navigate('/login')}
+                      onClick={() => navigate('/login', { state: { from: location } })}
                       className="btn btn-sm bg-orange-500 text-white hover:bg-orange-600 w-full sm:w-auto"
                     >
-                      Like 
+                      Like
                     </button>
                   )}
 
