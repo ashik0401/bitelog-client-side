@@ -1,8 +1,12 @@
-import React from 'react'
-import { useNavigate } from 'react-router'
+import React, { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import useAxiosSecure from '../../hooks/useAxiosSecure'
 import useAuth from '../../hooks/useAuth'
+import { Elements } from '@stripe/react-stripe-js'
+import { loadStripe } from '@stripe/stripe-js'
+import PaymentForm from '../../Pages/Payments/PaymentForm'
+
+const stripePromise = loadStripe(import.meta.env.VITE_payment_key)
 
 const getStyles = (badge) => {
     if (badge === 'Silver') {
@@ -15,9 +19,10 @@ const getStyles = (badge) => {
 }
 
 const MembershipPackages = () => {
-    const navigate = useNavigate()
+    
     const axiosSecure = useAxiosSecure()
     const { user } = useAuth()
+    const [selectedPackage, setSelectedPackage] = useState(null)
 
     const { data: packages = [], isLoading, isError } = useQuery({
         queryKey: ['membership-packages'],
@@ -36,11 +41,10 @@ const MembershipPackages = () => {
         }
     })
 
-    const handlePay = (id) => {
-        navigate(`/payment/${id}`)
-    }
+    const openModal = (pkg) => setSelectedPackage(pkg)
+    const closeModal = () => setSelectedPackage(null)
 
-    if (isLoading) return <div className="text-center py-20">Loading packages...</div>
+    if (isLoading) return <div className="text-center py-20"><span className="loading loading-ring loading-sm"></span></div>
     if (isError) return <div className="text-center py-20 text-red-500">Failed to load packages</div>
 
     return (
@@ -65,7 +69,7 @@ const MembershipPackages = () => {
                                 </ul>
                             </div>
                             <button
-                                onClick={() => handlePay(pkg._id)}
+                                onClick={() => openModal(pkg)}
                                 disabled={isCurrent}
                                 className={`mt-auto w-full py-2 rounded-xl font-semibold text-white cursor-pointer transition duration-300 ${isCurrent ? 'bg-gray-300 cursor-not-allowed' : styles.btn}`}
                             >
@@ -75,6 +79,18 @@ const MembershipPackages = () => {
                     )
                 })}
             </div>
+
+            {selectedPackage && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 bg-opacity-50">
+                    <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full relative">
+                        <button onClick={closeModal} className="absolute top-2 right-3 text-gray-600 hover:text-black text-xl">&times;</button>
+                        <h3 className="text-xl font-semibold mb-4 text-center">Pay for {selectedPackage.badge} Plan</h3>
+                        <Elements stripe={stripePromise}>
+                            <PaymentForm id={selectedPackage._id} price={selectedPackage.price} badge={selectedPackage.badge} closeModal={closeModal} />
+                        </Elements>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }

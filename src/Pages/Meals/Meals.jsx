@@ -75,7 +75,7 @@ const Meals = () => {
     data?.pages?.flatMap(page => Array.isArray(page.meals) ? page.meals : []) || []
 
   return (
-    <div className="p-4 mx-auto">
+    <div className="p-4 mx-auto pt-15">
       <div className="flex flex-col md:flex-row-reverse gap-3 mb-4 md:w-11/12 mx-auto mt-10">
         <div className="flex gap-2 w-full">
           <input
@@ -146,16 +146,16 @@ const Meals = () => {
               <div className="card-body">
                 <h2 className="card-title">{meal.title}</h2>
                 <p>⭐ Rating: {
-  (() => {
-    const ratings = meal.ratings || {};
-    const totalRatings = Object.values(ratings).reduce((a, b) => a + b, 0);
-    if (totalRatings === 0) return 0;
-    const totalScore = Object.entries(ratings).reduce(
-      (acc, [star, count]) => acc + Number(star) * count, 0
-    );
-    return (totalScore / totalRatings).toFixed(1);
-  })()
-}</p>
+                  (() => {
+                    const ratings = meal.ratings || {};
+                    const totalRatings = Object.values(ratings).reduce((a, b) => a + b, 0);
+                    if (totalRatings === 0) return 0;
+                    const totalScore = Object.entries(ratings).reduce(
+                      (acc, [star, count]) => acc + Number(star) * count, 0
+                    );
+                    return (totalScore / totalRatings).toFixed(1);
+                  })()
+                }</p>
                 <p>💰 Price: ${meal.price}</p>
                 <div className="card-actions justify-end">
                   <Link to={`/Meals/${meal._id}`}>

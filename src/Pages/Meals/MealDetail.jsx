@@ -183,7 +183,8 @@ const handleRequestMeal = async () => {
     }
   };
 
-  if (isLoading) return <div className="p-6 text-center">Loading...</div>;
+  if (isLoading) return <div className="p-6 text-center"><span className="loading loading-ring loading-sm"></span>
+</div>;
   if (!data || !data.meal) return <div className="p-6 text-center">Meal not found</div>;
 
   const { meal, reviews, reviewCount } = data;

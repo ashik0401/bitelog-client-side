@@ -4,137 +4,71 @@ import logo from '../../assets/B.png'
 import useAuth from '../../hooks/useAuth';
 
 const Navbar = () => {
-    const { user, loading: authLoading, logOut } = useAuth();
+  const { user, loading: authLoading, logOut } = useAuth();
 
-    if (authLoading) {
-        return <div className="text-center p-6"><span className="loading loading-ring loading-xs"></span></div>;
-    }
+  const photoURL = user?.photoURL || 'https://i.ibb.co/V0bwF2W1/User-Profile-PNG-High-Quality-Image.png';
 
-    const photoURL = user?.photoURL || 'https://i.ibb.co/V0bwF2W1/User-Profile-PNG-High-Quality-Image.png';
+  const handleLogOut = () => {
+    logOut()
+      .then(result => { console.log(result) })
+      .catch(error => console.log(error))
+  }
 
-    const handleLogOut = () => {
-        logOut()
-            .then(result => { console.log(result) })
-            .catch(error => console.log(error))
-    }
-
-    const links = <>
-        <li>
-            <NavLink
-                to="/"
-                className={({ isActive }) =>
-                    isActive ? 'text-primary font-bold' : ''
-                }
-            >
-                Home
-            </NavLink>
-        </li>
-        <li>
-            <NavLink
-                to="/Meals"
-                className={({ isActive }) =>
-                    isActive ? 'text-primary font-bold' : ''
-                }
-            >
-                All Meal
-            </NavLink>
-        </li>
-        <li>
-            <NavLink
-                to="/upComingMeal"
-                className={({ isActive }) =>
-                    isActive ? 'text-primary font-bold' : ''
-                }
-            >
-                Upcoming Meals
-            </NavLink>
-        </li>
-        {
-            user && <li>
-                <NavLink
-                    to="/dashboard"
-                    className={({ isActive }) =>
-                        isActive ? 'text-primary font-bold' : ''
-                    }
-                >
-                    Dashboard
-                </NavLink>
-            </li>
-        }
+  const links = (
+    <>
+      <li><NavLink to="/" className={({ isActive }) => isActive ? 'text-white font-bold' : ''}>Home</NavLink></li>
+      <li><NavLink to="/Meals" className={({ isActive }) => isActive ? 'text-white font-bold' : ''}>All Meal</NavLink></li>
+      <li><NavLink to="/upComingMeal" className={({ isActive }) => isActive ? 'text-white font-bold' : ''}>Upcoming Meals</NavLink></li>
+      {user && <li><NavLink to="/dashboard" className={({ isActive }) => isActive ? 'text-white font-bold' : ''}>Dashboard</NavLink></li>}
     </>
+  );
 
-    return (
-        <div className=''>
-            <div className="navbar bg-base-100 shadow-md lg:px-20">
-                <div className="navbar-start ">
-                    <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden px-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 " fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
-                        </div>
-                        <ul
-                            tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                            {links}
-                        </ul>
-                    </div>
-                    <Link to='/'>
-                        <img className='w-8 h-8 text-primary' src={logo} alt="" />
-                    </Link>
-                </div>
-                <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">
-                        {links}
-                    </ul>
-                </div>
-                <div className="navbar-end">
-                    {
-                        user ? <div className="flex-none">
-                            <div className="dropdown dropdown-end">
-                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
-                                    <div className="indicator">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /> </svg>
-                                        <span className="badge badge-sm indicator-item rounded-full w-2 ">0</span>
-                                    </div>
-                                </div>
-                                <div
-                                    tabIndex={0}
-                                    className="card card-compact dropdown-content bg-base-100 z-1 mt-3 w-52 shadow">
-                                    <div className="card-body">
-                                        <span className="text-lg font-bold">8 Items</span>
-                                        <span className="text-info">Subtotal: $999</span>
-                                        <div className="card-actions">
-                                            <button className="btn btn-primary btn-block">View cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="dropdown dropdown-end">
-                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                                    <div className="w-10 rounded-full border border-green-500">
-                                        <img alt="User profile" src={photoURL} />
-                                    </div>
-                                </div>
-                                <ul
-                                    tabIndex={0}
-                                    className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                                    <li>
-                                        <a className="justify-between">
-                                            Profile
-                                            <span className="badge">New</span>
-                                        </a>
-                                    </li>
-                                    <li><a>Settings</a></li>
-                                    <li><button onClick={handleLogOut}>Logout</button></li>
-                                </ul>
-                            </div>
-                        </div> : <Link
-                            to='/login'
-                            className="btn border-primary  bg-primary text-black hover:bg-secondary">Login</Link>
-                    }
-                </div>
+  return (
+    <div className='fixed top-0 left-0 z-100 w-full'>
+      <div className="navbar shadow-md lg:px-20 bg-primary min-h-[60px]">
+        <div className="navbar-start">
+          <div className="dropdown">
+            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden px-1">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
+              </svg>
             </div>
+            <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+              {links}
+            </ul>
+          </div>
+          <Link to='/'>
+            <img className='w-8 h-8' src={logo} alt="Logo" />
+          </Link>
         </div>
-    );
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1">{links}</ul>
+        </div>
+        <div className="navbar-end">
+          {authLoading ? (
+            <span className="loading loading-ring loading-xs"></span>
+          ) : user ? (
+            <>
+              <div className="dropdown dropdown-end">
+                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                  <div className="w-10 rounded-full border border-green-500">
+                    <img alt="User profile" src={photoURL} />
+                  </div>
+                </div>
+                <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                  <li>
+                    <button className='font-bold text-primary' onClick={handleLogOut}>Logout</button>
+                  </li>
+                </ul>
+              </div>
+            </>
+          ) : (
+            <Link to='/login' className="btn border-primary  text-black rounded-md hover:bg-primary">Login</Link>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Navbar;

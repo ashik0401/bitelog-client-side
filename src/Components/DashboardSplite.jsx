@@ -16,7 +16,8 @@ const DashboardSplite = () => {
     }
   }, [loading, roleUser, navigate]);
 
-    return <p className="text-center py-10 text-lg font-medium">Loading dashboard...</p>
+    return <p className="text-center py-10 text-lg font-medium"><span className="loading loading-ring loading-sm"></span>
+</p>
 }
 
 export default DashboardSplite;

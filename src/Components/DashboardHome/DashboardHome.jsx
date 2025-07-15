@@ -22,7 +22,8 @@ const DashboardHome = () => {
     },
   });
 
-  if (loading) return <div className="text-center mt-20">Loading...</div>;
+  if (loading) return <div className="text-center mt-20"><span className="loading loading-ring loading-sm"></span>
+</div>;
   if (!roleUser) return <div className="text-center mt-20 text-red-500">User data not found.</div>;
 
   const { name, image, badge } = roleUser;

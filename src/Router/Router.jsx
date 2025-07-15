@@ -57,14 +57,7 @@ export const router = createBrowserRouter([
         Component:UpcomingMeal
       },
 
-      {
-        path: '/payment/:id',
-        element:
-          <PrivateRoute>
-            <Payments />
-          </PrivateRoute>
 
-      },
 
 
     ]

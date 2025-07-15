@@ -9,6 +9,10 @@ const MealsByCategory = ({ searchTerm }) => {
   const [showAll, setShowAll] = useState(false);
   const axiosSecure = useAxiosSecure();
 
+
+ 
+  
+
   useEffect(() => {
     setLoading(true);
     const fetchMeals = async () => {
@@ -33,7 +37,8 @@ const MealsByCategory = ({ searchTerm }) => {
   if (loading) {
     return (
       <div className="text-center my-10 text-xl font-semibold text-primary">
-        Loading meals...
+       <span className="loading loading-ring loading-sm"></span>
+
       </div>
     );
   }

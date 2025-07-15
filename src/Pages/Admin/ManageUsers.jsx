@@ -87,7 +87,8 @@ const ManageUsers = () => {
         </button>
       </form>
 
-      {isFetching && <div className="text-center py-4 text-gray-600">Loading users...</div>}
+      {isFetching && <div className="text-center py-4 text-gray-600"><span className="loading loading-ring loading-sm"></span>
+</div>}
 
       {!isFetching && users.length === 0 && (
         <div className="text-center py-4 text-gray-600">No users found.</div>

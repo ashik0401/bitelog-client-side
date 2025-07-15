@@ -16,11 +16,16 @@ const MyReviews = () => {
   const [page, setPage] = useState(1);
   const limit = 10;
 
+
+  
+
   const { data, isLoading } = useQuery({
     queryKey: ["myReviews", user?.email, page],
     enabled: !!user?.email,
     queryFn: async () => {
-      const res = await axiosSecure.get(`/reviews/user/${user.email}?page=${page}&limit=${limit}`);
+      const res = await axiosSecure.get(`/reviews/user/${user.email}?page=${page}&limit=${limit}`,{
+        credentials:'include'
+      });
       const { reviews, totalCount } = res.data;
       const mealIds = [...new Set(reviews.map(r => r.mealId))];
       if (!mealIds.length) return { reviews: [], totalCount };

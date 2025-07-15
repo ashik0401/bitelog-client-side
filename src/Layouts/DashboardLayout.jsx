@@ -19,7 +19,8 @@ const DashboardLayout = () => {
   const { roleUser, loading } = useUserRole();
   const isAdmin = roleUser?.role === "admin";
 
-  if (loading) return <div className="text-center mt-20">Loading...</div>;
+  if (loading) return <div className="text-center mt-20"><span className="loading loading-ring loading-sm"></span>
+</div>;
 
   return (
     <div>

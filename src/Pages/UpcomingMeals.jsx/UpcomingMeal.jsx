@@ -45,10 +45,11 @@ const UpcomingMeal = () => {
 
   const isPremiumUser = ['Silver', 'Gold', 'Platinum'].includes(roleUser?.badge);
 
-  if (loading || isLoading) return <div className="text-center py-10">Loading...</div>;
+  if (loading || isLoading) return <div className="text-center py-10"><span className="loading loading-ring loading-sm"></span>
+</div>;
 
   return (
-    <div className="p-4 md:p-8">
+    <div className="p-4 md:p-8 mt-15">
       <h2 className="text-3xl font-bold mb-6 text-center">Upcoming Meals</h2>
 
       {(!Array.isArray(meals) || meals.length === 0) ? (

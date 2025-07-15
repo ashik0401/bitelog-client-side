@@ -52,7 +52,8 @@ const UpcomingMeals = () => {
   const totalCount = data.totalCount || 0
   const totalPages = Math.ceil(totalCount / itemsPerPage)
 
-  if (isLoading) return <div className="p-6 text-center">Loading...</div>
+  if (isLoading) return <div className="p-6 text-center"><span className="loading loading-ring loading-sm"></span>
+</div>
 
   return (
     <div className="p-6">

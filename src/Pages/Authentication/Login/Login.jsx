@@ -14,17 +14,21 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState('');
 
-  const onSubmit = data => {
-    setLoginError('');
-    clearErrors('password');
-    signIn(data.email, data.password)
-      .then(() => {
-        navigate(from, { replace: true });
-      })
-      .catch(err => {
-        setLoginError('Invalid email or password' ,err);
-      });
-  };
+ const onSubmit = async (data) => {
+  setLoginError('');
+  clearErrors('password');
+  try {
+    const result = await signIn(data.email, data.password);
+    const user = result.user;
+
+    const token = await user.getIdToken();
+    localStorage.setItem('access-token', token);
+
+    navigate(from, { replace: true });
+  } catch (err) {
+    setLoginError('Invalid email or password',err);
+  }
+};
 
   return (
     <div className="h-[87vh] flex justify-center items-center px-4">
