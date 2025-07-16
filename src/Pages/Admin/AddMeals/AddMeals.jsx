@@ -74,7 +74,7 @@ const AddMeal = () => {
   };
 
   return (
-    <div className="md:max-w-xl md:mx-auto p-6 bg-orange-100 rounded shadow-xl mt-25 mx-5">
+    <div className="md:max-w-xl md:mx-auto p-6 bg-orange-100 rounded shadow-xl mt-15 mx-5">
       <h2 className="text-3xl font-bold mb-4 text-center">Add New Meal</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <input type="text" {...register('title', { required: true })} placeholder="Meal Title" className="input input-bordered w-full" />

@@ -87,53 +87,54 @@ const RequestedMeals = () => {
   if (isError) return <div className="text-center text-red-500 mt-20">Error loading requested meals.</div>;
 
   return (
-    <div className="overflow-x-auto max-w-6xl mx-auto px-4">
+    <div className="max-w-6xl mx-auto px-4">
       <h2 className="text-2xl font-bold mb-4">Requested Meals</h2>
-      <table className="table w-full border-collapse border border-gray-300">
-        <thead>
-          <tr className="bg-orange-200">
-            <th className="border border-gray-300 px-4 py-2">Meal Title</th>
-            <th className="border border-gray-300 px-4 py-2 text-center">Likes</th>
-            <th className="border border-gray-300 px-4 py-2 text-center">Reviews Count</th>
-            <th className="border border-gray-300 px-4 py-2 text-center">Status</th>
-            <th className="border border-gray-300 px-4 py-2 text-center">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {requests.length === 0 ? (
-            <tr>
-              <td colSpan="5" className="text-center p-4">No requested meals found.</td>
+      <div className="overflow-x-auto sm:overflow-x-visible">
+        <table className="table w-full border-collapse border border-gray-300">
+          <thead>
+            <tr className="bg-orange-200">
+              <th className="border border-gray-300 px-4 py-2">Meal Title</th>
+              <th className="border border-gray-300 px-4 py-2 text-center">Likes</th>
+              <th className="border border-gray-300 px-4 py-2 text-center">Reviews Count</th>
+              <th className="border border-gray-300 px-4 py-2 text-center">Status</th>
+              <th className="border border-gray-300 px-4 py-2 text-center">Action</th>
             </tr>
-          ) : (
-            requests.map((req) => (
-              <tr key={req._id} className="hover:bg-orange-100">
-                <td className="border border-gray-300 px-4 py-2">{req.mealTitle}</td>
-                <td className="border border-gray-300 px-4 py-2 text-center">
-                  {mealsStats[req.mealId]?.likes ?? '...'}
-                </td>
-                <td className="border border-gray-300 px-4 py-2 text-center">
-                  {mealsStats[req.mealId]?.reviews_count ?? '...'}
-                </td>
-                <td className="border border-gray-300 px-4 py-2 text-center">{req.status}</td>
-                <td className="border border-gray-300 px-4 py-2 text-center">
-                  {req.status === 'pending' ? (
-                    <button
-                      onClick={() => handleCancel(req._id)}
-                      className="btn btn-sm btn-error"
-                      disabled={mutation.isLoading}
-                    >
-                      Cancel
-                    </button>
-                  ) : (
-                    <span className="text-gray-500">N/A</span>
-                  )}
-                </td>
+          </thead>
+          <tbody>
+            {requests.length === 0 ? (
+              <tr>
+                <td colSpan="5" className="text-center p-4">No requested meals found.</td>
               </tr>
-            ))
-          )}
-        </tbody>
-      </table>
-
+            ) : (
+              requests.map((req) => (
+                <tr key={req._id} className="hover:bg-orange-100">
+                  <td className="border border-gray-300 px-4 py-2">{req.mealTitle}</td>
+                  <td className="border border-gray-300 px-4 py-2 text-center">
+                    {mealsStats[req.mealId]?.likes ?? '...'}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2 text-center">
+                    {mealsStats[req.mealId]?.reviews_count ?? '...'}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2 text-center">{req.status}</td>
+                  <td className="border border-gray-300 px-4 py-2 text-center">
+                    {req.status === 'pending' ? (
+                      <button
+                        onClick={() => handleCancel(req._id)}
+                        className="btn btn-sm btn-error"
+                        disabled={mutation.isLoading}
+                      >
+                        Cancel
+                      </button>
+                    ) : (
+                      <span className="text-gray-500">N/A</span>
+                    )}
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
       <Pagination
         totalItems={totalCount}
         itemsPerPage={limit}

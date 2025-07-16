@@ -16,28 +16,25 @@ const MyReviews = () => {
   const [page, setPage] = useState(1);
   const limit = 10;
 
-
-  
-
   const { data, isLoading } = useQuery({
     queryKey: ["myReviews", user?.email, page],
     enabled: !!user?.email,
     queryFn: async () => {
-      const res = await axiosSecure.get(`/reviews/user/${user.email}?page=${page}&limit=${limit}`,{
-        credentials:'include'
+      const res = await axiosSecure.get(`/reviews/user/${user.email}?page=${page}&limit=${limit}`, {
+        credentials: "include"
       });
       const { reviews, totalCount } = res.data;
-      const mealIds = [...new Set(reviews.map(r => r.mealId))];
+      const mealIds = [...new Set(reviews.map((r) => r.mealId))];
       if (!mealIds.length) return { reviews: [], totalCount };
-      const mealsRes = await axiosSecure.get('/meals-by-ids', {
-        params: { ids: mealIds.join(',') }
+      const mealsRes = await axiosSecure.get("/meals-by-ids", {
+        params: { ids: mealIds.join(",") }
       });
       const meals = mealsRes.data;
       const mealsMap = {};
-      meals.forEach(meal => {
+      meals.forEach((meal) => {
         mealsMap[meal._id] = meal;
       });
-      const enriched = reviews.map(review => ({
+      const enriched = reviews.map((review) => ({
         ...review,
         likes: mealsMap[review.mealId]?.likes || 0
       }));
@@ -134,12 +131,13 @@ const MyReviews = () => {
     });
   };
 
-  if (isLoading)
+  if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
         <span className="loading loading-ring loading-lg"></span>
       </div>
     );
+  }
 
   return (
     <div className="p-6 max-w-6xl mx-auto">
@@ -148,7 +146,7 @@ const MyReviews = () => {
         <p className="text-center text-gray-500">You haven't posted any reviews yet.</p>
       ) : (
         <>
-          <div className="overflow-x-auto shadow-xl rounded-xl border border-gray-200">
+          <div className="overflow-x-auto sm:overflow-x-visible shadow-xl rounded-xl border border-gray-200">
             <table className="table w-full table-zebra">
               <thead className="bg-base-200">
                 <tr>
@@ -176,10 +174,7 @@ const MyReviews = () => {
                     </td>
                     <td className="space-x-1">
                       {editingId === review._id ? (
-                        <button
-                          className="btn btn-sm btn-success"
-                          onClick={handleSaveEdit}
-                        >
+                        <button className="btn btn-sm btn-success" onClick={handleSaveEdit}>
                           Save
                         </button>
                       ) : (
@@ -190,10 +185,7 @@ const MyReviews = () => {
                           Edit
                         </button>
                       )}
-                      <button
-                        className="btn btn-sm btn-error"
-                        onClick={() => handleDeleteClick(review._id)}
-                      >
+                      <button className="btn btn-sm btn-error" onClick={() => handleDeleteClick(review._id)}>
                         Delete
                       </button>
                       <button
