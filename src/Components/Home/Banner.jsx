@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import bannerImg from '../../assets/banner.png';
+import bannerImg from '../../assets/banner.jpg';
 
 const Banner = ({ onSearch }) => {
   const [input, setInput] = useState('');

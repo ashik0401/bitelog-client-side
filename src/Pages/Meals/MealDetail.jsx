@@ -191,7 +191,7 @@ const handleRequestMeal = async () => {
   const averageRating = calculateAverageRating(meal.ratings);
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <div className="max-w-4xl mx-auto p-6 mt-15">
       <div className="card bg-base-100 shadow-xl">
         <figure>
           <img
