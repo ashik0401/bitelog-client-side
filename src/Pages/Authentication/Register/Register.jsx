@@ -133,7 +133,7 @@ const Register = () => {
                                 errors.email?.type === 'required' && <p className='text-red-500'>Email is required</p>
                             }
 
-                            <label className="label">Password</label>
+                            
                             <label className="label">Password</label>
                             <div className="relative">
                                 <input
