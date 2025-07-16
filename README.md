@@ -9,7 +9,7 @@ BiteLog is a full-featured MERN stack-based Hostel Management System designed fo
 
 ## 🔗 Live Site
 
-🌐 [Visit Live Website](https://bitelog-f22fc.web.app/
+🌐 [Visit Live Website](https://bitelog-f22fc.web.app/)
 
 ---
 
