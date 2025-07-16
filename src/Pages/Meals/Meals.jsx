@@ -128,7 +128,8 @@ const Meals = () => {
         dataLength={allMeals.length}
         next={fetchNextPage}
         hasMore={!!hasNextPage}
-        loader={isFetchingNextPage && <p className="text-center">Loading more meals...</p>}
+        loader={isFetchingNextPage && <p className="text-center"><span class="loading loading-ring loading-sm"></span>
+</p>}
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:w-11/12 mx-auto mt-10">
           {allMeals.map(meal => (

@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
 const axiosSecure = axios.create({
-  baseURL: 'http://localhost:5000' 
+  baseURL: 'https://bitelog-server-side.vercel.app' 
 });
 
 const useAxiosSecure = () => {

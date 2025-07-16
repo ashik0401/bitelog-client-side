@@ -19,35 +19,27 @@ const DashboardLayout = () => {
   const { roleUser, loading } = useUserRole();
   const isAdmin = roleUser?.role === "admin";
 
-  if (loading) return <div className="text-center mt-20"><span className="loading loading-ring loading-sm"></span>
-</div>;
+  const closeDrawer = () => {
+    const drawer = document.getElementById("my-drawer-2");
+    if (drawer) drawer.checked = false;
+  };
+
+  if (loading) return <div className="text-center mt-20"><span className="loading loading-ring loading-sm"></span></div>;
 
   return (
     <div>
-      <div className="drawer lg:drawer-open ">
+      <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col ">
+        <div className="drawer-content flex flex-col">
           <div className="navbar bg-base-100 shadow-md w-full lg:hidden">
-            <div className="flex-none ">
+            <div className="flex-none">
               <label htmlFor="my-drawer-2" aria-label="open sidebar" className="btn btn-square btn-ghost">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  className="inline-block h-8 w-8 stroke-current"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  ></path>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block h-8 w-8 stroke-current">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
               </label>
             </div>
-            <Link to='/'>
-              <img className='w-8 h-8' src={logo} alt="logo" />
-            </Link>
+            <Link to='/'><img className='w-8 h-8' src={logo} alt="logo" /></Link>
           </div>
           <div>
             <Outlet />
@@ -56,19 +48,16 @@ const DashboardLayout = () => {
 
         <div className="drawer-side overflow-hidden">
           <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-
           <div className="w-80 bg-orange-200 h-screen flex flex-col">
             <div>
               <DashboardHome />
             </div>
-
             <ul className="menu bg-orange-200 text-base-content w-80 p-4">
               <li>
                 <NavLink
                   to="/"
-                  className={({ isActive }) =>
-                    isActive ? "text-primary font-bold flex items-center gap-2" : "font-semibold flex items-center gap-2"
-                  }
+                  onClick={closeDrawer}
+                  className={({ isActive }) => isActive ? "text-primary font-bold flex items-center gap-2" : "font-semibold flex items-center gap-2"}
                 >
                   <FaHome /> Home
                 </NavLink>
@@ -79,9 +68,8 @@ const DashboardLayout = () => {
                   <li>
                     <NavLink
                       to="/dashboard/meals"
-                      className={({ isActive }) =>
-                        isActive ? "text-primary font-bold flex items-center gap-2" : "font-semibold flex items-center gap-2"
-                      }
+                      onClick={closeDrawer}
+                      className={({ isActive }) => isActive ? "text-primary font-bold flex items-center gap-2" : "font-semibold flex items-center gap-2"}
                     >
                       <FaUtensils /> All Meals
                     </NavLink>
@@ -89,9 +77,8 @@ const DashboardLayout = () => {
                   <li>
                     <NavLink
                       to="/dashboard/upcomingMeals"
-                      className={({ isActive }) =>
-                        isActive ? "text-primary font-bold flex items-center gap-2" : "font-semibold flex items-center gap-2"
-                      }
+                      onClick={closeDrawer}
+                      className={({ isActive }) => isActive ? "text-primary font-bold flex items-center gap-2" : "font-semibold flex items-center gap-2"}
                     >
                       <FaUtensils /> Upcoming Meals
                     </NavLink>
@@ -99,9 +86,8 @@ const DashboardLayout = () => {
                   <li>
                     <NavLink
                       to="/dashboard/addMeal"
-                      className={({ isActive }) =>
-                        isActive ? "text-primary font-bold flex items-center gap-2" : "font-semibold flex items-center gap-2"
-                      }
+                      onClick={closeDrawer}
+                      className={({ isActive }) => isActive ? "text-primary font-bold flex items-center gap-2" : "font-semibold flex items-center gap-2"}
                     >
                       <FaPlusCircle /> Add Meal
                     </NavLink>
@@ -109,9 +95,8 @@ const DashboardLayout = () => {
                   <li>
                     <NavLink
                       to="/dashboard/allReviews"
-                      className={({ isActive }) =>
-                        isActive ? "text-primary font-bold flex items-center gap-2" : "font-semibold flex items-center gap-2"
-                      }
+                      onClick={closeDrawer}
+                      className={({ isActive }) => isActive ? "text-primary font-bold flex items-center gap-2" : "font-semibold flex items-center gap-2"}
                     >
                       <FaClipboardList /> Reviews
                     </NavLink>
@@ -119,9 +104,8 @@ const DashboardLayout = () => {
                   <li>
                     <NavLink
                       to="/dashboard/serveMeals"
-                      className={({ isActive }) =>
-                        isActive ? "text-primary font-bold flex items-center gap-2" : "font-semibold flex items-center gap-2"
-                      }
+                      onClick={closeDrawer}
+                      className={({ isActive }) => isActive ? "text-primary font-bold flex items-center gap-2" : "font-semibold flex items-center gap-2"}
                     >
                       <FaConciergeBell /> Serve Meals
                     </NavLink>
@@ -129,9 +113,8 @@ const DashboardLayout = () => {
                   <li>
                     <NavLink
                       to="/dashboard/manageUsers"
-                      className={({ isActive }) =>
-                        isActive ? "text-primary font-bold flex items-center gap-2" : "font-semibold flex items-center gap-2"
-                      }
+                      onClick={closeDrawer}
+                      className={({ isActive }) => isActive ? "text-primary font-bold flex items-center gap-2" : "font-semibold flex items-center gap-2"}
                     >
                       <FaUsersCog /> Manage Users
                     </NavLink>
@@ -142,9 +125,8 @@ const DashboardLayout = () => {
                   <li>
                     <NavLink
                       to="/dashboard/myReviews"
-                      className={({ isActive }) =>
-                        isActive ? "text-primary font-bold flex items-center gap-2" : "font-semibold flex items-center gap-2"
-                      }
+                      onClick={closeDrawer}
+                      className={({ isActive }) => isActive ? "text-primary font-bold flex items-center gap-2" : "font-semibold flex items-center gap-2"}
                     >
                       <FaStar /> My Reviews
                     </NavLink>
@@ -152,9 +134,8 @@ const DashboardLayout = () => {
                   <li>
                     <NavLink
                       to="/dashboard/requestedMeals"
-                      className={({ isActive }) =>
-                        isActive ? "text-primary font-bold flex items-center gap-2" : "font-semibold flex items-center gap-2"
-                      }
+                      onClick={closeDrawer}
+                      className={({ isActive }) => isActive ? "text-primary font-bold flex items-center gap-2" : "font-semibold flex items-center gap-2"}
                     >
                       <FaClipboardCheck /> Requested Meals
                     </NavLink>
@@ -162,9 +143,8 @@ const DashboardLayout = () => {
                   <li>
                     <NavLink
                       to="/dashboard/paymentHistory"
-                      className={({ isActive }) =>
-                        isActive ? "text-primary font-bold flex items-center gap-2" : "font-semibold flex items-center gap-2"
-                      }
+                      onClick={closeDrawer}
+                      className={({ isActive }) => isActive ? "text-primary font-bold flex items-center gap-2" : "font-semibold flex items-center gap-2"}
                     >
                       <FaMoneyCheckAlt /> Payment History
                     </NavLink>

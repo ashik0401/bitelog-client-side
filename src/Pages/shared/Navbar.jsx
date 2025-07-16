@@ -16,10 +16,10 @@ const Navbar = () => {
 
   const links = (
     <>
-      <li><NavLink to="/" className={({ isActive }) => isActive ? 'text-white font-bold' : ''}>Home</NavLink></li>
-      <li><NavLink to="/Meals" className={({ isActive }) => isActive ? 'text-white font-bold' : ''}>All Meal</NavLink></li>
-      <li><NavLink to="/upComingMeal" className={({ isActive }) => isActive ? 'text-white font-bold' : ''}>Upcoming Meals</NavLink></li>
-      {user && <li><NavLink to="/dashboard" className={({ isActive }) => isActive ? 'text-white font-bold' : ''}>Dashboard</NavLink></li>}
+      <li><NavLink to="/" className={({ isActive }) => isActive ? 'text-white font-bold bg-primary' : ''}>Home</NavLink></li>
+      <li><NavLink to="/Meals" className={({ isActive }) => isActive ? 'text-white font-bold bg-primary' : ''}>All Meal</NavLink></li>
+      <li><NavLink to="/upComingMeal" className={({ isActive }) => isActive ? 'text-white font-bold bg-primary' : ''}>Upcoming Meals</NavLink></li>
+      {user && <li><NavLink to="/dashboard" className={({ isActive }) => isActive ? 'text-white font-bold bg-primary' : ''}>Dashboard</NavLink></li>}
     </>
   );
 

@@ -8,17 +8,18 @@ const SocialLogin = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from || '/';
-    const axiosInstance = useAxios();
+    const axiosInstance = useAxios()
 
     const handleGoogleSignIn = () => {
         signInWithGoogle()
             .then(async (result) => {
                 const user = result.user;
+
                 console.log('Logged in with Google:', user);
                 const userInfo = {
                     email: user.email,
                     name: user.displayName,
-                    image: user.photoURL,
+                    photoURL: user.photoURL,
                     role: 'user',
                     created_at: new Date().toISOString(),
                     last_log_in: new Date().toISOString()
