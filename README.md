@@ -2,6 +2,8 @@
 
 BiteLog is a full-featured MERN stack-based Hostel Management System designed for university environments. It enables admins to manage student meals, monitor reviews, and streamline meal distribution. Students can view, request, and review meals, and purchase membership packages for enhanced privileges.
 
+![BiteLog Screenshot](https://ibb.co.com/nq7pGNtg)
+
 
 ## 🔗 Live Site
 
