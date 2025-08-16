@@ -9,9 +9,9 @@ const RootLayout = () => {
         <div className='bg-orange-50'>
             <ScrollToTop />
             <Navbar />
-           <div className=' min-h-[93vh] '>
-             <Outlet />
-           </div>
+            <div className='min-h-[93vh]'>
+                <Outlet />
+            </div>
             <Footer />
         </div>
     );

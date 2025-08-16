@@ -1,19 +1,24 @@
-import {
-  createBrowserRouter,
-
-} from "react-router";
+import { createBrowserRouter } from "react-router";
+import RootLayout from "../Layouts/RootLayout";
 import AuthLayout from "../Layouts/AuthLayout";
+import PrivateRoute from "../Routes/PrivateRoutes";
+import AdminRoute from "../Pages/Admin/AdminRoute";
+
+// Pages
+import Home from "../Pages/Home/Home";
+import Meals from "../Pages/Meals/Meals";
+import MealDetail from "../Pages/Meals/MealDetail";
+import UpcomingMeal from "../Pages/UpcomingMeals.jsx/UpcomingMeal";
+import AboutUs from "../Pages/AboutUs/AboutUs";
 import Login from "../Pages/Authentication/Login/Login";
 import Register from "../Pages/Authentication/Register/Register";
-import RootLayout from "../Layouts/RootLayout";
-import Home from "../Pages/Home/Home";
-import PrivateRoute from "../Routes/PrivateRoutes";
+
+// Dashboard Pages
 import DashboardLayout from "../Layouts/DashboardLayout";
+import DashboardSplite from "../Components/DashboardSplite";
 import AddMeal from "../Pages/Admin/AddMeals/AddMeals";
 import MealsTable from "../Pages/Admin/MealsTable";
 import ManageUsers from "../Pages/Admin/ManageUsers";
-import Meals from "../Pages/Meals/Meals";
-import MealDetail from "../Pages/Meals/MealDetail";
 import Payments from "../Pages/Payments/Payments";
 import PaymentHistory from "../Pages/User/PaymentHistory";
 import UpdateMeals from "../Pages/Admin/AddMeals/UpdateMeal";
@@ -22,123 +27,46 @@ import ServeMeals from "../Pages/Admin/ServeMeals";
 import UpcomingMeals from "../Pages/Admin/UpcomingMeals";
 import AddUpcomingMeal from "../Pages/Admin/AddUpcomingMeal";
 import MyReviews from "../Pages/User/MyReviews";
-import AdminRoute from "../Pages/Admin/AdminRoute";
 import RequestedMeals from "../Pages/User/RequestedMeals";
-import DashboardSplite from "../Components/DashboardSplite";
-import UpcomingMeal from "../Pages/UpcomingMeals.jsx/UpcomingMeal";
 import Error from "../Pages/Error/Error";
-import AboutUs from "../Pages/AboutUs/AboutUs";
-
-
-
-
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
     children: [
-      {
-        index: true,
-        Component: Home
-      },
-
-      {
-        path: '/Meals',
-        Component: Meals,
-      },
-      {
-
-        path: '/Meals/:id',
-        Component: MealDetail,
-
-
-      },
-      {
-        path: '/upComingMeal',
-        element: <PrivateRoute><UpcomingMeal /></PrivateRoute>
-      }
-
-
+      { index: true, Component: Home },
+      { path: "/meals", Component: Meals },
+      { path: "/meals/:id", Component: MealDetail },
+      { path: "/upComingMeal", element: <PrivateRoute><UpcomingMeal /></PrivateRoute> },
     ]
   },
+  { path: "/aboutUs", Component: AboutUs },
   {
-    path: '/aboutUs',
-    Component: AboutUs
-  },
-  {
-    path: '/',
+    path: "/",
     Component: AuthLayout,
     children: [
-      {
-        path: '/login',
-        Component: Login
-      },
-      {
-        path: '/register',
-        Component: Register
-      },
-
+      { path: "/login", Component: Login },
+      { path: "/register", Component: Register },
     ]
   },
   {
-    path: '/dashboard',
+    path: "/dashboard",
     element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
     children: [
-      {
-        index: true,
-        element: <DashboardSplite />
-      },
-      {
-        path: 'manageUsers',
-        element: <AdminRoute><ManageUsers /></AdminRoute>
-      },
-      {
-        path: 'paymentHistory',
-        Component: PaymentHistory
-      },
-      {
-        path: 'addMeal',
-        element: <AdminRoute><AddMeal /></AdminRoute>
-      },
-      {
-        path: 'updateMeals/:id',
-        element: <AdminRoute><UpdateMeals /></AdminRoute>
-      },
-      {
-        path: 'allReviews',
-        element: <AdminRoute><AllReviewsTable /></AdminRoute>
-      },
-      {
-        path: 'serveMeals',
-        element: <AdminRoute><ServeMeals /></AdminRoute>
-      },
-      {
-        path: 'upcomingMeals',
-        element: <AdminRoute><UpcomingMeals /></AdminRoute>
-      },
-      {
-        path: 'addUpcomingMeal',
-        element: <AdminRoute><AddUpcomingMeal /></AdminRoute>
-      },
-      {
-        path: 'myReviews',
-        Component: MyReviews
-      },
-      {
-        path: 'requestedMeals',
-        Component: RequestedMeals
-      },
-      {
-        path: '/dashboard/meals',
-        element: <AdminRoute><MealsTable /></AdminRoute>
-      }
+      { index: true, element: <DashboardSplite /> },
+      { path: "manageUsers", element: <AdminRoute><ManageUsers /></AdminRoute> },
+      { path: "paymentHistory", Component: PaymentHistory },
+      { path: "addMeal", element: <AdminRoute><AddMeal /></AdminRoute> },
+      { path: "updateMeals/:id", element: <AdminRoute><UpdateMeals /></AdminRoute> },
+      { path: "allReviews", element: <AdminRoute><AllReviewsTable /></AdminRoute> },
+      { path: "serveMeals", element: <AdminRoute><ServeMeals /></AdminRoute> },
+      { path: "upcomingMeals", element: <AdminRoute><UpcomingMeals /></AdminRoute> },
+      { path: "addUpcomingMeal", element: <AdminRoute><AddUpcomingMeal /></AdminRoute> },
+      { path: "myReviews", Component: MyReviews },
+      { path: "requestedMeals", Component: RequestedMeals },
+      { path: "meals", element: <AdminRoute><MealsTable /></AdminRoute> },
     ]
   },
-  {
-    path: '*',
-    Component: Error
-  }
-
-
+  { path: "*", Component: Error }
 ]);

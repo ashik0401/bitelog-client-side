@@ -14,6 +14,7 @@ import {
 } from "react-icons/fa";
 import useUserRole from '../Pages/User/useUserRole';
 import DashboardHome from '../Components/DashboardHome/DashboardHome';
+import ScrollToTop from '../Pages/shared/ScrollToTop';
 
 const DashboardLayout = () => {
   const { roleUser, loading } = useUserRole();
@@ -28,6 +29,7 @@ const DashboardLayout = () => {
 
   return (
     <div>
+      
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
