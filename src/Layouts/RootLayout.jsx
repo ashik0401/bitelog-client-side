@@ -6,10 +6,10 @@ import ScrollToTop from '../Pages/shared/ScrollToTop';
 
 const RootLayout = () => {
     return (
-        <div className=' h-screen'>
+        <div className='bg-orange-50'>
             <ScrollToTop />
             <Navbar />
-           <div className=' min-h-[93vh]'>
+           <div className=' min-h-[93vh] '>
              <Outlet />
            </div>
             <Footer />

@@ -17,15 +17,21 @@ const Navbar = () => {
   const links = (
     <>
       <li><NavLink to="/" className={({ isActive }) => isActive ? 'text-white font-bold bg-primary' : ''}>Home</NavLink></li>
+
       <li><NavLink to="/Meals" className={({ isActive }) => isActive ? 'text-white font-bold bg-primary' : ''}>All Meal</NavLink></li>
-      <li><NavLink to="/upComingMeal" className={({ isActive }) => isActive ? 'text-white font-bold bg-primary' : ''}>Upcoming Meals</NavLink></li>
+
+      {user && <li><NavLink to="/upComingMeal" className={({ isActive }) => isActive ? 'text-white font-bold bg-primary' : ''}>Upcoming Meals</NavLink></li>}
+
       {user && <li><NavLink to="/dashboard" className={({ isActive }) => isActive ? 'text-white font-bold bg-primary' : ''}>Dashboard</NavLink></li>}
+
+       <li><NavLink to="/aboutUs" className={({ isActive }) => isActive ? 'text-white font-bold bg-primary' : ''}>About Us</NavLink></li>
     </>
+
   );
 
   return (
-    <div className='fixed top-0 left-0 z-100 w-full'>
-      <div className="navbar shadow-md lg:px-20 bg-primary min-h-[60px]">
+    <div className='fixed shadow-md top-0 left-0 bg-primary z-100 w-full'>
+      <div className="navbar  w-11/12 mx-auto  ">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden px-1">

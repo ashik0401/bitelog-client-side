@@ -1,12 +1,12 @@
 import React from "react";
 import useUserRole from "../../Pages/User/useUserRole";
-import useAuth from "../../hooks/useAuth"; // ✅ import this to access Firebase user
+import useAuth from "../../hooks/useAuth"; 
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const DashboardHome = () => {
   const { roleUser, loading } = useUserRole();
-  const { user } = useAuth(); // ✅ get firebase user
+  const { user } = useAuth(); 
   const axiosSecure = useAxiosSecure();
 
   const email = roleUser?.email;
@@ -66,6 +66,7 @@ const DashboardHome = () => {
             <div className="mt-3 flex items-center justify-center space-x-3">
               <span className="inline-block px-3 py-1 rounded-full text-sm font-semibold bg-yellow-300 text-yellow-900">
                 {badge || "Bronze"}
+
               </span>
             </div>
           )}

@@ -27,6 +27,7 @@ import RequestedMeals from "../Pages/User/RequestedMeals";
 import DashboardSplite from "../Components/DashboardSplite";
 import UpcomingMeal from "../Pages/UpcomingMeals.jsx/UpcomingMeal";
 import Error from "../Pages/Error/Error";
+import AboutUs from "../Pages/AboutUs/AboutUs";
 
 
 
@@ -55,13 +56,15 @@ export const router = createBrowserRouter([
       },
       {
         path: '/upComingMeal',
-        Component: UpcomingMeal
-      },
-
-
+        element: <PrivateRoute><UpcomingMeal /></PrivateRoute>
+      }
 
 
     ]
+  },
+  {
+    path: '/aboutUs',
+    Component: AboutUs
   },
   {
     path: '/',

@@ -26,7 +26,7 @@ const StatsSection = () => {
   ]
 
   return (
-    <section ref={ref} className="bg-gradient-to-r from-orange-100 to-orange-50 py-16">
+    <section ref={ref} className=" py-16">
       <motion.div animate={controls} initial={{ opacity: 0, y: 40 }} className="max-w-6xl mx-auto px-4 text-center">
         <h2 className="text-4xl font-bold mb-4">Our Impact at a Glance</h2>
         <p className="text-gray-600 mb-12 max-w-xl mx-auto">A trusted system delivering daily value across the university community.</p>

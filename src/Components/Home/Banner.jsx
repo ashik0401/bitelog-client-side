@@ -21,7 +21,7 @@ const Banner = ({ onSearch }) => {
 
   return (
     <div
-      className="lg:h-[70vh] md:h-[60vh] bg-cover bg-center flex items-center text-black relative mt-15 "
+      className="lg:h-[70vh] md:h-[60vh] bg-cover bg-center flex items-center text-black relative mt-15  "
       style={{ backgroundImage: `url(${bannerImg})` }}
     >
       <div className="w-full sm:p-20 p-10 text-white text-center h-full bg-black/30 flex flex-col justify-center">
