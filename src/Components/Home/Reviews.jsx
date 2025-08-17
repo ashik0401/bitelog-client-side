@@ -20,9 +20,9 @@ export function Reviews() {
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {reviews.map((r, i) => (
-            <div key={i} className="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-              <p className="text-gray-600 italic mb-4">“{r.text}”</p>
-              <h4 className="font-semibold text-red-600">— {r.name}</h4>
+            <div key={i} className="bg-white dark:bg-transparent  p-6 rounded-xl shadow-lg border border-gray-200">
+              <p className="text-gray-600 dark:text-white italic mb-4">“{r.text}”</p>
+              <h4 className="font-semibold text-orange-500">— {r.name}</h4>
             </div>
           ))}
         </div>

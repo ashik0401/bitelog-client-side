@@ -6,7 +6,7 @@ export function Newsletter() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
-  // Optional: Check if email is already subscribed on load
+  
   useEffect(() => {
     const checkSubscription = async () => {
       if (!email) return;
@@ -25,12 +25,12 @@ export function Newsletter() {
 
     try {
       if (!subscribed) {
-        // Subscribe
+     
         await axios.post("http://localhost:5000/subscribers", { email });
         setSubscribed(true);
         toast.success("Subscribed successfully!");
       } else {
-        // Unsubscribe
+        
         await axios.delete(`http://localhost:5000/subscribers?email=${email}`);
         setSubscribed(false);
         toast("Unsubscribed successfully!");
@@ -51,14 +51,14 @@ export function Newsletter() {
           <input
             type="email"
             placeholder="Enter your email"
-            className="px-4 py-3 rounded-xl text-black w-full sm:w-auto flex-1"
+            className="px-4 py-3 rounded-xl text-black w-full sm:w-auto flex-1 dark:text-white"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <button
             onClick={handleSubscribe}
             className={`px-6 py-3 rounded-md font-semibold transition-colors duration-200 ${
-              subscribed ? "bg-green-500 hover:bg-green-600" : "bg-primary hover:bg-red-600"
+              subscribed ? "bg-green-500 hover:bg-green-600" : "bg-primary hover:bg-orange-600 dark:bg-orange-500"
             }`}
           >
             {subscribed ? "Subscribed" : "Subscribe"}

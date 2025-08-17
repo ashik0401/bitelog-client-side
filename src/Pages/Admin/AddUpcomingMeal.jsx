@@ -73,7 +73,7 @@ const AddUpcomingMeal = () => {
   }
 
   return (
-    <div className="md:max-w-xl md:mx-auto p-6 bg-orange-100 rounded shadow-xl mt-15 mx-5">
+    <div className="md:max-w-xl md:mx-auto p-6 bg-orange-100 dark:bg-transparent rounded shadow-xl mt-15 mx-5">
       <h2 className="text-3xl font-bold mb-4 text-center">Add Upcoming Meal</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <input type="text" {...register('title', { required: true })} placeholder="Meal Title" className="input input-bordered w-full" />
@@ -99,10 +99,10 @@ const AddUpcomingMeal = () => {
         <input type="number" step="0.01" {...register('price', { required: true })} placeholder="Price" className="input input-bordered w-full" />
         {errors.price && <p className="text-red-500">Price is required</p>}
 
-        <input type="text" value={user?.displayName} readOnly className="input input-bordered w-full bg-gray-100" />
-        <input type="email" value={user?.email} readOnly className="input input-bordered w-full bg-gray-100" />
+        <input type="text" value={user?.displayName} readOnly className="input input-bordered w-full bg-gray-100 dark:bg-transparent" />
+        <input type="email" value={user?.email} readOnly className="input input-bordered w-full bg-gray-100 dark:bg-transparent" />
 
-        <button type="submit" className="btn btn-primary w-full text-black">Add Meal</button>
+        <button type="submit" className="btn btn-primary w-full text-black dark:bg-orange-500 dark:border-none">Add Meal</button>
       </form>
     </div>
   )

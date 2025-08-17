@@ -43,7 +43,7 @@ const DashboardHome = () => {
     roleUser.image || user?.photoURL || "https://i.ibb.co/V0bwF2W1/User-Profile-PNG-High-Quality-Image.png"; 
 
   return (
-    <div className="max-w-4xl mx-auto p-8 rounded-xl shadow-lg">
+    <div className="max-w-4xl mx-auto p-8 rounded-xl ">
       <div className="flex flex-col items-center justify-center space-x-6">
         <img
           src={image}

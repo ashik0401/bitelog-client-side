@@ -59,7 +59,7 @@ const UpcomingMeals = () => {
     <div className="p-6">
       <h2 className="text-3xl font-bold mb-4 text-center">Upcoming Meals</h2>
       <Link to="/dashboard/addUpcomingMeal">
-        <button className="btn bg-primary my-2">Add meal</button>
+        <button className="btn bg-primary my-2 dark:bg-orange-500 dark:border-none">Add meal</button>
       </Link>
 
       <div className="overflow-x-auto shadow-xl border border-gray-400 rounded-xl">
@@ -85,7 +85,7 @@ const UpcomingMeals = () => {
                 <td className="text-center border border-gray-300">
                   <button
                     onClick={() => publishMeal.mutate(meal._id)}
-                    className="btn bg-primary text-white btn-sm"
+                    className="btn bg-primary text-white btn-sm dark:bg-orange-500 dark:border-none"
                   >
                     Publish
                   </button>

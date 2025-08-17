@@ -16,21 +16,21 @@ const Navbar = () => {
 
   const links = (
     <>
-      <li><NavLink to="/" className={({ isActive }) => isActive ? 'text-white font-bold bg-primary' : ''}>Home</NavLink></li>
+      <li><NavLink to="/" className={({ isActive }) => isActive ? 'text-white font-bold bg-primary dark:bg-orange-500' : ''}>Home</NavLink></li>
 
-      <li><NavLink to="/Meals" className={({ isActive }) => isActive ? 'text-white font-bold bg-primary' : ''}>All Meal</NavLink></li>
+      <li><NavLink to="/Meals" className={({ isActive }) => isActive ? 'text-white font-bold bg-primary dark:bg-orange-500' : ''}>All Meal</NavLink></li>
 
-      {user && <li><NavLink to="/upComingMeal" className={({ isActive }) => isActive ? 'text-white font-bold bg-primary' : ''}>Upcoming Meals</NavLink></li>}
+      {user && <li><NavLink to="/upComingMeal" className={({ isActive }) => isActive ? 'text-white font-bold bg-primary dark:bg-orange-500' : ''}>Upcoming Meals</NavLink></li>}
 
-      {user && <li><NavLink to="/dashboard" className={({ isActive }) => isActive ? 'text-white font-bold bg-primary' : ''}>Dashboard</NavLink></li>}
+      {user && <li><NavLink to="/dashboard" className={({ isActive }) => isActive ? 'text-white font-bold bg-primary dark:bg-orange-500' : ''}>Dashboard</NavLink></li>}
 
-       <li><NavLink to="/aboutUs" className={({ isActive }) => isActive ? 'text-white font-bold bg-primary' : ''}>About Us</NavLink></li>
+       <li><NavLink to="/aboutUs" className={({ isActive }) => isActive ? 'text-white font-bold bg-primary dark:bg-orange-500' : ''}>About Us</NavLink></li>
     </>
 
   );
 
   return (
-    <div className='fixed shadow-md top-0 left-0 bg-primary z-100 w-full'>
+    <div className='fixed shadow-md top-0 left-0 bg-primary dark:bg-orange-500 z-100 w-full'>
       <div className="navbar  md:w-11/12 md:mx-auto  ">
         <div className="navbar-start">
           <div className="dropdown">

@@ -6,19 +6,20 @@ import useAxiosSecure from '../../hooks/useAxiosSecure'
 import { Link } from 'react-router'
 
 const fetchMeals = async ({ pageParam = 1, queryKey }) => {
-  const [, { search, category, priceRange }] = queryKey
-  const axiosSecure = queryKey[2]
+  const [, { search, category, sortBy, order }, axiosSecure] = queryKey
+
   const res = await axiosSecure.get('/meals', {
     params: {
       page: pageParam,
       limit: 10,
       search,
       category,
-      priceRange,
+      sortBy,
+      order,
     },
   })
 
-  const meals = Array.isArray(res.data.meals) ? res.data.meals : res.data
+  const meals = Array.isArray(res.data.meals) ? res.data.meals : []
   const hasNext = meals.length === 10
 
   return {
@@ -31,15 +32,14 @@ const Meals = () => {
   const [search, setSearch] = useState('')
   const [input, setInput] = useState('')
   const [category, setCategory] = useState('')
-  const [priceRange, setPriceRange] = useState('')
+  const [sortBy, setSortBy] = useState('postTime') // default sorting
+  const [order, setOrder] = useState('desc')       // default latest first
   const [categories, setCategories] = useState([])
-  const [priceRanges, setPriceRanges] = useState([])
   const [showFilters, setShowFilters] = useState(false)
   const axiosSecure = useAxiosSecure()
 
   useEffect(() => {
     axiosSecure.get('/meal-categories').then(res => setCategories(res.data))
-    axiosSecure.get('/price-ranges').then(res => setPriceRanges(res.data))
   }, [axiosSecure])
 
   const {
@@ -50,7 +50,7 @@ const Meals = () => {
     isFetchingNextPage,
     isLoading,
   } = useInfiniteQuery({
-    queryKey: ['meals', { search, category, priceRange }, axiosSecure],
+    queryKey: ['meals', { search, category, sortBy, order }, axiosSecure],
     queryFn: fetchMeals,
     getNextPageParam: lastPage => lastPage.nextPage,
     enabled: !!axiosSecure,
@@ -66,8 +66,17 @@ const Meals = () => {
     refetch()
   }
 
-  const handlePriceChange = value => {
-    setPriceRange(value)
+  const handlePriceSortChange = value => {
+    if (value === 'asc') {
+      setSortBy('price')
+      setOrder('asc')
+    } else if (value === 'desc') {
+      setSortBy('price')
+      setOrder('desc')
+    } else {
+      setSortBy('postTime') // revert to default
+      setOrder('desc')
+    }
     refetch()
   }
 
@@ -87,15 +96,16 @@ const Meals = () => {
           />
           <button
             onClick={handleSearch}
-            className="bg-primary text-white px-4 py-2 rounded"
+            className="bg-primary dark:bg-orange-500 text-white px-4 py-2 rounded"
           >
             Search
           </button>
         </div>
-        <div className="flex gap-2 sm:hidden items-center">
+
+        <div className="flex gap-2 sm:hidden items-center ">
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className="btn btn-sm btn-outline text-primary"
+            className="btn btn-sm btn-outline text-primary "
           >
             <FaTags /> Filters
           </button>
@@ -104,23 +114,22 @@ const Meals = () => {
         <select
           value={category}
           onChange={e => handleCategoryChange(e.target.value)}
-          className={`border rounded p-2 w-full sm:w-1/4 ${showFilters ? '' : 'hidden sm:block'}`}
+          className={`border  rounded p-2 w-full sm:w-1/4 ${showFilters ? '' : 'hidden sm:block'}`}
         >
-          <option value="">All Categories</option>
+          <option value="" className='dark:text-black '>All Categories</option>
           {categories.map((cat, i) => (
-            <option key={i} value={cat}>{cat}</option>
+            <option className=' dark:text-black' key={i} value={cat}>{cat}</option>
           ))}
         </select>
 
         <select
-          value={priceRange}
-          onChange={e => handlePriceChange(e.target.value)}
-          className={`border rounded p-2 w-full sm:w-1/4 ${showFilters ? '' : 'hidden sm:block'}`}
+          value={sortBy === 'price' ? order : ''}
+          onChange={e => handlePriceSortChange(e.target.value)}
+          className={`border   rounded p-2 w-full sm:w-1/4 ${showFilters ? '' : 'hidden sm:block'}`}
         >
-          <option value="">All Prices</option>
-          {priceRanges.map((pr, i) => (
-            <option key={i} value={pr.value}>{pr.label}</option>
-          ))}
+          <option className='dark:text-black' value="">Sort by Price </option>
+          <option className='dark:text-black' value="asc">Low to High</option>
+          <option className='dark:text-black' value="desc">High to Low</option>
         </select>
       </div>
 
@@ -128,39 +137,31 @@ const Meals = () => {
         dataLength={allMeals.length}
         next={fetchNextPage}
         hasMore={!!hasNextPage}
-        loader={isFetchingNextPage && <p className="text-center"><span class="loading loading-ring loading-sm"></span>
-</p>}
+        loader={isFetchingNextPage && <p className="text-center"><span className="loading loading-ring loading-sm"></span></p>}
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:w-11/12 mx-auto mt-10">
           {allMeals.map(meal => (
-            <div
-              key={meal._id}
-              className="card shadow-xl bg-orange-100 border border-gray-200"
-            >
+            <div key={meal._id} className="card shadow-xl bg-orange-100 dark:bg-transparent border border-gray-200">
               <figure>
-                <img
-                  src={meal.image}
-                  alt={meal.title}
-                  className="w-full h-48 object-cover"
-                />
+                <img src={meal.image} alt={meal.title} className="w-full h-48 object-cover" />
               </figure>
               <div className="card-body">
                 <h2 className="card-title">{meal.title}</h2>
                 <p>⭐ Rating: {
                   (() => {
-                    const ratings = meal.ratings || {};
-                    const totalRatings = Object.values(ratings).reduce((a, b) => a + b, 0);
-                    if (totalRatings === 0) return 0;
+                    const ratings = meal.ratings || {}
+                    const totalRatings = Object.values(ratings).reduce((a, b) => a + b, 0)
+                    if (totalRatings === 0) return 0
                     const totalScore = Object.entries(ratings).reduce(
                       (acc, [star, count]) => acc + Number(star) * count, 0
-                    );
-                    return (totalScore / totalRatings).toFixed(1);
+                    )
+                    return (totalScore / totalRatings).toFixed(1)
                   })()
                 }</p>
                 <p>💰 Price: ${meal.price}</p>
                 <div className="card-actions justify-end">
                   <Link to={`/Meals/${meal._id}`}>
-                    <button className="btn btn-sm btn-primary">Details</button>
+                    <button className="btn btn-sm btn-primary dark:bg-orange-500 dark:border-orange-500 ">Details</button>
                   </Link>
                 </div>
               </div>
@@ -170,7 +171,8 @@ const Meals = () => {
       </InfiniteScroll>
 
       {isLoading && !allMeals.length && (
-        <p className="text-center mt-10 text-lg text-primary">Loading meals...</p>
+        <p className="text-center mt-10 text-lg text-primary h-screen flex justify-center items-center"><span className="loading loading-ring loading-md"></span>
+        </p>
       )}
     </div>
   )

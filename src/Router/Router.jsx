@@ -19,7 +19,6 @@ import DashboardSplite from "../Components/DashboardSplite";
 import AddMeal from "../Pages/Admin/AddMeals/AddMeals";
 import MealsTable from "../Pages/Admin/MealsTable";
 import ManageUsers from "../Pages/Admin/ManageUsers";
-import Payments from "../Pages/Payments/Payments";
 import PaymentHistory from "../Pages/User/PaymentHistory";
 import UpdateMeals from "../Pages/Admin/AddMeals/UpdateMeal";
 import AllReviewsTable from "../Pages/Admin/AllReviewsTable";
@@ -29,6 +28,7 @@ import AddUpcomingMeal from "../Pages/Admin/AddUpcomingMeal";
 import MyReviews from "../Pages/User/MyReviews";
 import RequestedMeals from "../Pages/User/RequestedMeals";
 import Error from "../Pages/Error/Error";
+
 
 export const router = createBrowserRouter([
   {
@@ -54,7 +54,9 @@ export const router = createBrowserRouter([
     path: "/dashboard",
     element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
     children: [
+
       { index: true, element: <DashboardSplite /> },
+     
       { path: "manageUsers", element: <AdminRoute><ManageUsers /></AdminRoute> },
       { path: "paymentHistory", Component: PaymentHistory },
       { path: "addMeal", element: <AdminRoute><AddMeal /></AdminRoute> },

@@ -56,7 +56,7 @@ const ServeMeals = () => {
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
         />
-        <button className="btn btn-primary" onClick={handleSearch}>
+        <button className="btn btn-primary dark:bg-orange-500 dark:border-none" onClick={handleSearch}>
           Search
         </button>
       </div>

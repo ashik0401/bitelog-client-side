@@ -10,12 +10,12 @@ const stripePromise = loadStripe(import.meta.env.VITE_payment_key)
 
 const getStyles = (badge) => {
     if (badge === 'Silver') {
-        return { bg: 'bg-gray-100', text: 'text-gray-800', border: 'border-gray-300', btn: 'bg-gray-700 hover:bg-gray-800' }
+        return { bg: 'bg-gray-100 dark:bg-transparent ', text: 'text-gray-800', border: 'border-gray-300', btn: 'bg-gray-700 hover:bg-gray-800' }
     }
     if (badge === 'Gold') {
-        return { bg: 'bg-yellow-100', text: 'text-yellow-900', border: 'border-yellow-400', btn: 'bg-yellow-500 hover:bg-yellow-600' }
+        return { bg: 'bg-yellow-100 dark:bg-transparent', text: 'text-yellow-900', border: 'border-yellow-400', btn: 'bg-yellow-500 hover:bg-yellow-600' }
     }
-    return { bg: 'bg-indigo-100', text: 'text-indigo-900', border: 'border-indigo-400', btn: 'bg-indigo-600 hover:bg-indigo-700' }
+    return { bg: 'bg-indigo-100 dark:bg-transparent', text: 'text-indigo-900', border: 'border-indigo-400', btn: 'bg-indigo-600 hover:bg-indigo-700' }
 }
 
 const MembershipPackages = () => {
@@ -48,7 +48,7 @@ const MembershipPackages = () => {
     if (isError) return <div className="text-center py-20 text-red-500">Failed to load packages</div>
 
     return (
-        <div id="membership" className="max-w-6xl mx-auto px-4 py-10">
+        <div id="membership" className="max-w-6xl mx-auto px-4 py-10 ">
             <h2 className="text-4xl font-bold text-center mb-10">Choose Your Membership</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {packages.map((pkg) => {
@@ -57,12 +57,12 @@ const MembershipPackages = () => {
                     return (
                         <div
                             key={pkg._id}
-                            className={`rounded-2xl shadow-md border ${styles.border} ${styles.bg} p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300`}
+                            className={`rounded-2xl shadow-md border ${styles.border} ${styles.bg} p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300 `}
                         >
-                            <div>
-                                <h3 className={`text-2xl font-semibold mb-2 ${styles.text}`}>{pkg.badge} Package</h3>
-                                <p className="text-3xl font-bold mb-4">${pkg.price}/month</p>
-                                <ul className="mb-6 list-disc list-inside text-sm space-y-1 text-gray-700">
+                            <div className=''>
+                                <h3 className={`text-2xl font-semibold mb-2 dark:text-white ${styles.text}`}>{pkg.badge} Package</h3>
+                                <p className="text-3xl dark:text-white font-bold mb-4">${pkg.price}/month</p>
+                                <ul className="mb-6 dark:text-white list-disc list-inside text-sm space-y-1 text-gray-700">
                                     {pkg.features.map((feature, idx) => (
                                         <li key={idx}>{feature}</li>
                                     ))}

@@ -82,7 +82,7 @@ const ManageUsers = () => {
           className="input input-bordered w-full md:w-1/2"
           autoComplete="off"
         />
-        <button type="submit" className="btn text-white btn-primary btn-sm">
+        <button type="submit" className="btn text-white btn-primary dark:bg-orange-500 dark:border-none">
           Search
         </button>
       </form>
