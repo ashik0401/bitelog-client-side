@@ -30,6 +30,7 @@ import RequestedMeals from "../Pages/User/RequestedMeals";
 import Error from "../Pages/Error/Error";
 import ProfilePage from "../Pages/ProfilePage/ProfilePage";
 import OverviewPage from "../Pages/Admin/OverviewPage";
+import UserOverviewPage from "../Pages/UserOverviewPage";
 
 
 
@@ -72,6 +73,7 @@ export const router = createBrowserRouter([
       { path: "requestedMeals", Component: RequestedMeals },
       { path: "meals", element: <AdminRoute><MealsTable /></AdminRoute> },
       { path: "overview", element: <AdminRoute><OverviewPage/></AdminRoute> },
+      { path: "userOverview", element: <UserOverviewPage/> },
       { path: "profile", element: <ProfilePage /> },
     
       

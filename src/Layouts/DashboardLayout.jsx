@@ -47,7 +47,7 @@ const DashboardLayout = () => {
               <>
                 <li>
                   <NavLink to="/dashboard/overview" onClick={closeDrawer} className={({ isActive }) => isActive ? "text-orange-500 dark:text-orange-500 font-bold flex items-center gap-2" : "font-semibold dark:text-black text-black flex items-center gap-2"}>
-                    <FaUtensils /> OverviewPage
+                    <FaUtensils /> Overview
                   </NavLink>
                 </li>
                 <li>
@@ -84,6 +84,11 @@ const DashboardLayout = () => {
               </>
             ) : (
               <>
+                     <li>
+                  <NavLink to="/dashboard/userOverview" onClick={closeDrawer} className={({ isActive }) => isActive ? "text-orange-500 dark:text-orange-500 font-bold flex items-center gap-2" : "font-semibold dark:text-black text-black flex items-center gap-2"}>
+                    <FaUtensils /> Overview 
+                  </NavLink>
+                </li>
                 <li>
                   <NavLink to="/dashboard/myReviews" onClick={closeDrawer} className={({ isActive }) => isActive ? "text-orange-500 dark:text-orange-500 font-bold flex items-center gap-2" : "font-semibold dark:text-black text-black flex items-center gap-2"}>
                     <FaStar /> My Reviews

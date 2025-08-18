@@ -44,7 +44,7 @@ const MealsByCategory = ({ searchTerm }) => {
   }
 
   return (
-    <div className="px-4 my-7 py-8">
+    <div className="px-4 my-7 py-16">
       <h2 className="text-3xl font-bold mb-6 text-center text-orange-500 dark:text-orange-500">Meals</h2>
 
       <div role="tablist" className="tabs tabs-boxed justify-center mb-6 ">

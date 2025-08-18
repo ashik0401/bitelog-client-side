@@ -48,7 +48,7 @@ const MembershipPackages = () => {
     if (isError) return <div className="text-center py-20 text-red-500">Failed to load packages</div>
 
     return (
-        <div id="membership" className="max-w-6xl mx-auto px-4 py-10 ">
+        <div id="membership" className="max-w-6xl mx-auto px-4 py-16 ">
             <h2 className="text-4xl font-bold text-center mb-10">Choose Your Membership</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {packages.map((pkg) => {

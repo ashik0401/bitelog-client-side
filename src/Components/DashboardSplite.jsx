@@ -11,7 +11,7 @@ const DashboardSplite = () => {
       if (roleUser?.role === 'admin') {
         navigate('/dashboard/overview', { replace: true });
       } else {
-        navigate('/dashboard/myReviews', { replace: true });
+        navigate('/dashboard/userOverview', { replace: true });
       }
     }
   }, [loading, roleUser, navigate]);

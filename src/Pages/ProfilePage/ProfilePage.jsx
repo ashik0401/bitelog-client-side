@@ -39,8 +39,8 @@ const ProfilePage = () => {
                         className="md:w-72 md:h-72 w-52 h-52 rounded-full object-cover border-2 border-gray-300"
                     />
                 ) : (
-                    <div className="md:w-72 md:h-72 w-52 h-52  rounded-full bg-gray-200 flex items-center justify-center text-gray-500 border-2 border-gray-300">
-                        <FaUserCircle size={48} />
+                    <div className="md:w-72 md:h-72 w-52 h-52  rounded-full  flex items-center justify-center text-gray-500 border-2 border-gray-300">
+                        <img src="https://i.ibb.co.com/bjMzB512/User-Profile-PNG-High-Quality-Image.png" alt="" />
                     </div>
                 )}
             </div>
