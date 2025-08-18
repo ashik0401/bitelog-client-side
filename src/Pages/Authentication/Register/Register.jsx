@@ -7,7 +7,6 @@ import axios from 'axios';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import useAxios from '../../../hooks/useAxios';
 
-
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUser, updateUserProfile } = useAuth();
@@ -18,74 +17,61 @@ const Register = () => {
     const axiosInstance = useAxios();
     const [showPassword, setShowPassword] = useState(false);
 
+const onSubmit = data => {
+    createUser(data.email, data.password)
+        .then(async () => {
+            const userInfo = {
+                email: data.email,
+                name: data.name,
+                phone: data.phone,
+                address: data.address,
+                photoURL: profilePic,
+                role: 'user',
+                created_at: new Date().toISOString(),
+                last_log_in: new Date().toISOString()
+            };
 
+            console.log('Phone:', data.phone);
+            console.log('Address:', data.address);
+            console.log('User Info:', userInfo);
 
-    const onSubmit = data => {
+            const userRes = await axiosInstance.post('/users', userInfo);
+            console.log(userRes.data);
 
-        console.log(data);
+            const userProfile = {
+                displayName: data.name,
+                photoURL: profilePic
+            };
+            updateUserProfile(userProfile)
+                .then(() => {
+                    navigate(from);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        })
+        .catch(error => {
+            console.error(error);
+        });
+};
 
-        createUser(data.email, data.password)
-            .then(async (result) => {
-                console.log(result.user);
-
-
-                const userInfo = {
-                    email: data.email,
-                    name: data.name,
-                    role: 'user',
-                    image: profilePic,
-                    created_at: new Date().toISOString(),
-                    last_log_in: new Date().toISOString()
-                }
-
-                const userRes = await axiosInstance.post('/users', userInfo);
-                console.log(userRes.data);
-
-
-                const userProfile = {
-                    displayName: data.name,
-                    photoURL: profilePic
-                }
-                updateUserProfile(userProfile)
-                    .then(() => {
-                        console.log('profile name pic updated');
-                        navigate(from);
-                    })
-                    .catch(error => {
-                        console.log(error)
-                    })
-
-            })
-            .catch(error => {
-                console.error(error);
-            })
-    }
 
     const handleImageUpload = async (e) => {
         const image = e.target.files[0];
-        console.log(image)
-
         const formData = new FormData();
         formData.append('image', image);
-
-
-        const imagUploadUrl = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_upload_key}`
-        const res = await axios.post(imagUploadUrl, formData)
-
+        const imagUploadUrl = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_upload_key}`;
+        const res = await axios.post(imagUploadUrl, formData);
         setProfilePic(res.data.data.url);
-
-
-    }
+    };
 
     return (
         <div className="h-[87vh] flex justify-center items-center px-4">
             <div className="card bg-orange-100 dark:bg-transparent dark:text-white text-black w-full max-w-sm shrink-0 shadow-2xl">
-                <div className="card-body ">
+                <div className="card-body">
                     <h1 className="text-3xl font-bold">Create Account</h1>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <fieldset className="fieldset">
-
-
                             <label className="label dark:text-white">Upload Image</label>
                             <div className="flex flex-col items-center gap-2">
                                 <label className="cursor-pointer group">
@@ -108,20 +94,11 @@ const Register = () => {
                                 </label>
                             </div>
 
-
-
-
-
                             <label className="label">Your Name</label>
                             <input type="text"
                                 {...register('name', { required: true })}
                                 className="input bg-white dark:bg-transparent" placeholder="Your Name" required />
-                            {
-                                errors.email?.type === 'required' && <p className='text-red-500'>Name is required</p>
-                            }
-
-
-
+                            {errors.name && <p className='text-red-500'>Name is required</p>}
 
                             <label className="label">Email</label>
                             <input type="email"
@@ -129,11 +106,20 @@ const Register = () => {
                                 className="input bg-white dark:bg-transparent" placeholder="Email"
                                 required
                             />
-                            {
-                                errors.email?.type === 'required' && <p className='text-red-500'>Email is required</p>
-                            }
+                            {errors.email && <p className='text-red-500'>Email is required</p>}
 
-                            
+                            <label className="label">Phone Number</label>
+                            <input type="text"
+                                {...register('phone', { required: true })}
+                                className="input bg-white dark:bg-transparent" placeholder="Phone Number" required />
+                            {errors.phone && <p className='text-red-500'>Phone number is required</p>}
+
+                            <label className="label">Address</label>
+                            <input type="text"
+                                {...register('address', { required: true })}
+                                className="input bg-white dark:bg-transparent" placeholder="Address" required />
+                            {errors.address && <p className='text-red-500'>Address is required</p>}
+
                             <label className="label">Password</label>
                             <div className="relative">
                                 <input
@@ -155,22 +141,12 @@ const Register = () => {
                                     {showPassword ? <FaEyeSlash /> : <FaEye />}
                                 </button>
                             </div>
-
-                            {errors.password?.type === 'required' && (
-                                <p className="text-red-500">Password is required</p>
-                            )}
-                            {errors.password?.type === 'minLength' && (
-                                <p className="text-red-500">Password must be at least 6 characters</p>
-                            )}
-                            {errors.password?.type === 'pattern' && (
-                                <p className="text-red-500">
-                                    Must include uppercase, number, and special character
-                                </p>
-                            )}
-
+                            {errors.password?.type === 'required' && <p className="text-red-500">Password is required</p>}
+                            {errors.password?.type === 'minLength' && <p className="text-red-500">Password must be at least 6 characters</p>}
+                            {errors.password?.type === 'pattern' && <p className="text-red-500">Must include uppercase, number, and special character</p>}
 
                             <div><a className="link link-hover">Forgot password?</a></div>
-                            <button className="btn  text-black mt-4 dark:bg-orange-500 border-orange-500 bg-orange-500">Register</button>
+                            <button className="btn text-black mt-4 dark:bg-orange-500 border-orange-500 bg-orange-500">Register</button>
                         </fieldset>
                         <p className="text-center mt-4 text-sm">
                             Already have an account?
@@ -178,13 +154,11 @@ const Register = () => {
                                 Login
                             </Link>
                         </p>
-
                     </form>
-                    <SocialLogin></SocialLogin>
+                    <SocialLogin />
                 </div>
             </div>
-
-        </div >
+        </div>
     );
 };
 

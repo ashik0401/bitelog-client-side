@@ -8,36 +8,44 @@ const SocialLogin = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from || '/';
-    const axiosInstance = useAxios()
+    const axiosInstance = useAxios();
 
     const handleGoogleSignIn = () => {
         signInWithGoogle()
             .then(async (result) => {
                 const user = result.user;
 
-                console.log('Logged in with Google:', user);
-                const userInfo = {
-                    email: user.email,
-                    name: user.displayName,
-                    photoURL: user.photoURL,
-                    role: 'user',
-                    created_at: new Date().toISOString(),
-                    last_log_in: new Date().toISOString()
-                }
+               const userInfo = {
+    email: user.email,
+    name: user.displayName || user.email.split('@')[0],
+    photoURL: user.photoURL || '',
+    phone: '',
+    address: '',
+    role: 'user',
+    created_at: new Date().toISOString(),
+    last_log_in: new Date().toISOString()
+};
+console.log(userInfo);
 
-                const Res = await axiosInstance.post('/users', userInfo);
-                console.log(Res.data);
+                
+                const res = await axiosInstance.post('/users', userInfo);
+                console.log(res.data);
                 navigate(from);
             })
             .catch(error => {
                 console.error('Google Sign-In Error:', error);
             });
+
+
     };
 
     return (
         <div className="text-center">
             <p className="mb-4">OR</p>
-            <button onClick={handleGoogleSignIn} className="btn bg-white text-black border-[#e5e5e5] w-full">
+            <button
+                onClick={handleGoogleSignIn}
+                className="btn bg-white text-black border-[#e5e5e5] w-full"
+            >
                 <svg aria-label="Google logo" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                     <g>
                         <path d="m0 0H512V512H0" fill="#fff"></path>

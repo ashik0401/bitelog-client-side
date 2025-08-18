@@ -70,7 +70,8 @@ export const router = createBrowserRouter([
       { path: "myReviews", Component: MyReviews },
       { path: "requestedMeals", Component: RequestedMeals },
       { path: "meals", element: <AdminRoute><MealsTable /></AdminRoute> },
-      { path: "profile", element: <AdminRoute><ProfilePage/></AdminRoute> },
+      { path: "profile", element: <ProfilePage /> },
+    
       
     ]
   },
