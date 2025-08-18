@@ -35,8 +35,8 @@ const PaymentHistory = () => {
     <div className="mt-6 mx-5">
       <div className="overflow-x-auto sm:overflow-x-visible shadow-md rounded-xl">
         <table className="table table-zebra w-full">
-          <thead className="bg-base-200 text-base font-semibold">
-            <tr>
+          <thead className=" text-base font-semibold">
+            <tr className='text-black'>
               <th>#</th>
               <th>Membership ID</th>
               <th>Amount</th>

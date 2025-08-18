@@ -28,6 +28,8 @@ import AddUpcomingMeal from "../Pages/Admin/AddUpcomingMeal";
 import MyReviews from "../Pages/User/MyReviews";
 import RequestedMeals from "../Pages/User/RequestedMeals";
 import Error from "../Pages/Error/Error";
+import ProfilePage from "../Pages/ProfilePage/ProfilePage";
+
 
 
 export const router = createBrowserRouter([
@@ -68,6 +70,8 @@ export const router = createBrowserRouter([
       { path: "myReviews", Component: MyReviews },
       { path: "requestedMeals", Component: RequestedMeals },
       { path: "meals", element: <AdminRoute><MealsTable /></AdminRoute> },
+      { path: "profile", element: <AdminRoute><ProfilePage/></AdminRoute> },
+      
     ]
   },
   { path: "*", Component: Error }

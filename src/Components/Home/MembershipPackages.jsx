@@ -60,9 +60,9 @@ const MembershipPackages = () => {
                             className={`rounded-2xl shadow-md border ${styles.border} ${styles.bg} p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300 `}
                         >
                             <div className=''>
-                                <h3 className={`text-2xl font-semibold mb-2 dark:text-white ${styles.text}`}>{pkg.badge} Package</h3>
-                                <p className="text-3xl dark:text-white font-bold mb-4">${pkg.price}/month</p>
-                                <ul className="mb-6 dark:text-white list-disc list-inside text-sm space-y-1 text-gray-700">
+                                <h3 className={`text-2xl font-semibold mb-2 text-black dark:text-orange-500 ${styles.text}`}>{pkg.badge} Package</h3>
+                                <p className="text-3xl text-black dark:text-white font-bold mb-4">${pkg.price}/month</p>
+                                <ul className="mb-6 list-disc list-inside text-sm space-y-1 text-gray-700 dark:text-white">
                                     {pkg.features.map((feature, idx) => (
                                         <li key={idx}>{feature}</li>
                                     ))}
@@ -81,10 +81,10 @@ const MembershipPackages = () => {
             </div>
 
             {selectedPackage && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 bg-opacity-50">
-                    <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full relative">
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 bg-opacity-50 ">
+                    <div className="bg-white  p-6 rounded-lg shadow-lg max-w-md w-full relative  ">
                         <button onClick={closeModal} className="absolute top-2 right-3 text-gray-600 hover:text-black text-xl">&times;</button>
-                        <h3 className="text-xl font-semibold mb-4 text-center">Pay for {selectedPackage.badge} Plan</h3>
+                        <h3 className="text-xl font-semibold mb-4 text-center text-black ">Pay for {selectedPackage.badge} Plan</h3>
                         <Elements stripe={stripePromise}>
                             <PaymentForm id={selectedPackage._id} price={selectedPackage.price} badge={selectedPackage.badge} closeModal={closeModal} />
                         </Elements>

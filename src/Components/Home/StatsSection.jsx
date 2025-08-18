@@ -28,12 +28,12 @@ const StatsSection = () => {
   return (
     <section ref={ref} className=" py-16 ">
       <motion.div animate={controls} initial={{ opacity: 0, y: 40 }} className="max-w-6xl mx-auto px-4 text-center">
-        <h2 className="text-4xl font-bold mb-4">Our Impact at a Glance</h2>
+        <h2 className="text-4xl font-bold mb-4 text-black dark:text-white">Our Impact at a Glance</h2>
         <p className="text-gray-600 mb-12 max-w-xl mx-auto dark:text-orange-500">A trusted system delivering daily value across the university community.</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, i) => (
-            <motion.div key={i} whileHover={{ scale: 1.05 }} className="bg-white dark:bg-transparent dark:border border-orange-500/50 shadow-md  p-6 rounded-xl text-center transition">
-              <div className="text-4xl mb-2 dark:text-orange-500">{stat.icon}</div>
+            <motion.div key={i} whileHover={{ scale: 1.05 }} className="bg-white dark:bg-transparent dark:border border-gray-500 shadow-md  p-6 rounded-xl text-center transition">
+              <div className="text-4xl mb-2">{stat.icon}</div>
               {animateCount ? (
                 <CountUp target={stat.value} duration={1.5} />
               ) : (

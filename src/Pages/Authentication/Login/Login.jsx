@@ -32,7 +32,7 @@ const Login = () => {
 
   return (
     <div className="h-[87vh] flex justify-center items-center px-4">
-      <div className="card bg-base-100 w-full max-w-sm shadow-2xl">
+      <div className="card bg-orange-100 dark:bg-transparent dark:text-white text-black w-full max-w-sm shadow-2xl">
         <div className="card-body">
           <h2 className="text-3xl font-bold text-center mb-4">Login to Your Account</h2>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -41,7 +41,7 @@ const Login = () => {
               <input
                 type="email"
                 {...register('email', { required: 'Email is required' })}
-                className="input input-bordered w-full"
+                className="input input-bordered w-full bg-white dark:bg-transparent "
                 placeholder="Enter your email"
               />
               {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
@@ -58,7 +58,7 @@ const Login = () => {
                       message: 'Password must be at least 6 characters'
                     }
                   })}
-                  className="input input-bordered w-full pr-10"
+                  className="input input-bordered w-full pr-10 bg-white  dark:bg-transparent"
                   placeholder="Enter your password"
                 />
                 <button
@@ -75,11 +75,11 @@ const Login = () => {
               <a className="link link-hover text-sm">Forgot password?</a>
             </div>
             {loginError && <p className="text-red-500 text-sm text-center">{loginError}</p>}
-            <button type="submit" className="btn btn-primary w-full">Login</button>
+            <button type="submit" className="btn w-full text-black dark:bg-orange-500 border-orange-500 bg-orange-500 ">Login</button>
           </form>
           <p className="text-center mt-4 text-sm">
             New here?
-            <Link to="/register" state={{ from }} className="text-blue-600 font-semibold ml-1">
+            <Link to="/register" state={{ from }} className="text-blue-600 font-semibold ml-1 ">
               Create an account
             </Link>
           </p>

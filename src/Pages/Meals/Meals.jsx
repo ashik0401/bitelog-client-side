@@ -92,11 +92,11 @@ const Meals = () => {
             onChange={e => setInput(e.target.value)}
             type="text"
             placeholder="Search by title"
-            className="border p-2 w-full mx-auto rounded"
+            className="border p-2 w-full mx-auto rounded border-black text-black dark:border-white dark:text-white"
           />
           <button
             onClick={handleSearch}
-            className="bg-primary dark:bg-orange-500 text-white px-4 py-2 rounded"
+            className="bg-orange-500 dark:bg-orange-500 text-white px-4  rounded btn "
           >
             Search
           </button>
@@ -105,7 +105,7 @@ const Meals = () => {
         <div className="flex gap-2 sm:hidden items-center ">
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className="btn btn-sm btn-outline text-primary "
+            className="btn btn-sm btn-outline text-orange-500 hover:bg-amber-600 hover:text-white hover:border-orange-500 "
           >
             <FaTags /> Filters
           </button>
@@ -114,7 +114,7 @@ const Meals = () => {
         <select
           value={category}
           onChange={e => handleCategoryChange(e.target.value)}
-          className={`border  rounded p-2 w-full sm:w-1/4 ${showFilters ? '' : 'hidden sm:block'}`}
+          className={`border border-black text-black dark:border-white dark:text-white rounded p-2 w-full sm:w-1/4 ${showFilters ? '' : 'hidden sm:block'}`}
         >
           <option value="" className='dark:text-black '>All Categories</option>
           {categories.map((cat, i) => (
@@ -125,7 +125,7 @@ const Meals = () => {
         <select
           value={sortBy === 'price' ? order : ''}
           onChange={e => handlePriceSortChange(e.target.value)}
-          className={`border   rounded p-2 w-full sm:w-1/4 ${showFilters ? '' : 'hidden sm:block'}`}
+          className={`border border-black text-black dark:border-white dark:text-white   rounded p-2 w-full sm:w-1/4 ${showFilters ? '' : 'hidden sm:block'}`}
         >
           <option className='dark:text-black' value="">Sort by Price </option>
           <option className='dark:text-black' value="asc">Low to High</option>
@@ -141,7 +141,7 @@ const Meals = () => {
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:w-11/12 mx-auto mt-10">
           {allMeals.map(meal => (
-            <div key={meal._id} className="card shadow-xl bg-orange-100 dark:bg-transparent border border-gray-200">
+            <div key={meal._id} className="card shadow-xl bg-orange-100 dark:bg-transparent text-black  dark:text-white border border-gray-200">
               <figure>
                 <img src={meal.image} alt={meal.title} className="w-full h-48 object-cover" />
               </figure>
@@ -161,7 +161,7 @@ const Meals = () => {
                 <p>💰 Price: ${meal.price}</p>
                 <div className="card-actions justify-end">
                   <Link to={`/Meals/${meal._id}`}>
-                    <button className="btn btn-sm btn-primary dark:bg-orange-500 dark:border-orange-500 ">Details</button>
+                    <button className="btn btn-sm bg-orange-500 dark:bg-orange-500 border-orange-500 ">Details</button>
                   </Link>
                 </div>
               </div>

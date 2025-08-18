@@ -48,7 +48,7 @@ const DashboardHome = () => {
         <img
           src={image}
           alt={`${name} profile`}
-          className="w-35 h-35 rounded-full object-cover border-4 border-orange-400"
+          className="w-35 h-35 rounded-full object-cover border-2 border-orange-400"
         />
         <div>
           <p className="mt-2 text-lg font-medium text-c text-gray-700 text-center">

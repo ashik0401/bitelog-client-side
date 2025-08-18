@@ -78,7 +78,7 @@ const AllReviewsTable = () => {
       <div className="overflow-x-auto shadow-xl border border-gray-200 rounded-xl">
         <table className="table table-zebra w-full">
           <thead>
-            <tr>
+            <tr className="text-black">
               <th className="text-center">Title</th>
               <th className="text-center">Likes</th>
               <th className="text-center">Reviews</th>
@@ -87,13 +87,13 @@ const AllReviewsTable = () => {
           </thead>
           <tbody>
             {meals.map((meal) => (
-              <tr key={meal._id}>
-                <td className="text-center">{meal.title}</td>
-                <td className="text-center">{meal.likes}</td>
-                <td className="text-center">{meal.reviews_count}</td>
-                <td className="flex items-center justify-center space-x-2">
+              <tr key={meal._id} className="border-none">
+                <td className="bg-white text-center">{meal.title}</td>
+                <td className="bg-white text-center">{meal.likes}</td>
+                <td className="bg-white text-center">{meal.reviews_count}</td>
+                <td className="flex items-center justify-center space-x-2 bg-white ">
                   <button
-                    className="btn btn-xs btn-info"
+                    className="btn btn-xs btn-info bg-white "
                     onClick={() => navigate(`/Meals/${meal._id}`)}
                   >
                     View

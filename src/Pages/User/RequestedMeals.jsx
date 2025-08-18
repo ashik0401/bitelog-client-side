@@ -92,7 +92,7 @@ const RequestedMeals = () => {
       <div className="overflow-x-auto sm:overflow-x-visible">
         <table className="table w-full border-collapse border border-gray-300">
           <thead>
-            <tr className="bg-orange-200">
+            <tr className="bg-orange-200 text-black">
               <th className="border border-gray-300 px-4 py-2">Meal Title</th>
               <th className="border border-gray-300 px-4 py-2 text-center">Likes</th>
               <th className="border border-gray-300 px-4 py-2 text-center">Reviews Count</th>
@@ -107,7 +107,7 @@ const RequestedMeals = () => {
               </tr>
             ) : (
               requests.map((req) => (
-                <tr key={req._id} className="hover:bg-orange-100">
+                <tr key={req._id} className="hover:bg-orange-100 hover:text-black ">
                   <td className="border border-gray-300 px-4 py-2">{req.mealTitle}</td>
                   <td className="border border-gray-300 px-4 py-2 text-center">
                     {mealsStats[req.mealId]?.likes ?? '...'}

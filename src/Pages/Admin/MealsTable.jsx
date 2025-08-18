@@ -74,8 +74,8 @@ const MealsTable = () => {
       </div>
       <div className="overflow-x-auto shadow-xl border border-gray-200 rounded-xl">
         <table className="table w-full">
-          <thead>
-            <tr>
+          <thead >
+            <tr className='text-black'>
               <th className='text-center'>Title</th>
               <th className='text-center'>Likes</th>
               <th className='text-center'>Reviews</th>

@@ -148,8 +148,8 @@ const MyReviews = () => {
         <>
           <div className="overflow-x-auto sm:overflow-x-visible shadow-xl rounded-xl border border-gray-200">
             <table className="table w-full table-zebra">
-              <thead className="bg-base-200">
-                <tr>
+              <thead className="">
+                <tr className="text-black">
                   <th>Meal Title</th>
                   <th>Likes</th>
                   <th>Review</th>
@@ -159,9 +159,9 @@ const MyReviews = () => {
               <tbody>
                 {reviews.map((review) => (
                   <tr key={review._id}>
-                    <td>{review.mealTitle}</td>
-                    <td>{review.likes || 0}</td>
-                    <td>
+                    <td className="bg-white">{review.mealTitle}</td>
+                    <td className="bg-white">{review.likes || 0}</td>
+                    <td className="bg-white">
                       {editingId === review._id ? (
                         <textarea
                           className="textarea textarea-bordered w-full"
@@ -172,7 +172,7 @@ const MyReviews = () => {
                         <p>{review.text}</p>
                       )}
                     </td>
-                    <td className="space-x-1">
+                    <td className="space-x-1 bg-white">
                       {editingId === review._id ? (
                         <button className="btn btn-sm btn-success" onClick={handleSaveEdit}>
                           Save

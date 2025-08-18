@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, NavLink } from 'react-router';
 import logo from '../../assets/B.png'
 import useAuth from '../../hooks/useAuth';
+import ThemeToggle from '../../Components/ThemeTaggle/ThemeToggle';
 
 const Navbar = () => {
   const { user, loading: authLoading, logOut } = useAuth();
@@ -16,21 +17,21 @@ const Navbar = () => {
 
   const links = (
     <>
-      <li><NavLink to="/" className={({ isActive }) => isActive ? 'text-white font-bold bg-primary dark:bg-orange-500' : ''}>Home</NavLink></li>
+      <li><NavLink to="/" className={({ isActive }) => isActive ? 'text-white font-bold bg-orange-500 dark:bg-orange-500' : ''}>Home</NavLink></li>
 
-      <li><NavLink to="/Meals" className={({ isActive }) => isActive ? 'text-white font-bold bg-primary dark:bg-orange-500' : ''}>All Meal</NavLink></li>
+      <li><NavLink to="/Meals" className={({ isActive }) => isActive ? 'text-white font-bold bg-orange-500 dark:bg-orange-500' : ''}>All Meal</NavLink></li>
 
-      {user && <li><NavLink to="/upComingMeal" className={({ isActive }) => isActive ? 'text-white font-bold bg-primary dark:bg-orange-500' : ''}>Upcoming Meals</NavLink></li>}
+      {user && <li><NavLink to="/upComingMeal" className={({ isActive }) => isActive ? 'text-white font-bold bg-orange-500 dark:bg-orange-500' : ''}>Upcoming Meals</NavLink></li>}
 
-      {user && <li><NavLink to="/dashboard" className={({ isActive }) => isActive ? 'text-white font-bold bg-primary dark:bg-orange-500' : ''}>Dashboard</NavLink></li>}
+      {user && <li><NavLink to="/dashboard" className={({ isActive }) => isActive ? 'text-white font-bold bg-orange-500 dark:bg-orange-500' : ''}>Dashboard</NavLink></li>}
 
-       <li><NavLink to="/aboutUs" className={({ isActive }) => isActive ? 'text-white font-bold bg-primary dark:bg-orange-500' : ''}>About Us</NavLink></li>
+       <li><NavLink to="/aboutUs" className={({ isActive }) => isActive ? 'text-white font-bold bg-orange-500 dark:bg-orange-500' : ''}>About Us</NavLink></li>
     </>
 
   );
 
   return (
-    <div className='fixed shadow-md top-0 left-0 bg-primary dark:bg-orange-500 z-100 w-full'>
+    <div className='fixed shadow-md top-0 left-0 bg-orange-500 dark:bg-orange-500 z-100 w-full'>
       <div className="navbar  md:w-11/12 md:mx-auto  ">
         <div className="navbar-start">
           <div className="dropdown">
@@ -51,6 +52,7 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end flex items-center">
+          <ThemeToggle/>
           <button className="btn btn-ghost btn-circle">
             <div className="indicator text-white">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /> </svg>
@@ -67,15 +69,15 @@ const Navbar = () => {
                     <img alt="User profile" src={photoURL} />
                   </div>
                 </div>
-                <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                <ul tabIndex={0} className="menu menu-sm dropdown-content  rounded-box z-1 mt-3 w-52  shadow">
                   <li>
-                    <button className='font-bold text-primary' onClick={handleLogOut}>Logout</button>
+                    <button className='font-bold text-orange-500 dark:text-orange-500 py-3 bg-white' onClick={handleLogOut}>Logout</button>
                   </li>
                 </ul>
               </div>
             </>
           ) : (
-            <Link to='/login' className="btn border-primary  text-black rounded-md hover:bg-primary">Login</Link>
+            <Link to='/login' className="btn   text-black rounded-md hover:bg-orange-600 bg-orange-500   border-orange-500 dark:hover:bg-orange-600 ">Login</Link>
           )}
         </div>
       </div>

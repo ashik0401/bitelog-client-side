@@ -17,7 +17,7 @@ const Pagination = ({ totalItems, itemsPerPage, currentPage, onPageChange }) => 
       {pages.map(page => (
         <button
           key={page}
-          className={`btn btn-sm ${page === currentPage ? 'btn-primary dark:bg-orange-500 dark:border-none' : ''}`}
+          className={`btn btn-sm ${page === currentPage ? 'bg-orange-500 border-none' : ''}`}
           onClick={() => onPageChange(page)}
         >
           {page}

@@ -45,14 +45,14 @@ const MealsByCategory = ({ searchTerm }) => {
 
   return (
     <div className="px-4 my-7 py-8">
-      <h2 className="text-3xl font-bold mb-6 text-center text-primary dark:text-orange-500">Meals</h2>
+      <h2 className="text-3xl font-bold mb-6 text-center text-orange-500 dark:text-orange-500">Meals</h2>
 
       <div role="tablist" className="tabs tabs-boxed justify-center mb-6 ">
         {['All', 'Breakfast', 'Lunch', 'Dinner'].map(tab => (
           <button
             key={tab}
             onClick={() => setCategory(tab)}
-            className={`tab ${category === tab ? 'tab-active text-primary dark:text-orange-500 font-bold' : ''}`}
+            className={`  mx-5 text-black dark:text-white ${category === tab ? 'tab-active text-orange-500 dark:text-orange-500 font-bold' : ''}`}
           >
             {tab}
           </button>
@@ -65,7 +65,7 @@ const MealsByCategory = ({ searchTerm }) => {
         <>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:w-11/12 mx-auto mt-10">
             {mealsToShow.map(meal => (
-              <div key={meal._id} className="card shadow-xl bg-orange-100 dark:bg-transparent border border-gray-200 ">
+              <div key={meal._id} className="card text-black dark:text-white shadow-xl bg-orange-100 dark:bg-transparent border border-gray-200 ">
                 <figure>
                   <img
                     src={meal.image || null}
@@ -90,7 +90,7 @@ const MealsByCategory = ({ searchTerm }) => {
                   <p>💰 Price: ${meal.price}</p>
                   <div className="card-actions justify-end">
                     <Link to={`/Meals/${meal._id}`}>
-                      <button className="btn btn-sm btn-primary dark:bg-orange-500 dark:border-orange-500">Details</button>
+                      <button className="btn btn-sm bg-orange-500 dark:bg-orange-500 border-orange-500">Details</button>
                     </Link>
                   </div>
                 </div>
@@ -102,7 +102,7 @@ const MealsByCategory = ({ searchTerm }) => {
             <div className="text-center mt-6">
               <button
                 onClick={() => setShowAll(!showAll)}
-                className="btn btn-outline btn-primary dark:border-orange-500 dark:text-orange-500 dark:hover:bg-orange-500 dark:hover:text-white"
+                className="btn btn-outline border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white"
               >
                 {showAll ? 'Show Less' : 'Show More'}
               </button>

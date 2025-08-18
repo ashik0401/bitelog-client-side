@@ -76,12 +76,12 @@ const PaymentForm = ({ id, price, badge, closeModal }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4 text-black">
             <CardElement />
             <button
                 type="submit"
                 disabled={!stripe}
-                className="text-white py-2 px-4 rounded disabled:opacity-50 cursor-pointer w-full bg-primary"
+                className="text-black py-2 px-4 rounded disabled:opacity-50 cursor-pointer w-full bg-orange-500"
             >
                 Pay ${amount}
             </button>

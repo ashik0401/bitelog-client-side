@@ -10,19 +10,19 @@ export function SalesPromotion() {
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="text-3xl md:text-4xl font-bold mb-6"
+                    className="text-3xl md:text-4xl font-bold mb-6 text-black dark:text-white"
                 >
                     🎉 Special Hostel Meal Membership Offers!
                 </motion.h2>
-                <p className="mb-8 text-lg">
-                    Get up to <span className="font-semibold text-primary dark:text-orange-500">30% off</span> on Silver, Gold, and Platinum meal packages.
+                <p className="mb-8 text-lg text-black dark:text-white">
+                    Get up to <span className="font-semibold text-orange-500 dark:text-orange-500 ">30% off</span> on Silver, Gold, and Platinum meal packages.
                 </p>
                 <button
                     onClick={() => {
                         const membershipSection = document.getElementById("membership");
                         membershipSection?.scrollIntoView({ behavior: "smooth" });
                     }}
-                    className="bg-white text-primary font-semibold px-6 py-3 rounded-md shadow-md dark:text-orange-500"
+                    className="bg-white text-orange-500 font-semibold px-6 py-3 rounded-md shadow-md dark:text-orange-500"
                 >
                     Grab Your Offer
                 </button>

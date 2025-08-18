@@ -79,10 +79,10 @@ const ManageUsers = () => {
           placeholder="Search by name or email"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="input input-bordered w-full md:w-1/2"
+          className="input  bg-white border border-black w-full md:w-1/2"
           autoComplete="off"
         />
-        <button type="submit" className="btn text-white btn-primary dark:bg-orange-500 dark:border-none">
+        <button type="submit" className="btn text-white  bg-orange-500 border-none">
           Search
         </button>
       </form>

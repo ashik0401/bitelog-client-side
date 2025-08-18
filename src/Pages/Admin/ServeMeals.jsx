@@ -51,12 +51,12 @@ const ServeMeals = () => {
       <div className="flex gap-2 mb-4">
         <input
           type="text"
-          className="input input-bordered w-full max-w-xs"
+          className="input border-black border w-full max-w-xs bg-white"
           placeholder="Search by name or email"
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
         />
-        <button className="btn btn-primary dark:bg-orange-500 dark:border-none" onClick={handleSearch}>
+        <button className="btn  bg-orange-500 border-none" onClick={handleSearch}>
           Search
         </button>
       </div>
@@ -69,7 +69,7 @@ const ServeMeals = () => {
           <div className="overflow-x-auto shadow-xl border border-gray-200 rounded-xl">
             <table className="table table-zebra w-full">
               <thead>
-                <tr>
+                <tr className="text-black">
                   <th className="text-center">Meal Title</th>
                   <th className="text-center">User Name</th>
                   <th className="text-center">User Email</th>
@@ -80,11 +80,11 @@ const ServeMeals = () => {
               <tbody>
                 {requests.map((req) => (
                   <tr key={req._id}>
-                    <td className="text-center">{req.mealTitle}</td>
-                    <td className="text-center">{req.userName.toUpperCase()}</td>
-                    <td className="text-center">{req.userEmail}</td>
-                    <td className="text-center">{req.status}</td>
-                    <td className="text-center">
+                    <td className="bg-white text-center">{req.mealTitle}</td>
+                    <td className="bg-white text-center">{req.userName.toUpperCase()}</td>
+                    <td className="bg-white text-center">{req.userEmail}</td>
+                    <td className="bg-white text-center">{req.status}</td>
+                    <td className="bg-white text-center">
                       {req.status !== 'delivered' ? (
                         <button
                           className="btn btn-sm btn-success"
