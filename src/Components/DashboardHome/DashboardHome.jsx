@@ -58,7 +58,7 @@ const DashboardHome = () => {
           {role === "admin" ? (
             <p className="mt-3 text-orange-600 text-center font-semibold">
               Meals Added:{" "}
-              <span className="text-white bg-primary rounded-full px-2">
+              <span className="text-white">
                 {countLoading ? "..." : totalMeals}
               </span>
             </p>
