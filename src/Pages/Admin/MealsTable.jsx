@@ -62,13 +62,13 @@ const MealsTable = () => {
   return (
     <div className="p-4 mt-5">
       <div className="flex gap-4 mb-2">
-        <button className="btn btn-sm" onClick={() => handleSortChange('postTime')}>
+        <button className="btn btn-sm bg-transparent text-black" onClick={() => handleSortChange('postTime')}>
           Sort by Latest {sortBy === 'postTime' ? (order === 'asc' ? '↑' : '↓') : ''}
         </button>
-        <button className="btn btn-sm" onClick={() => handleSortChange('likes')}>
+        <button className="btn btn-sm  bg-transparent text-black" onClick={() => handleSortChange('likes')}>
           Sort by Likes {sortBy === 'likes' ? (order === 'asc' ? '↑' : '↓') : ''}
         </button>
-        <button className="btn btn-sm" onClick={() => handleSortChange('reviews_count')}>
+        <button className="btn btn-sm  bg-transparent text-black" onClick={() => handleSortChange('reviews_count')}>
           Sort by Reviews {sortBy === 'reviews_count' ? (order === 'asc' ? '↑' : '↓') : ''}
         </button>
       </div>

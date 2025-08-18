@@ -68,8 +68,8 @@ const AllReviewsTable = () => {
   return (
     <div className="p-6">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-2xl font-bold">All Meal Reviews</h2>
-        <button onClick={toggleSortOrder} className="btn btn-sm">
+        <h2 className="text-2xl font-bold ">All Meal Reviews</h2>
+        <button onClick={toggleSortOrder} className="btn btn-sm  bg-transparent text-black">
           {sortOrder === "asc"
             ? "Sort by Most Reviews ↓"
             : "Sort by Least Reviews ↑"}

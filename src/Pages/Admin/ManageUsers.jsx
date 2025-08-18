@@ -87,8 +87,7 @@ const ManageUsers = () => {
         </button>
       </form>
 
-      {isFetching && <div className="text-center py-4 text-gray-600"><span className="loading loading-ring loading-sm"></span>
-</div>}
+      {isFetching && <div className="text-center py-4 text-gray-600"><span className="loading loading-ring loading-sm"></span></div>}
 
       {!isFetching && users.length === 0 && (
         <div className="text-center py-4 text-gray-600">No users found.</div>
@@ -99,7 +98,7 @@ const ManageUsers = () => {
           <div className="overflow-x-auto border rounded-xl border-gray-300 shadow-xl">
             <table className="table w-full border border-gray-300">
               <thead>
-                <tr>
+                <tr className='text-black'>
                   <th className="border border-gray-300 text-center">User Name</th>
                   <th className="border border-gray-300 text-center">Email</th>
                   <th className="border border-gray-300 text-center">Subscription</th>
