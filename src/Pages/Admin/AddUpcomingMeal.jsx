@@ -76,10 +76,10 @@ const AddUpcomingMeal = () => {
     <div className="md:max-w-xl md:mx-auto p-6 bg-orange-100 dark:bg-transparent rounded shadow-xl mt-15 mx-5">
       <h2 className="text-3xl font-bold mb-4 text-center">Add Upcoming Meal</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <input type="text" {...register('title', { required: true })} placeholder="Meal Title" className="input input-bordered w-full" />
+        <input type="text" {...register('title', { required: true })} placeholder="Meal Title" className="input input-bordered w-full bg-white" />
         {errors.title && <p className="text-red-500">Title is required</p>}
 
-        <select {...register('category', { required: true })} className="select select-bordered w-full">
+        <select {...register('category', { required: true })} className="select select-bordered w-full bg-white">
           <option value="">Select Category</option>
           <option value="Breakfast">Breakfast</option>
           <option value="Lunch">Lunch</option>
@@ -87,16 +87,16 @@ const AddUpcomingMeal = () => {
         </select>
         {errors.category && <p className="text-red-500">Category is required</p>}
 
-        <input type="file" onChange={handleImageUpload} className="file-input file-input-bordered w-full" />
-        {imageURL && <img src={imageURL} alt="Meal" className="h-25 w-25 object-cover mt-2" />}
+        <input type="file" onChange={handleImageUpload} className="file-input file-input-bordered w-full bg-white" />
+        {imageURL && <img src={imageURL} alt="Meal" className="h-25 w-25 object-cover mt-2 " />}
 
-        <input type="text" {...register('ingredients', { required: true })} placeholder="Ingredients (comma separated)" className="input input-bordered w-full" />
+        <input type="text" {...register('ingredients', { required: true })} placeholder="Ingredients (comma separated)" className="input input-bordered w-full bg-white" />
         {errors.ingredients && <p className="text-red-500">Ingredients are required</p>}
 
-        <textarea {...register('description', { required: true })} placeholder="Description" className="textarea textarea-bordered w-full" />
+        <textarea {...register('description', { required: true })} placeholder="Description" className="textarea textarea-bordered w-full bg-white" />
         {errors.description && <p className="text-red-500">Description is required</p>}
 
-        <input type="number" step="0.01" {...register('price', { required: true })} placeholder="Price" className="input input-bordered w-full" />
+        <input type="number" step="0.01" {...register('price', { required: true })} placeholder="Price" className="input input-bordered w-full bg-white" />
         {errors.price && <p className="text-red-500">Price is required</p>}
 
         <input type="text" value={user?.displayName} readOnly className="input input-bordered w-full bg-gray-100 dark:bg-transparent" />
