@@ -9,7 +9,7 @@ const DashboardSplite = () => {
   useEffect(() => {
     if (!loading) {
       if (roleUser?.role === 'admin') {
-        navigate('/dashboard/meals', { replace: true });
+        navigate('/dashboard/overview', { replace: true });
       } else {
         navigate('/dashboard/myReviews', { replace: true });
       }

@@ -4,6 +4,8 @@ import logo from '../assets/B.png';
 import { FaHome, FaUtensils, FaStar, FaConciergeBell, FaPlusCircle, FaClipboardList, FaUsersCog, FaMoneyCheckAlt, FaClipboardCheck } from 'react-icons/fa';
 import useUserRole from '../Pages/User/useUserRole';
 import DashboardHome from '../Components/DashboardHome/DashboardHome';
+import { CgProfile } from "react-icons/cg";
+import { GiHotMeal } from "react-icons/gi";
 
 const DashboardLayout = () => {
   const { roleUser, loading } = useUserRole();
@@ -40,21 +42,12 @@ const DashboardLayout = () => {
         <div className="w-80 bg-orange-200 h-screen flex flex-col">
           <DashboardHome />
           <ul className="menu bg-orange-200 text-base-content w-80 p-4">
-            <li>
-              <NavLink to="/" onClick={closeDrawer} className={({ isActive }) => isActive ? "text-orange-500 dark:text-orange-500 font-bold flex items-center gap-2" : "font-semibold dark:text-black text-black flex items-center gap-2"}>
-                <FaHome /> Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/dashboard/profile" onClick={closeDrawer} className={({ isActive }) => isActive ? "text-orange-500 dark:text-orange-500 font-bold flex items-center gap-2" : "font-semibold dark:text-black text-black flex items-center gap-2"}>
-                <FaHome /> My Profile
-              </NavLink>
-            </li>
+      
             {isAdmin ? (
               <>
                 <li>
                   <NavLink to="/dashboard/overview" onClick={closeDrawer} className={({ isActive }) => isActive ? "text-orange-500 dark:text-orange-500 font-bold flex items-center gap-2" : "font-semibold dark:text-black text-black flex items-center gap-2"}>
-                    <FaUtensils /> Overview
+                    <FaUtensils /> OverviewPage
                   </NavLink>
                 </li>
                 <li>
@@ -64,7 +57,8 @@ const DashboardLayout = () => {
                 </li>
                 <li>
                   <NavLink to="/dashboard/upcomingMeals" onClick={closeDrawer} className={({ isActive }) => isActive ? "text-orange-500 dark:text-orange-500 font-bold flex items-center gap-2" : "font-semibold dark:text-black text-black flex items-center gap-2"}>
-                    <FaUtensils /> Upcoming Meals
+                    <GiHotMeal />
+                    Upcoming Meals
                   </NavLink>
                 </li>
                 <li>
@@ -107,6 +101,18 @@ const DashboardLayout = () => {
                 </li>
               </>
             )}
+          
+            <li>
+              <NavLink to="/dashboard/profile" onClick={closeDrawer} className={({ isActive }) => isActive ? "text-orange-500 dark:text-orange-500 font-bold flex items-center gap-2" : "font-semibold dark:text-black text-black flex items-center gap-2"}>
+                <CgProfile />
+                My Profile
+              </NavLink>
+            </li>
+                    <li>
+              <NavLink to="/" onClick={closeDrawer} className={({ isActive }) => isActive ? "text-orange-500 dark:text-orange-500 font-bold flex items-center gap-2" : "font-semibold dark:text-black text-black flex items-center gap-2"}>
+                <FaHome /> Home
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>

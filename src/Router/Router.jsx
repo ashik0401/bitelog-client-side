@@ -29,6 +29,7 @@ import MyReviews from "../Pages/User/MyReviews";
 import RequestedMeals from "../Pages/User/RequestedMeals";
 import Error from "../Pages/Error/Error";
 import ProfilePage from "../Pages/ProfilePage/ProfilePage";
+import OverviewPage from "../Pages/Admin/OverviewPage";
 
 
 
@@ -70,6 +71,7 @@ export const router = createBrowserRouter([
       { path: "myReviews", Component: MyReviews },
       { path: "requestedMeals", Component: RequestedMeals },
       { path: "meals", element: <AdminRoute><MealsTable /></AdminRoute> },
+      { path: "overview", element: <AdminRoute><OverviewPage/></AdminRoute> },
       { path: "profile", element: <ProfilePage /> },
     
       
