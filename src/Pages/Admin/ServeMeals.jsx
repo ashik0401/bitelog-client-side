@@ -69,7 +69,7 @@ const ServeMeals = () => {
           <div className="overflow-x-auto shadow-xl border border-gray-200 rounded-xl">
             <table className="table table-zebra w-full">
               <thead>
-                <tr className="text-black">
+                <tr className="text-black bg-white">
                   <th className="text-center">Meal Title</th>
                   <th className="text-center">User Name</th>
                   <th className="text-center">User Email</th>

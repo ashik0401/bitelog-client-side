@@ -78,7 +78,7 @@ const AllReviewsTable = () => {
       <div className="overflow-x-auto shadow-xl border border-gray-200 rounded-xl">
         <table className="table table-zebra w-full">
           <thead>
-            <tr className="text-black">
+            <tr className="text-black bg-white">
               <th className="text-center">Title</th>
               <th className="text-center">Likes</th>
               <th className="text-center">Reviews</th>
