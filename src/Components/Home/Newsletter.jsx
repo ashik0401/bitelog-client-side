@@ -11,7 +11,7 @@ export function Newsletter() {
     const checkSubscription = async () => {
       if (!email) return;
       try {
-        const { data } = await axios.get(`http://localhost:5000/subscribers/check?email=${email}`);
+        const { data } = await axios.get(`https://bitelog-server-side.vercel.app/subscribers/check?email=${email}`);
         setSubscribed(data.subscribed);
       } catch (err) {
         console.error(err);
@@ -26,12 +26,12 @@ export function Newsletter() {
     try {
       if (!subscribed) {
      
-        await axios.post("http://localhost:5000/subscribers", { email });
+        await axios.post("https://bitelog-server-side.vercel.app/subscribers", { email });
         setSubscribed(true);
         toast.success("Subscribed successfully!");
       } else {
         
-        await axios.delete(`http://localhost:5000/subscribers?email=${email}`);
+        await axios.delete(`https://bitelog-server-side.vercel.app/subscribers?email=${email}`);
         setSubscribed(false);
         toast("Unsubscribed successfully!");
       }
