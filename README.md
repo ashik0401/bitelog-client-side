@@ -117,5 +117,5 @@ npm run start
 
 🤝 Contact
 Md. Ashik Mahmud
-📧 ashikmahmud8346@.com
+📧 ashikmahmud0825@gmail.com
 🔗 [LinkedIn](https://www.linkedin.com/in/ashik-mahmud21/) | [GitHub](https://github.com/ashik0401)
