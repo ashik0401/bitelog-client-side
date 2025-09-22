@@ -4,9 +4,6 @@ BiteLog is a full-featured MERN stack-based Hostel Management System designed fo
 
 ## 🔐 Admin Credentials
 
-- **Username (Email):**erenyeagar@gmail.com
-- **Password:**  123456@E
-
 ## 🔗 Live Site
 
 🌐 [Visit Live Website](https://bitelog-f22fc.web.app/)
