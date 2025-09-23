@@ -146,9 +146,9 @@ const MyReviews = () => {
         <p className="text-center text-gray-500">You haven't posted any reviews yet.</p>
       ) : (
         <>
-          <div className="overflow-x-auto sm:overflow-x-visible shadow-xl rounded-xl border border-gray-200">
-            <table className="table w-full table-zebra">
-              <thead className="">
+          <div className="overflow-x-auto sm:overflow-x-visible shadow-xl rounded-xl border border-gray-200 ">
+            <table className="table w-full bg-white">
+              <thead>
                 <tr className="text-black">
                   <th>Meal Title</th>
                   <th>Likes</th>
@@ -159,12 +159,12 @@ const MyReviews = () => {
               <tbody>
                 {reviews.map((review) => (
                   <tr key={review._id}>
-                    <td className="bg-white">{review.mealTitle}</td>
+                    <td className="bg-white font-semibold">{review.mealTitle.toUpperCase()}</td>
                     <td className="bg-white">{review.likes || 0}</td>
                     <td className="bg-white">
                       {editingId === review._id ? (
                         <textarea
-                          className="textarea textarea-bordered w-full"
+                          className="textarea textarea-bordered border-black bg-gray-200 w-full"
                           value={editText}
                           onChange={(e) => setEditText(e.target.value)}
                         />
@@ -172,7 +172,7 @@ const MyReviews = () => {
                         <p>{review.text}</p>
                       )}
                     </td>
-                    <td className="space-x-1 bg-white">
+                    <td className="flex items-center justify-center gap-2 bg-white">
                       {editingId === review._id ? (
                         <button className="btn btn-sm btn-success" onClick={handleSaveEdit}>
                           Save
@@ -185,7 +185,10 @@ const MyReviews = () => {
                           Edit
                         </button>
                       )}
-                      <button className="btn btn-sm btn-error" onClick={() => handleDeleteClick(review._id)}>
+                      <button
+                        className="btn btn-sm btn-error"
+                        onClick={() => handleDeleteClick(review._id)}
+                      >
                         Delete
                       </button>
                       <button

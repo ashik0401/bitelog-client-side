@@ -58,13 +58,13 @@ const DashboardHome = () => {
           {role === "admin" ? (
             <p className="mt-3 text-orange-600 text-center font-semibold">
               Meals Added:{" "}
-              <span className="text-white">
+              <span className="text-orange-600">
                 {countLoading ? "..." : totalMeals}
               </span>
             </p>
           ) : (
             <div className="mt-3 flex items-center justify-center space-x-3">
-              <span className="inline-block px-3 py-1 rounded-full text-sm font-semibold bg-yellow-300 text-yellow-900">
+              <span className="inline-block px-3 py-1 rounded-full text-sm font-semibold bg-orange-300 text-yellow-900">
                 {badge || "Bronze"}
 
               </span>

@@ -76,9 +76,9 @@ const AllReviewsTable = () => {
         </button>
       </div>
       <div className="overflow-x-auto shadow-xl border border-gray-200 rounded-xl">
-        <table className="table table-zebra w-full">
+        <table className="table  w-full bg-white ">
           <thead>
-            <tr className="text-black bg-white">
+            <tr className="text-black ">
               <th className="text-center">Title</th>
               <th className="text-center">Likes</th>
               <th className="text-center">Reviews</th>
@@ -87,19 +87,19 @@ const AllReviewsTable = () => {
           </thead>
           <tbody>
             {meals.map((meal) => (
-              <tr key={meal._id} className="border-none">
+              <tr key={meal._id} className="border-none bg-white ">
                 <td className="bg-white text-center">{meal.title}</td>
                 <td className="bg-white text-center">{meal.likes}</td>
                 <td className="bg-white text-center">{meal.reviews_count}</td>
-                <td className="flex items-center justify-center space-x-2 bg-white ">
+                <td className="sm:flex items-center justify-center sm:gap-1 min-w-full h-full space-y-1 sm:space-y-0">
                   <button
-                    className="btn btn-xs btn-info bg-white "
+                    className="btn btn-info bg-white "
                     onClick={() => navigate(`/Meals/${meal._id}`)}
                   >
                     View
                   </button>
                   <button
-                    className="btn btn-xs btn-error"
+                    className="btn  btn-error "
                     onClick={() => deleteMeal(meal._id)}
                   >
                     Delete

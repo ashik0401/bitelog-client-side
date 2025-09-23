@@ -191,8 +191,8 @@ const handleRequestMeal = async () => {
   const averageRating = calculateAverageRating(meal.ratings);
 
   return (
-    <div className="max-w-4xl mx-auto p-6 mt-15">
-      <div className="card bg-base-100 shadow-xl">
+    <div className="max-w-4xl mx-auto p-6 mt-15 ">
+      <div className="card dark:bg-transparent dark:text-white bg-orange-100 text-black shadow-xl ">
         <figure>
           <img
             src={meal.image}
@@ -218,17 +218,17 @@ const handleRequestMeal = async () => {
           </p>
           <p className="mt-1">Rating: {averageRating.toFixed(1)} ⭐</p>
           <div className="flex gap-4 mt-4">
-            <button onClick={handleLike} className="btn btn-primary">
+            <button onClick={handleLike} className="btn  text-black bg-orange-500 border-none">
               👍 Like ({meal.likes})
             </button>
             <button
               onClick={handleRequestMeal}
-              className={`btn btn-secondary text-black ${requesting ? "loading" : ""}`}
+              className={`btn bg-orange-400 border-none text-black ${requesting ? "loading" : ""}`}
               disabled={requesting}
             >
               Request Meal
             </button>
-            <button onClick={showRatingPopup} className="btn btn-warning">
+            <button onClick={showRatingPopup} className="btn btn-warning text-black">
               Rate Meal
             </button>
           </div>
@@ -239,7 +239,7 @@ const handleRequestMeal = async () => {
             <h3 className="text-xl font-semibold">Reviews ({reviewCount})</h3>
             <form onSubmit={handleReviewSubmit} className="my-4">
               <textarea
-                className="textarea textarea-bordered w-full"
+                className="textarea textarea-bordered w-full bg-orange-50 dark:bg-transparent"
                 placeholder="Write your review..."
                 value={reviewText}
                 onChange={(e) => setReviewText(e.target.value)}
@@ -255,7 +255,7 @@ const handleRequestMeal = async () => {
               {reviews.map((review) => (
                 <div
                   key={review._id}
-                  className="p-4 bg-gray-50 rounded shadow flex items-start gap-3"
+                  className="p-4 bg-gray-50 rounded shadow flex items-start gap-3 dark:bg-transparent border-b border-gray-600"
                 >
                   <img
                     src={
@@ -270,7 +270,7 @@ const handleRequestMeal = async () => {
                     <p className="text-xs text-gray-400">
                       {new Date(review.createdAt).toLocaleString()}
                     </p>
-                    <p className="text-gray-700">{review.text}</p>
+                    <p className="text-gray-700 dark:text-white">{review.text}</p>
                   </div>
                 </div>
               ))}

@@ -76,7 +76,7 @@ const PaymentForm = ({ id, price, badge, closeModal }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-4 text-black">
+        <form onSubmit={handleSubmit} className="space-y-4 text-black ">
             <CardElement />
             <button
                 type="submit"

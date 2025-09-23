@@ -22,7 +22,7 @@ export function SalesPromotion() {
                         const membershipSection = document.getElementById("membership");
                         membershipSection?.scrollIntoView({ behavior: "smooth" });
                     }}
-                    className="bg-white text-orange-500 font-semibold px-6 py-3 rounded-md shadow-md dark:text-orange-500"
+                    className="bg-white text-orange-500 font-semibold px-6 py-6 rounded-md shadow-md dark:text-orange-500 dark:bg-transparent border border-orange-300 cursor-pointer btn "
                 >
                     Grab Your Offer
                 </button>
