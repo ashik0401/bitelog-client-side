@@ -9,7 +9,7 @@ const AboutUs = () => {
    <>
    <Navbar/>
    <section className="">
-     <div className=" pt-30 px-6 md:px-12 lg:px-24 pb-3 dark:bg-transparent bg-orange-50 h-[100vh] flex flex-col justify-center items-center">
+     <div className=" pt-30 px-6 md:px-12 lg:px-24 pb-3 dark:bg-transparent bg-orange-50  flex flex-col justify-center items-center">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -18,7 +18,7 @@ const AboutUs = () => {
         className="text-center max-w-3xl mx-auto mb-12"
       >
         <h2 className="text-4xl font-extrabold text-gray-800 mb-4 dark:text-white">
-          About <span className="text-[#012200] dark:text-[#0ec708] dark:text-[#0ec708]">BiteLog</span>
+          About <span className="text-[#012200]  dark:text-[#0ec708]">BiteLog</span>
         </h2>
         <p className="text-gray-600  leading-relaxed dark:text-white">
           BiteLog is a smart hostel meal management system designed for
