@@ -141,15 +141,15 @@ const MyReviews = () => {
 
   return (
     <div className="p-6 max-w-6xl mx-auto">
-      <h2 className="text-2xl font-bold mb-4">My Reviews</h2>
+      <h2 className="text-2xl font-bold mb-4 dark:text-white">My Reviews</h2>
       {totalCount === 0 ? (
-        <p className="text-center text-gray-500">You haven't posted any reviews yet.</p>
+        <p className="text-center text-gray-500 dark:text-gray-300">You haven't posted any reviews yet.</p>
       ) : (
         <>
-          <div className="overflow-x-auto sm:overflow-x-visible shadow-xl rounded-xl border border-gray-200 ">
-            <table className="table w-full bg-white">
+          <div className="overflow-x-auto sm:overflow-x-visible shadow-xl rounded-xl border border-gray-200 dark:border-gary-400">
+            <table className="table w-full bg-white dark:bg-transparent ">
               <thead>
-                <tr className="text-black">
+                <tr className="text-black dark:text-white">
                   <th>Meal Title</th>
                   <th>Likes</th>
                   <th>Review</th>
@@ -159,12 +159,12 @@ const MyReviews = () => {
               <tbody>
                 {reviews.map((review) => (
                   <tr key={review._id}>
-                    <td className="bg-white font-semibold">{review.mealTitle.toUpperCase()}</td>
-                    <td className="bg-white">{review.likes || 0}</td>
-                    <td className="bg-white">
+                    <td className="bg-white dark:text-white dark:bg-transparent font-semibold">{review.mealTitle.toUpperCase()}</td>
+                    <td className="bg-white dark:text-white dark:bg-transparent">{review.likes || 0}</td>
+                    <td className="dark:text-white text-black">
                       {editingId === review._id ? (
                         <textarea
-                          className="textarea textarea-bordered border-black bg-gray-200 w-full"
+                          className="textarea textarea-bordered dark:bg-black dark:text-white bg-white  border-black    w-full"
                           value={editText}
                           onChange={(e) => setEditText(e.target.value)}
                         />
@@ -172,7 +172,7 @@ const MyReviews = () => {
                         <p>{review.text}</p>
                       )}
                     </td>
-                    <td className="flex items-center justify-center gap-2 bg-white">
+                    <td className="flex items-center justify-center gap-2 bg-white dark:text-white dark:bg-transparent">
                       {editingId === review._id ? (
                         <button className="btn btn-sm btn-success" onClick={handleSaveEdit}>
                           Save

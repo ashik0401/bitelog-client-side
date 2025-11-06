@@ -48,23 +48,23 @@ const DashboardHome = () => {
         <img
           src={image}
           alt={`${name} profile`}
-          className="w-35 h-35 rounded-full object-cover border-2 border-orange-400"
+          className="w-35 h-35 rounded-full object-cover "
         />
         <div>
-          <p className="mt-2 text-lg font-medium text-c text-gray-700 text-center">
+          <p className="mt-2 text-lg font-medium text-c  text-center">
             {name?.toUpperCase()}
           </p>
-          <p className="text-sm text-gray-500 text-center">{email}</p>
+          <p className="text-sm text-gray-400 text-center">{email}</p>
           {role === "admin" ? (
-            <p className="mt-3 text-orange-600 text-center font-semibold">
+            <p className="mt-3  text-center font-semibold">
               Meals Added:{" "}
-              <span className="text-orange-600">
+              <span className="">
                 {countLoading ? "..." : totalMeals}
               </span>
             </p>
           ) : (
             <div className="mt-3 flex items-center justify-center space-x-3">
-              <span className="inline-block px-3 py-1 rounded-full text-sm font-semibold bg-orange-300 text-yellow-900">
+              <span className="inline-block px-3 py-1 rounded-full text-sm font-semibold bg-green-50 dark:bg-transparent text-yellow-900">
                 {badge || "Bronze"}
 
               </span>

@@ -7,7 +7,7 @@ const Pagination = ({ totalItems, itemsPerPage, currentPage, onPageChange }) => 
   return (
     <div className="flex justify-center space-x-2 mt-6">
       <button
-        className="btn btn-sm  bg-transparent text-black"
+        className="btn btn-sm  bg-transparent text-black dark:text-white"
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
       >
@@ -17,7 +17,7 @@ const Pagination = ({ totalItems, itemsPerPage, currentPage, onPageChange }) => 
       {pages.map(page => (
         <button
           key={page}
-          className={`btn btn-sm   bg-transparent text-black  ${page === currentPage ? 'border-none' : ''}`}
+          className={`btn btn-sm dark:text-white  bg-transparent text-black  ${page === currentPage ? 'border-none' : ''}`}
           onClick={() => onPageChange(page)}
         >
           {page}
@@ -25,7 +25,7 @@ const Pagination = ({ totalItems, itemsPerPage, currentPage, onPageChange }) => 
       ))}
 
       <button
-        className="btn btn-sm  bg-transparent text-black"
+        className="btn btn-sm  bg-transparent text-black dark:text-white"
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
       >

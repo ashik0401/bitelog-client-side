@@ -8,8 +8,8 @@ const AboutUs = () => {
   return (
    <>
    <Navbar/>
-   <section>
-     <div className=" pt-30 px-6 md:px-12 lg:px-24 pb-2 dark:bg-transparent bg-orange-50 ">
+   <section className="">
+     <div className=" pt-30 px-6 md:px-12 lg:px-24 pb-3 dark:bg-transparent bg-orange-50 h-[100vh] flex flex-col justify-center items-center">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -18,7 +18,7 @@ const AboutUs = () => {
         className="text-center max-w-3xl mx-auto mb-12"
       >
         <h2 className="text-4xl font-extrabold text-gray-800 mb-4 dark:text-white">
-          About <span className="text-orange-600">BiteLog</span>
+          About <span className="text-[#012200] dark:text-[#0ec708] dark:text-[#0ec708]">BiteLog</span>
         </h2>
         <p className="text-gray-600  leading-relaxed dark:text-white">
           BiteLog is a smart hostel meal management system designed for
@@ -34,7 +34,7 @@ const AboutUs = () => {
           transition={{ duration: 0.5 }}
           className="bg-white dark:bg-transparent shadow-lg rounded-2xl p-6 text-center hover:shadow-xl transition"
         >
-          <Users className="w-12 h-12 mx-auto text-orange-600 mb-4" />
+          <Users className="w-12 h-12 mx-auto text-[#012200] dark:text-[#0ec708] mb-4" />
           <h3 className="text-lg font-bold mb-2 text-black dark:text-white">Student Friendly</h3>
           <p className="text-sm text-gray-600 dark:text-gray-300">
             Designed for hostel life, BiteLog gives students complete control
@@ -48,7 +48,7 @@ const AboutUs = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="bg-white dark:bg-transparent shadow-lg rounded-2xl p-6 text-center hover:shadow-xl transition"
         >
-          <UtensilsCrossed className="w-12 h-12 mx-auto text-orange-600 mb-4" />
+          <UtensilsCrossed className="w-12 h-12 mx-auto text-[#012200] dark:text-[#0ec708] mb-4" />
           <h3 className="text-lg font-bold mb-2 text-black dark:text-white">Meal Management</h3>
           <p className="text-sm text-gray-600 dark:text-gray-300">
             From viewing meals to requesting, liking, and reviewing, everything
@@ -62,7 +62,7 @@ const AboutUs = () => {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="bg-white dark:bg-transparent shadow-lg rounded-2xl p-6 text-center hover:shadow-xl transition"
         >
-          <ShieldCheck className="w-12 h-12 mx-auto text-orange-600 mb-4" />
+          <ShieldCheck className="w-12 h-12 mx-auto text-[#012200] dark:text-[#0ec708] mb-4" />
           <h3 className="text-lg font-bold mb-2 text-black dark:text-white">Secure & Reliable</h3>
           <p className="text-sm text-gray-600 dark:text-gray-300">
             With role-based dashboards, JWT authentication, and Stripe
@@ -76,7 +76,7 @@ const AboutUs = () => {
           transition={{ duration: 0.5, delay: 0.6 }}
           className="bg-white dark:bg-transparent shadow-lg rounded-2xl p-6 text-center hover:shadow-xl transition"
         >
-          <Star className="w-12 h-12 mx-auto text-orange-600 mb-4" />
+          <Star className="w-12 h-12 mx-auto text-[#012200] dark:text-[#0ec708] mb-4" />
           <h3 className="text-lg font-bold mb-2 text-black dark:text-white">Membership Badges</h3>
           <p className="text-sm text-gray-600 dark:text-gray-300">
             Unlock Silver, Gold, and Platinum benefits — get more features,

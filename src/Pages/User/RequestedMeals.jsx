@@ -88,11 +88,11 @@ const RequestedMeals = () => {
 
   return (
     <div className="max-w-6xl mx-auto px-4">
-      <h2 className="text-2xl font-bold mb-4">Requested Meals</h2>
+      <h2 className="text-2xl font-bold mb-4 dark:text-white">Requested Meals</h2>
       <div className="overflow-x-auto sm:overflow-x-visible">
         <table className="table w-full border-collapse border border-gray-300">
           <thead>
-            <tr className="bg-orange-200 text-black">
+            <tr className="bg-green-100 dark:bg-transparent dark:text-white text-black">
               <th className="border border-gray-300 px-4 py-2">Meal Title</th>
               <th className="border border-gray-300 px-4 py-2 text-center">Likes</th>
               <th className="border border-gray-300 px-4 py-2 text-center">Reviews Count</th>
@@ -103,11 +103,11 @@ const RequestedMeals = () => {
           <tbody>
             {requests.length === 0 ? (
               <tr>
-                <td colSpan="5" className="text-center p-4">No requested meals found.</td>
+                <td colSpan="5" className="text-center p-4 dark:text-white">No requested meals found.</td>
               </tr>
             ) : (
               requests.map((req) => (
-                <tr key={req._id} className="hover:bg-orange-100 hover:text-black ">
+                <tr key={req._id} className="dark:text-white text-black ">
                   <td className="border border-gray-300 px-4 py-2">{req.mealTitle}</td>
                   <td className="border border-gray-300 px-4 py-2 text-center">
                     {mealsStats[req.mealId]?.likes ?? '...'}

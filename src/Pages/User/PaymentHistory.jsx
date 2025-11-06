@@ -34,9 +34,9 @@ const PaymentHistory = () => {
   return (
     <div className="mt-6 mx-5">
       <div className="overflow-x-auto sm:overflow-x-visible shadow-md rounded-xl">
-        <table className="table table-zebra w-full">
+        <table className="table table-zebra w-full ">
           <thead className=" text-base font-semibold">
-            <tr className='text-black'>
+            <tr className='text-black dark:text-white'>
               <th>#</th>
               <th>Membership ID</th>
               <th>Amount</th>
@@ -47,7 +47,9 @@ const PaymentHistory = () => {
           <tbody>
             {payments.length > 0 ? (
               payments.map((p, index) => (
-                <tr key={p.transactionId}>
+                <tr 
+                className='dark:text-white'
+                key={p.transactionId}>
                   <td>{(page - 1) * limit + index + 1}</td>
                   <td className="truncate" title={p.membershipId}>
                     {String(p.membershipId)}...
@@ -61,7 +63,7 @@ const PaymentHistory = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="5" className="text-center text-gray-500 py-6">
+                <td colSpan="5" className="text-center text-gray-500 py-6 dark:text-white">
                   No payment history found.
                 </td>
               </tr>

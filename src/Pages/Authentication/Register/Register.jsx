@@ -67,7 +67,7 @@ const onSubmit = data => {
 
     return (
         <div className="h-[87vh] flex justify-center items-center px-4">
-            <div className="card bg-orange-100 dark:bg-transparent dark:text-white text-black w-full max-w-sm shrink-0 shadow-2xl">
+            <div className="card bg-green-100 dark:bg-transparent dark:text-white text-black w-full max-w-sm shrink-0 shadow-2xl">
                 <div className="card-body">
                     <h1 className="text-3xl font-bold">Create Account</h1>
                     <form onSubmit={handleSubmit(onSubmit)}>
@@ -146,7 +146,7 @@ const onSubmit = data => {
                             {errors.password?.type === 'pattern' && <p className="text-red-500">Must include uppercase, number, and special character</p>}
 
                             <div><a className="link link-hover">Forgot password?</a></div>
-                            <button className="btn text-black mt-4 dark:bg-orange-500 border-orange-500 bg-orange-500">Register</button>
+                            <button className="btn  mt-4 bg-[#066303] hover:bg-[#043f02] text-white border-none ">Register</button>
                         </fieldset>
                         <p className="text-center mt-4 text-sm">
                             Already have an account?

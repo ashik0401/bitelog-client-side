@@ -62,20 +62,20 @@ const MealsTable = () => {
   return (
     <div className="p-4 mt-5">
       <div className="flex gap-4 mb-2">
-        <button className="btn btn-sm bg-transparent text-black" onClick={() => handleSortChange('postTime')}>
+        <button className="btn btn-sm bg-transparent text-black dark:text-white dark:border-gray-400" onClick={() => handleSortChange('postTime')}>
           Sort by Latest {sortBy === 'postTime' ? (order === 'asc' ? '↑' : '↓') : ''}
         </button>
-        <button className="btn btn-sm  bg-transparent text-black" onClick={() => handleSortChange('likes')}>
+        <button className="btn btn-sm  bg-transparent text-black dark:text-white dark:border-gray-400" onClick={() => handleSortChange('likes')}>
           Sort by Likes {sortBy === 'likes' ? (order === 'asc' ? '↑' : '↓') : ''}
         </button>
-        <button className="btn btn-sm  bg-transparent text-black" onClick={() => handleSortChange('reviews_count')}>
+        <button className="btn btn-sm  bg-transparent text-black dark:text-white dark:border-gray-400" onClick={() => handleSortChange('reviews_count')}>
           Sort by Reviews {sortBy === 'reviews_count' ? (order === 'asc' ? '↑' : '↓') : ''}
         </button>
       </div>
-      <div className="overflow-x-auto shadow-xl border border-gray-200 rounded-xl">
+      <div className="overflow-x-auto shadow-xl border border-gray-200 dark:border-gray-400 rounded-xl dark:text-white">
         <table className="table w-full">
           <thead >
-            <tr className='text-black'>
+            <tr className='text-black dark:text-white'>
               <th className='text-center'>Title</th>
               <th className='text-center'>Likes</th>
               <th className='text-center'>Reviews</th>

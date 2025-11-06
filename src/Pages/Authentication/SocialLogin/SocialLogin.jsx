@@ -41,7 +41,7 @@ console.log(userInfo);
 
     return (
         <div className="text-center">
-            <p className="mb-4">OR</p>
+            <div className="divider">OR</div>
             <button
                 onClick={handleGoogleSignIn}
                 className="btn bg-white text-black border-[#e5e5e5] w-full"

@@ -45,7 +45,7 @@ export function Newsletter() {
     <section className="py-16">
       <Toaster position="top-right" />
       <div className="max-w-4xl mx-auto px-4 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-black dark:text-white">📩 Subscribe to our Newsletter</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#012200] dark:text-white ">📩 Subscribe to our Newsletter</h2>
         <p className="mb-6">Stay updated with new meals, offers, and updates.</p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <input
@@ -58,7 +58,7 @@ export function Newsletter() {
           <button
             onClick={handleSubscribe}
             className={`px-6 py-3 rounded-md font-semibold transition-colors duration-200 ${
-              subscribed ? "bg-green-500 hover:bg-green-600" : " hover:bg-orange-600 bg-orange-500"
+              subscribed ? "bg-green-500 dark:border-none dark:text-white cursor-pointer btn " : " bg-[#066303] hover:bg-[#043f02] border-gray-500 dark:border-none dark:text-white cursor-pointer btn"
             }`}
           >
             {subscribed ? "Subscribed" : "Subscribe"}

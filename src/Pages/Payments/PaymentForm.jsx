@@ -81,7 +81,7 @@ const PaymentForm = ({ id, price, badge, closeModal }) => {
             <button
                 type="submit"
                 disabled={!stripe}
-                className="text-black py-2 px-4 rounded disabled:opacity-50 cursor-pointer w-full bg-orange-500"
+                className=" py-2 px-4 rounded disabled:opacity-50 cursor-pointer w-full bg-[#012200] text-white"
             >
                 Pay ${amount}
             </button>

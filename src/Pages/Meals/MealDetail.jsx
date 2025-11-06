@@ -46,7 +46,9 @@ const MealDetail = () => {
       return;
     }
     if (user.badge === "bronze") {
-      setRatingMessage("You need a badge higher than Bronze to rate this meal.");
+      setRatingMessage(
+        "You need a badge higher than Bronze to rate this meal."
+      );
       return;
     }
     let selectedRating = 0;
@@ -126,41 +128,40 @@ const MealDetail = () => {
     }
   };
 
-const handleRequestMeal = async () => {
-  if (!user) {
-    navigate("/login", { state: { from: location.pathname } });
-    return;
-  }
-  setRequesting(true);
-  try {
-    await axiosSecure.post(`/meals/${id}/request`, {
-      email: user.email,
-      username: user.displayName,
-      photoURL: user.photoURL,
-    });
+  const handleRequestMeal = async () => {
+    if (!user) {
+      navigate("/login", { state: { from: location.pathname } });
+      return;
+    }
+    setRequesting(true);
+    try {
+      await axiosSecure.post(`/meals/${id}/request`, {
+        email: user.email,
+        username: user.displayName,
+        photoURL: user.photoURL,
+      });
 
-    await MySwal.fire({
-      icon: "success",
-      title: "Meal Requested!",
-      text: "Your meal request has been submitted successfully.",
-      showConfirmButton: false,
-      timer: 2000,
-      timerProgressBar: true,
-    });
-
-  } catch {
-    await MySwal.fire({
-      icon: "error",
-      title: "Request Failed",
-      text: "Something went wrong. Please try again.",
-      showConfirmButton: false,
-      timer: 2000,
-      timerProgressBar: true,
-    });
-  } finally {
-    setRequesting(false);
-  }
-};
+      await MySwal.fire({
+        icon: "success",
+        title: "Meal Requested!",
+        text: "Your meal request has been submitted successfully.",
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+      });
+    } catch {
+      await MySwal.fire({
+        icon: "error",
+        title: "Request Failed",
+        text: "Something went wrong. Please try again.",
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+      });
+    } finally {
+      setRequesting(false);
+    }
+  };
 
   const handleReviewSubmit = async (e) => {
     e.preventDefault();
@@ -183,16 +184,21 @@ const handleRequestMeal = async () => {
     }
   };
 
-  if (isLoading) return <div className="p-6 text-center"><span className="loading loading-ring loading-sm"></span>
-</div>;
-  if (!data || !data.meal) return <div className="p-6 text-center">Meal not found</div>;
+  if (isLoading)
+    return (
+      <div className="p-6 text-center">
+        <span className="loading loading-ring loading-sm"></span>
+      </div>
+    );
+  if (!data || !data.meal)
+    return <div className="p-6 text-center">Meal not found</div>;
 
   const { meal, reviews, reviewCount } = data;
   const averageRating = calculateAverageRating(meal.ratings);
 
   return (
     <div className="max-w-4xl mx-auto p-6 mt-15 ">
-      <div className="card dark:bg-transparent dark:text-white bg-orange-100 text-black shadow-xl ">
+      <div className="card dark:bg-transparent dark:text-white bg-green-100 text-black  shadow-xl ">
         <figure>
           <img
             src={meal.image}
@@ -203,12 +209,17 @@ const handleRequestMeal = async () => {
         <div className="card-body">
           <h2 className="card-title">{meal.title}</h2>
           <p className="text-sm font-semibold">
-            Distributor: <span className="font-bold">{meal.distributorName?.toUpperCase()}</span>
+            Distributor:{" "}
+            <span className="font-bold">
+              {meal.distributorName?.toUpperCase()}
+            </span>
           </p>
           <p className="my-3">{meal.description}</p>
           <p>
             <strong>Ingredients:</strong>{" "}
-            {Array.isArray(meal.ingredients) ? meal.ingredients.join(", ") : "No ingredients listed"}
+            {Array.isArray(meal.ingredients)
+              ? meal.ingredients.join(", ")
+              : "No ingredients listed"}
           </p>
           <p className="font-bold">
             Price: <span className="font-semibold">${meal.price}</span>
@@ -217,23 +228,30 @@ const handleRequestMeal = async () => {
             Posted: {new Date(meal.postTime).toLocaleString()}
           </p>
           <p className="mt-1">Rating: {averageRating.toFixed(1)} ⭐</p>
-          <div className="flex gap-4 mt-4">
-            <button onClick={handleLike} className="btn  text-black bg-orange-500 border-none">
-              👍 Like ({meal.likes})
+          <div className="flex gap-4 pt-4 border-t border-[#012200] dark:border-gray-400">
+            <button
+              onClick={handleLike}
+              className=" text-black dark:text-white font-bold cursor-pointer border-none"
+            >
+              👍 Like ({meal.likes}){ " | "}
             </button>
             <button
               onClick={handleRequestMeal}
-              className={`btn bg-orange-400 border-none text-black ${requesting ? "loading" : ""}`}
+              className={`cursor-pointer font-bold text-black dark:text-white  ${
+                requesting ? "loading" : ""
+              }`}
               disabled={requesting}
             >
-              Request Meal
+              Order {"|"}
             </button>
-            <button onClick={showRatingPopup} className="btn btn-warning text-black">
+            <button onClick={showRatingPopup} className="cursor-pointer font-bold text-black dark:text-white">
               Rate Meal
             </button>
           </div>
           {ratingMessage && (
-            <p className="mt-2 text-sm text-red-600 font-semibold">{ratingMessage}</p>
+            <p className="mt-2 text-sm text-red-600 font-semibold">
+              {ratingMessage}
+            </p>
           )}
           <div className="mt-8">
             <h3 className="text-xl font-semibold">Reviews ({reviewCount})</h3>
@@ -266,11 +284,15 @@ const handleRequestMeal = async () => {
                     className="w-10 h-10 rounded-full object-cover"
                   />
                   <div>
-                    <p className="font-semibold">{review.username.toUpperCase()}</p>
+                    <p className="font-semibold">
+                      {review.username.toUpperCase()}
+                    </p>
                     <p className="text-xs text-gray-400">
                       {new Date(review.createdAt).toLocaleString()}
                     </p>
-                    <p className="text-gray-700 dark:text-white">{review.text}</p>
+                    <p className="text-gray-700 dark:text-white">
+                      {review.text}
+                    </p>
                   </div>
                 </div>
               ))}

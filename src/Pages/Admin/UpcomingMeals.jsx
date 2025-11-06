@@ -57,20 +57,20 @@ const UpcomingMeals = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-3xl font-bold mb-4 text-center">Upcoming Meals</h2>
+      <h2 className="text-3xl font-bold mb-4 text-center dark:text-white">Upcoming Meals</h2>
       <Link to="/dashboard/addUpcomingMeal">
-        <button className="btn  my-2 bg-orange-500 border-none">Add meal</button>
+        <button className="btn  my-2 ] bg-[#066303]  border-none">Add meal</button>
       </Link>
 
-      <div className="overflow-x-auto shadow-xl border border-gray-400 rounded-xl">
+      <div className="overflow-x-auto shadow-xl border border-gray-400 rounded-xl dark:text-white ">
         <table className="table w-full">
           <thead>
             <tr className="text-black">
-              <th className="text-center border-gray-400 border">#</th>
-              <th className="text-center border-gray-400 border">Title</th>
-              <th className="text-center border-gray-400 border">Distributor</th>
-              <th className="text-center border-gray-400 border">Likes</th>
-              <th className="text-center border-gray-400 border">Action</th>
+              <th className="text-center border-gray-400 dark:text-white border">#</th>
+              <th className="text-center border-gray-400 dark:text-white border">Title</th>
+              <th className="text-center border-gray-400 dark:text-white border">Distributor</th>
+              <th className="text-center border-gray-400 dark:text-white border">Likes</th>
+              <th className="text-center border-gray-400 dark:text-white border">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -85,7 +85,7 @@ const UpcomingMeals = () => {
                 <td className="text-center border border-gray-300">
                   <button
                     onClick={() => publishMeal.mutate(meal._id)}
-                    className="btn bg-orange-500 border-none"
+                    className="btn dark:text-[#0ec708]  border-none"
                   >
                     Publish
                   </button>

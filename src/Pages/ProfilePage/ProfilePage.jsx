@@ -28,7 +28,7 @@ const ProfilePage = () => {
 
     return (
       <div className=''>
-          <div className="md:max-w-2xl md:mx-auto md:mt-20 mt-10 p-6 bg-white  rounded-lg shadow-md mx-4">
+          <div className="md:max-w-2xl md:mx-auto md:mt-20 mt-10 p-6 bg-white dark:bg-transparent dark:text-white  rounded-lg shadow-md mx-4">
             <h1 className="text-2xl font-bold mb-6 text-center ">My Profile</h1>
             
             <div className="flex flex-col items-center mb-6">

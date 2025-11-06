@@ -47,7 +47,7 @@ const ServeMeals = () => {
 
   return (
     <div className="p-4">
-      <h2 className="text-3xl font-bold mb-4">Requested Meals</h2>
+      <h2 className="text-3xl font-bold mb-4 dark:text-white">Requested Meals</h2>
       <div className="flex gap-2 mb-4">
         <input
           type="text"
@@ -56,7 +56,7 @@ const ServeMeals = () => {
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
         />
-        <button className="btn  bg-orange-500 border-none" onClick={handleSearch}>
+        <button className="btn  bg-[#066303]  border-none" onClick={handleSearch}>
           Search
         </button>
       </div>
@@ -69,7 +69,7 @@ const ServeMeals = () => {
           <div className="overflow-x-auto shadow-xl border border-gray-200 rounded-xl">
             <table className="table table-zebra w-full">
               <thead>
-                <tr className="text-black bg-white">
+                <tr className="text-black bg-white dark:bg-transparent dark:text-white">
                   <th className="text-center">Meal Title</th>
                   <th className="text-center">User Name</th>
                   <th className="text-center">User Email</th>
@@ -80,11 +80,11 @@ const ServeMeals = () => {
               <tbody>
                 {requests.map((req) => (
                   <tr key={req._id}>
-                    <td className="bg-white text-center">{req.mealTitle}</td>
-                    <td className="bg-white text-center">{req.userName.toUpperCase()}</td>
-                    <td className="bg-white text-center">{req.userEmail}</td>
-                    <td className="bg-white text-center">{req.status}</td>
-                    <td className="bg-white text-center">
+                    <td className="bg-white dark:bg-transparent dark:text-white text-center">{req.mealTitle}</td>
+                    <td className="bg-white dark:bg-transparent dark:text-white text-center">{req.userName.toUpperCase()}</td>
+                    <td className="bg-white dark:bg-transparent dark:text-white text-center">{req.userEmail}</td>
+                    <td className="bg-white dark:bg-transparent dark:text-white text-center">{req.status}</td>
+                    <td className="bg-white dark:bg-transparent dark:text-white text-center">
                       {req.status !== 'delivered' ? (
                         <button
                           className="btn btn-sm btn-success"

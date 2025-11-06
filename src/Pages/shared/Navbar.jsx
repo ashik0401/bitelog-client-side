@@ -17,22 +17,22 @@ const Navbar = () => {
 
   const links = (
     <>
-      <li><NavLink to="/" className={({ isActive }) => isActive ? 'text-white font-bold bg-orange-500 dark:bg-orange-500' : ''}>Home</NavLink></li>
+      <li><NavLink to="/" className={({ isActive }) => isActive ? 'text-white font-bold border-b ' : ''}>Home</NavLink></li>
 
-      <li><NavLink to="/Meals" className={({ isActive }) => isActive ? 'text-white font-bold bg-orange-500 dark:bg-orange-500' : ''}>All Meal</NavLink></li>
+      <li><NavLink to="/Meals" className={({ isActive }) => isActive ? 'text-white font-bold border-b' : ''}>All Meal</NavLink></li>
 
-      {user && <li><NavLink to="/upComingMeal" className={({ isActive }) => isActive ? 'text-white font-bold bg-orange-500 dark:bg-orange-500' : ''}>Upcoming Meals</NavLink></li>}
+      {user && <li><NavLink to="/upComingMeal" className={({ isActive }) => isActive ? 'text-white font-bold border-b' : ''}>Upcoming Meals</NavLink></li>}
 
-      {user && <li><NavLink to="/dashboard" className={({ isActive }) => isActive ? 'text-white font-bold bg-orange-500 dark:bg-orange-500' : ''}>Dashboard</NavLink></li>}
+      {user && <li><NavLink to="/dashboard" className={({ isActive }) => isActive ? 'text-white font-bold border-b' : ''}>Dashboard</NavLink></li>}
 
-       <li><NavLink to="/aboutUs" className={({ isActive }) => isActive ? 'text-white font-bold bg-orange-500 dark:bg-orange-500' : ''}>About Us</NavLink></li>
+       <li><NavLink to="/aboutUs" className={({ isActive }) => isActive ? 'text-white font-bold border-b' : ''}>About Us</NavLink></li>
     </>
 
   );
 
   return (
-    <div className='fixed shadow-md top-0 left-0 bg-orange-500 dark:bg-orange-500 z-100 w-full'>
-      <div className="navbar  md:w-11/12 md:mx-auto  ">
+    <div className='fixed shadow-md top-0 left-0 bg-[#012200] z-100 w-full'>
+      <div className="navbar  md:w-10/12 md:mx-auto  ">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden px-1">
@@ -71,13 +71,13 @@ const Navbar = () => {
                 </div>
                 <ul tabIndex={0} className="menu menu-sm dropdown-content  rounded-box z-1 mt-3 w-52  shadow">
                   <li>
-                    <button className='font-bold text-orange-500 dark:text-orange-500 py-3 bg-white' onClick={handleLogOut}>Logout</button>
+                    <button className='font-bold  py-3 bg-green-100 text-red-500 ' onClick={handleLogOut}>Logout</button>
                   </li>
                 </ul>
               </div>
             </>
           ) : (
-            <Link to='/login' className="btn   text-black rounded-md hover:bg-orange-600 bg-orange-500   border-orange-500 dark:hover:bg-orange-600 ">Login</Link>
+            <Link to='/login' className="btn  shadow-none rounded-md bg-transparent hover:bg-[#043f02] border-none text-white ">Login</Link>
           )}
         </div>
       </div>

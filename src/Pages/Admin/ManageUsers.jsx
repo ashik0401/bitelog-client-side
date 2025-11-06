@@ -82,7 +82,7 @@ const ManageUsers = () => {
           className="input  bg-white border border-black w-full md:w-1/2"
           autoComplete="off"
         />
-        <button type="submit" className="btn text-white  bg-orange-500 border-none">
+        <button type="submit" className="btn text-white  bg-[#066303] ]  border-none">
           Search
         </button>
       </form>
@@ -95,10 +95,10 @@ const ManageUsers = () => {
 
       {!isFetching && users.length > 0 && (
         <>
-          <div className="overflow-x-auto border rounded-xl border-gray-300 shadow-xl">
+          <div className="overflow-x-auto border rounded-xl border-gray-300 shadow-xl dark:text-white">
             <table className="table w-full border border-gray-300">
               <thead>
-                <tr className='text-black'>
+                <tr className='text-black dark:text-white'>
                   <th className="border border-gray-300 text-center">User Name</th>
                   <th className="border border-gray-300 text-center">Email</th>
                   <th className="border border-gray-300 text-center">Subscription</th>
