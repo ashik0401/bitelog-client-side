@@ -10,7 +10,10 @@ const getStars = (ratings) => {
   if (totalRatings === 0) {
     for (let i = 1; i <= 5; i++)
       stars.push(
-        <FaRegStar key={i} className="text-gray-400 dark:text-gray-600 inline-block" />
+        <FaRegStar
+          key={i}
+          className="text-gray-400 dark:text-gray-600 inline-block"
+        />
       );
   } else {
     const totalScore = Object.entries(ratings).reduce(
@@ -27,7 +30,10 @@ const getStars = (ratings) => {
         );
       else
         stars.push(
-          <FaRegStar key={i} className="text-gray-400 dark:text-gray-600 inline-block" />
+          <FaRegStar
+            key={i}
+            className="text-gray-400 dark:text-gray-600 inline-block"
+          />
         );
     }
   }
@@ -117,18 +123,17 @@ const MealsByCategory = ({ searchTerm }) => {
         <p className="text-center text-gray-600">No meals found.</p>
       ) : (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 md:w-11/12 mx-auto mt-20">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-10 md:w-11/12 mx-auto mt-20">
             {mealsToShow.map((meal) => (
               <div
                 key={meal._id}
-                className="card rounded-2xl text-black dark:text-white shadow-xl dark:bg-transparent h-full flex flex-col border dark:border-gray-500
- border-gray-100                w-full sm:max-w-[300px] mx-auto"
+                className="card rounded-2xl text-black dark:text-white shadow-xl dark:bg-transparent h-full flex flex-col border dark:border-gray-500 border-gray-100 w-full sm:max-w-[300px] mx-auto"
               >
                 <figure>
                   <img
                     src={meal.image || null}
                     alt={meal.title}
-                    className="w-full md:h-52 sm:h-58 object-cover rounded-t-2xl"
+                    className="w-full md:h-52 h-48 sm:h-58 object-cover rounded-t-2xl"
                   />
                 </figure>
                 <div className="card-body flex flex-col justify-between">

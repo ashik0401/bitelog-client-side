@@ -21,7 +21,7 @@ const getStyles = (badge) => {
     return {
       bg: "bg-[#012200] dark:bg-transparent",
       text: "text-white",
-      border: "border-[#012200] ",
+      border: "border-[#012200]",
       btn: "bg-[#066303] hover:bg-[#043f02]",
     };
   }
@@ -29,7 +29,7 @@ const getStyles = (badge) => {
     bg: "bg-gray-100 dark:bg-transparent",
     text: "text-black dark:text-white",
     border: "border-[#012200]/20 dark:border-gray-500",
-    btn: "bg-[#066303] hover:bg-[#043f02] ",
+    btn: "bg-[#066303] hover:bg-[#043f02]",
   };
 };
 
@@ -64,6 +64,7 @@ const MembershipPackages = () => {
         <span className="loading loading-ring loading-sm"></span>
       </div>
     );
+
   if (isError)
     return (
       <div className="text-center py-20 text-red-500">
@@ -76,7 +77,7 @@ const MembershipPackages = () => {
       <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 text-[#012200] dark:text-white">
         Get Paid Membership
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center items-stretch">
+      <div className="grid grid-cols-2 md:grid-cols-3 sm:gap-6 gap-2 justify-items-center">
         {packages.map((pkg) => {
           const styles = getStyles(pkg.badge);
           const isCurrent = userMembership?.membershipId === pkg._id;
@@ -88,14 +89,14 @@ const MembershipPackages = () => {
           return (
             <div
               key={pkg._id}
-              className={`shadow-md border ${styles.border} ${bgColorClass} flex flex-col justify-between rounded-lg p-4 sm:p-5 w-full sm:w-64 md:w-72 lg:w-72 min-h-[20rem] hover:scale-105 transition-transform duration-300`}
+              className={`shadow-md border ${styles.border} ${bgColorClass} flex flex-col justify-between rounded-lg p-4 sm:p-5 w-full max-w-[16rem] sm:max-w-[18rem] md:max-w-[19rem] min-h-[20rem] hover:scale-105 transition-transform duration-300`}
             >
               <div className="flex-1 flex flex-col">
                 <h3 className={`text-xl sm:text-2xl font-semibold mb-2 ${styles.text}`}>
                   {pkg.badge}
                 </h3>
                 <div className="w-full flex justify-center mb-4">
-                  <p className="text-2xl sm:text-3xl font-bold bg-[#015500] rounded-full w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center">
+                  <p className="text-2xl sm:text-3xl font-bold bg-[#015500] rounded-full w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center text-white">
                     ${pkg.price}
                   </p>
                 </div>
@@ -112,7 +113,7 @@ const MembershipPackages = () => {
                   isCurrent ? "bg-gray-300 cursor-not-allowed" : styles.btn
                 }`}
               >
-                {isCurrent ? "Current Plan" : `Choose`}
+                {isCurrent ? "Current Plan" : "Choose"}
               </button>
             </div>
           );

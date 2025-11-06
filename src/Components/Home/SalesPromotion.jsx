@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 export function SalesPromotion() {
     return (
-        <section className="py-16 ">
+        <section className="py-16 mx-4 ">
             <div className="max-w-6xl bg-green-100 dark:bg-transparent   mx-auto px-4 text-center py-10 rounded-2xl">
                 <motion.h2
                     initial={{ opacity: 0, y: 40 }}

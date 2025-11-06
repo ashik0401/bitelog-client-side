@@ -22,7 +22,7 @@ const DashboardLayout = () => {
     <div className="drawer lg:drawer-open ">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
-        <div className="navbar  shadow-md w-full lg:hidden fixed top-0 left-0 right-0 z-50">
+        <div className="navbar  shadow-md w-full bg-[#012200] lg:hidden fixed top-0 left-0 right-0 z-50">
           <div className="flex-none">
             <label htmlFor="my-drawer-2" className="btn btn-square btn-ghost bg-transparent border-none">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block h-8 w-8 stroke-current ">

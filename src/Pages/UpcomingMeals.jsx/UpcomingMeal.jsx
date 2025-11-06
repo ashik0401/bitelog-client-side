@@ -52,7 +52,7 @@ const UpcomingMeal = () => {
       {(!Array.isArray(meals) || meals.length === 0) ? (
         <p className="text-center text-gray-600 dark:text-white">No upcoming meals found.</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 md:w-11/12 mx-auto mt-10">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-10 md:w-11/12 mx-auto mt-10">
           {meals.map((meal) => {
             const hasLiked = meal.likedBy?.includes(user?.email);
 
@@ -65,7 +65,7 @@ const UpcomingMeal = () => {
                   <img
                     src={meal.image || null}
                     alt={meal.title}
-                    className="w-full md:h-52 sm:h-58 object-cover rounded-t-2xl"
+                    className="w-full md:h-52 h-48 sm:h-58 object-cover rounded-t-2xl"
                   />
                 </figure>
                 <div className="card-body flex flex-col justify-between p-4 flex-grow">

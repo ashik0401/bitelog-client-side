@@ -148,7 +148,7 @@ const Meals = () => {
           <p className="text-center"><span className="loading loading-ring loading-sm"></span></p>
         )}
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 md:w-11/12 mx-auto mt-10">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-10 md:w-11/12 mx-auto mt-10">
           {allMeals.map(meal => {
             const avgRating = calculateAverageRating(meal.ratings)
             return (
@@ -160,7 +160,7 @@ const Meals = () => {
                   <img
                     src={meal.image}
                     alt={meal.title}
-                    className="w-full md:h-52 sm:h-58 object-cover rounded-t-2xl"
+                    className="w-full md:h-52 h-48 sm:h-58 object-cover rounded-t-2xl"
                   />
                 </figure>
 
