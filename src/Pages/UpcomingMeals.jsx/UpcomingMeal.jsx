@@ -45,47 +45,47 @@ const UpcomingMeal = () => {
 
   return (
     <div className="px-4 py-16 lg:w-10/12 mx-auto mt-15">
-      <h2 className="text-3xl font-bold mb-6 text-center text-black dark:text-white">
+      <h2 className="text-3xl font-bold mb-6 text-center text-[#012200]  ">
         Upcoming Meals
       </h2>
 
       {(!Array.isArray(meals) || meals.length === 0) ? (
-        <p className="text-center text-gray-600 dark:text-white">No upcoming meals found.</p>
+        <p className="text-center text-gray-600 ">No upcoming meals found.</p>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-10 md:w-11/12 mx-auto mt-10">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:flex lg:flex-wrap gap-2 sm:gap-10 md:w-11/12 mx-auto mt-10">
           {meals.map((meal) => {
             const hasLiked = meal.likedBy?.includes(user?.email);
 
             return (
               <div
                 key={meal._id}
-                className="card rounded-2xl text-black dark:text-white shadow-xl dark:bg-transparent h-full flex flex-col border dark:border-gray-500 border-gray-100 w-full sm:max-w-[300px] mx-auto"
+                className="card rounded-lg text-gray-900  shadow-lg   flex flex-col border  border-gray-200 w-full sm:max-w-[300px] mx-auto"
               >
                 <figure>
                   <img
                     src={meal.image || null}
                     alt={meal.title}
-                    className="w-full md:h-52 h-48 sm:h-58 object-cover rounded-t-2xl"
+                    className="w-full md:h-52 h-36 sm:h-58 object-cover  rounded-t-lg"
                   />
                 </figure>
                 <div className="card-body flex flex-col justify-between p-4 flex-grow">
                   <div>
-                    <h2 className="card-title text-lg md:text-xl font-bold mb-1 line-clamp-2">
+                    <h2 className="card-title text-lg md:text-xl font-bold mb-1 line-clamp-2 text-gray-900">
                       {meal.title}
                     </h2>
-                    <p className="text-sm text-gray-600 dark:text-white mb-1">
+                    <p className="text-sm text-gray-600  mb-1">
                       By: {(meal.distributorName).toUpperCase()}
                     </p>
-                    <p className="text-sm text-gray-500 dark:text-white mb-2">
+                    <p className="text-sm text-gray-500  mb-2">
                       Likes: {meal.likes}
                     </p>
-                    <p className="text-sm text-gray-700 dark:text-white line-clamp-2 ">
+                    <p className="text-sm text-gray-700  line-clamp-2 ">
                       <span className="font-semibold">Ingredients:</span>{' '}
                       {meal.ingredients?.join(', ') || 'Not specified'}
                     </p>
                   </div>
 
-                  <div className=" border-t border-[#012200] pt-3 flex items-center justify-between">
+                  <div className=" border-t  border-[#01220040] pt-3 flex items-center justify-between">
                     {user ? (
                       <>
                         {errorMealId === meal._id && (
@@ -102,12 +102,12 @@ const UpcomingMeal = () => {
                             }
                             likeMeal.mutate(meal._id);
                           }}
-                          className={`btn btn-sm w-full sm:w-auto ${
+                          className={`btn btn-sm  sm:w-auto ${
                             isPremiumUser
                               ? hasLiked
-                                ? 'bg-[#012200] text-white hover:bg-[#015500] dark:bg-transparent'
-                                : 'bg-[#012200] dark:bg-transparent text-white hover:bg-[#015500]'
-                              : 'bg-gray-300 text-gray-600 dark:text-black border-none'
+                                ? 'bg-[#012200] text-white hover:bg-[#015500] '
+                                : 'bg-[#012200]  text-white hover:bg-[#015500]'
+                              : 'bg-gray-300 text-gray-600 border-none'
                           }`}
                         >
                           {hasLiked ? '👍' : 'Like'}
@@ -116,7 +116,7 @@ const UpcomingMeal = () => {
                     ) : (
                       <button
                         onClick={() => navigate('/login', { state: { from: location } })}
-                        className="btn btn-sm dark:bg-transparent bg-[#012200] text-white hover:bg-[#015500] w-full sm:w-auto"
+                        className="btn btn-sm  bg-[#012200] text-white hover:bg-[#015500]  sm:w-auto"
                       >
                         Like
                       </button>

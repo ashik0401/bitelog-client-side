@@ -64,7 +64,7 @@ const DashboardHome = () => {
             </p>
           ) : (
             <div className="mt-3 flex items-center justify-center space-x-3">
-              <span className="inline-block px-3 py-1 rounded-full text-sm font-bold bg-green-50 dark:bg-transparent text-orange-600 ">
+              <span className="inline-block px-3 py-1 rounded-full text-sm font-bold bg-green-50  text-[#012200] ">
                 {badge || "Bronze"}
 
               </span>

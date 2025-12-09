@@ -60,22 +60,22 @@ const MealsTable = () => {
   if (isLoading) return <div className='flex items-center justify-center h-screen'><span className="loading loading-ring loading-md"></span></div>
 
   return (
-    <div className="p-4 mt-5">
+    <div className="sm:p-4 p-2 mt-5">
       <div className="flex gap-4 mb-2">
-        <button className="btn btn-sm bg-transparent text-black dark:text-white dark:border-gray-400" onClick={() => handleSortChange('postTime')}>
-          Sort by Latest {sortBy === 'postTime' ? (order === 'asc' ? '↑' : '↓') : ''}
+        <button className="btn btn-sm bg-transparent text-black  " onClick={() => handleSortChange('postTime')}>
+           Latest {sortBy === 'postTime' ? (order === 'asc' ? '↑' : '↓') : ''}
         </button>
-        <button className="btn btn-sm  bg-transparent text-black dark:text-white dark:border-gray-400" onClick={() => handleSortChange('likes')}>
-          Sort by Likes {sortBy === 'likes' ? (order === 'asc' ? '↑' : '↓') : ''}
+        <button className="btn btn-sm  bg-transparent text-black  " onClick={() => handleSortChange('likes')}>
+           Likes {sortBy === 'likes' ? (order === 'asc' ? '↑' : '↓') : ''}
         </button>
-        <button className="btn btn-sm  bg-transparent text-black dark:text-white dark:border-gray-400" onClick={() => handleSortChange('reviews_count')}>
-          Sort by Reviews {sortBy === 'reviews_count' ? (order === 'asc' ? '↑' : '↓') : ''}
+        <button className="btn btn-sm  bg-transparent text-black  " onClick={() => handleSortChange('reviews_count')}>
+           Reviews {sortBy === 'reviews_count' ? (order === 'asc' ? '↑' : '↓') : ''}
         </button>
       </div>
-      <div className="overflow-x-auto shadow-xl border border-gray-200 dark:border-gray-400 rounded-xl dark:text-white">
-        <table className="table w-full">
+      <div className="overflow-x-auto shadow-xl border border-gray-200  rounded-xl ">
+        <table className="table w-full whitespace-nowrap">
           <thead >
-            <tr className='text-black dark:text-white'>
+            <tr className='text-black bg-gray-200'>
               <th className='text-center'>Title</th>
               <th className='text-center'>Likes</th>
               <th className='text-center'>Reviews</th>

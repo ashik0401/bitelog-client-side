@@ -40,12 +40,12 @@ const AdminProfile = () => {
     const role = userInfo.role;
 
     return (
-        <div className="w-full bg-orange-200 py-6 text-center space-y-4">
+        <div className="w-full py-6 text-center space-y-4">
             <div>
                 <img
                     src={photoURL}
                     alt="Avatar"
-                    className="w-24 h-24 mx-auto rounded-full object-cover border border-green-500"
+                    className="w-24 h-24 mx-auto rounded-full object-cover border "
                 />
             </div>
             <div>

@@ -12,7 +12,7 @@ const getStars = (ratings) => {
       stars.push(
         <FaRegStar
           key={i}
-          className="text-gray-400 dark:text-gray-600 inline-block"
+          className=" inline-block text-gray-800"
         />
       );
   } else {
@@ -32,7 +32,7 @@ const getStars = (ratings) => {
         stars.push(
           <FaRegStar
             key={i}
-            className="text-gray-400 dark:text-gray-600 inline-block"
+            className=" inline-block"
           />
         );
     }
@@ -79,7 +79,7 @@ const MealsByCategory = ({ searchTerm }) => {
 
   return (
     <div className="px-4 py-16 lg:w-10/12 mx-auto">
-      <h2 className="text-3xl font-bold  text-center text-[#012200] mb-15 dark:text-white">
+      <h2 className="text-3xl font-bold  text-center text-[#012200] mb-15 ">
         Meals
       </h2>
 
@@ -101,10 +101,10 @@ const MealsByCategory = ({ searchTerm }) => {
           <button
             key={tab.name}
             onClick={() => setCategory(tab.name)}
-            className={`sm:mx-5 mx-2 cursor-pointer border rounded-t-full flex flex-col items-center text-black dark:text-white ${
+            className={`sm:mx-5 mx-2 cursor-pointer rounded-t-full flex flex-col items-center text-black  ${
               category === tab.name
-                ? "tab-active text-white font-bold"
-                : "border-2 border-[#013100] font-bold"
+                ? "tab-active text-white font-bold shadow-2xl border-[#013100] border "
+                : " font-bold "
             }`}
           >
             <img
@@ -123,28 +123,28 @@ const MealsByCategory = ({ searchTerm }) => {
         <p className="text-center text-gray-600">No meals found.</p>
       ) : (
         <>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-10 md:w-11/12 mx-auto mt-20">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:flex lg:flex-wrap gap-2 sm:gap-10 md:w-11/12 mx-auto mt-20">
             {mealsToShow.map((meal) => (
               <div
                 key={meal._id}
-                className="card rounded-2xl text-black dark:text-white shadow-xl dark:bg-transparent h-full flex flex-col border dark:border-gray-500 border-gray-100 w-full sm:max-w-[300px] mx-auto"
+                className="card rounded-lg  shadow-lg  flex flex-col border  border-gray-200 w-full sm:max-w-[300px] mx-auto"
               >
                 <figure>
                   <img
                     src={meal.image || null}
                     alt={meal.title}
-                    className="w-full md:h-52 h-48 sm:h-58 object-cover rounded-t-2xl"
+                    className="w-full md:h-52 h-36 sm:h-58 object-cover rounded-t "
                   />
                 </figure>
                 <div className="card-body flex flex-col justify-between">
                   <div>
                     <p>{getStars(meal.ratings)}</p>
-                    <h2 className="card-title text-lg md:text-xl font-bold mb-1 line-clamp-2">
+                    <h2 className="card-title text-lg md:text-xl font-bold mb-1 line-clamp-2 text-gray-900">
                       {meal.title}
                     </h2>
                   </div>
                   <div className="mt-4 flex items-center justify-between">
-                    <p className="font-bold text-xl">${meal.price}</p>
+                    <p className="font-bold text-xl text-gray-900">${meal.price}</p>
                     <Link to={`/Meals/${meal._id}`}>
                       <button className="flex items-center justify-between cursor-pointer">
                         <svg
@@ -152,7 +152,7 @@ const MealsByCategory = ({ searchTerm }) => {
                           fill="none"
                           viewBox="0 0 24 24"
                           strokeWidth="1.5"
-                          stroke="currentColor"
+                          stroke="black"
                           className="w-6 h-6"
                         >
                           <path
@@ -173,7 +173,7 @@ const MealsByCategory = ({ searchTerm }) => {
             <div className="text-center mt-6">
               <button
                 onClick={() => setShowAll(!showAll)}
-                className="btn btn-outline bg:[#012200]  text-white hover:bg-[015500]"
+                className="btn btn-outline bg-[#012200]  text-white hover:bg-[015500]"
               >
                 {showAll ? "Show Less" : "Show More"}
               </button>

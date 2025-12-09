@@ -57,25 +57,25 @@ const UpcomingMeals = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-3xl font-bold mb-4 text-center dark:text-white">Upcoming Meals</h2>
+      <h2 className="text-3xl font-bold mb-4 text-center ">Upcoming Meals</h2>
       <Link to="/dashboard/addUpcomingMeal">
         <button className="btn  my-2 ] bg-[#066303]  border-none">Add meal</button>
       </Link>
 
-      <div className="overflow-x-auto shadow-xl border border-gray-400 rounded-xl dark:text-white ">
-        <table className="table w-full">
+      <div className="overflow-x-auto shadow-xl border border-gray-400 rounded-xl  ">
+        <table className="table w-full whitespace-nowrap">
           <thead>
-            <tr className="text-black">
-              <th className="text-center border-gray-400 dark:text-white border">#</th>
-              <th className="text-center border-gray-400 dark:text-white border">Title</th>
-              <th className="text-center border-gray-400 dark:text-white border">Distributor</th>
-              <th className="text-center border-gray-400 dark:text-white border">Likes</th>
-              <th className="text-center border-gray-400 dark:text-white border">Action</th>
+            <tr className="text-black bg-gray-200">
+              <th className="text-center border-gray-400  border">#</th>
+              <th className="text-center border-gray-400  border">Title</th>
+              <th className="text-center border-gray-400  border">Distributor</th>
+              <th className="text-center border-gray-400  border">Likes</th>
+              <th className="text-center border-gray-400  border">Action</th>
             </tr>
           </thead>
           <tbody>
             {meals.map((meal, index) => (
-              <tr key={meal._id}>
+              <tr key={meal._id} className='bg-white'>
                 <td className="text-center border border-gray-300">
                   {(currentPage - 1) * itemsPerPage + index + 1}
                 </td>
@@ -85,7 +85,7 @@ const UpcomingMeals = () => {
                 <td className="text-center border border-gray-300">
                   <button
                     onClick={() => publishMeal.mutate(meal._id)}
-                    className="btn dark:text-[#0ec708]  border-none"
+                    className="btn btn-xs bg-[#066303] border-none"
                   >
                     Publish
                   </button>

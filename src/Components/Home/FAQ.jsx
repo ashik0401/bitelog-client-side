@@ -14,7 +14,7 @@ export function FAQ() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-3xl md:text-4xl font-bold text-center mb-10 text-black  dark:text-white"
+          className="text-3xl md:text-4xl font-bold text-center mb-10 text-[#012200]  "
         >
           ❓ Frequently Asked Questions
         </motion.h2>
@@ -25,12 +25,12 @@ export function FAQ() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-white dark:bg-transparent p-6 rounded-xl shadow-md"
+              className="bg-white  p-6 rounded-xl shadow-md"
             >
               <div className="collapse collapse-arrow bg-base-100">
                 <input type="checkbox" aria-expanded="false" />
-                <div className="collapse-title font-semibold cursor-pointer bg-white text-black dark:bg-transparent dark:text-white">{item.q}</div>
-                <div className="collapse-content text-sm leading-relaxed  bg-white text-black dark:bg-transparent dark:text-white">{item.a}</div>
+                <div className="collapse-title font-semibold cursor-pointer bg-white text-black  ">{item.q}</div>
+                <div className="collapse-content text-sm leading-relaxed  bg-white text-gray-600 ">{item.a}</div>
               </div>
             </motion.div>
           ))}

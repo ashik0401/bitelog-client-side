@@ -67,12 +67,12 @@ const onSubmit = data => {
 
     return (
         <div className="h-[87vh] flex justify-center items-center px-4">
-            <div className="card bg-green-100 dark:bg-transparent dark:text-white text-black w-full max-w-sm shrink-0 shadow-2xl">
+            <div className="card  text-black w-full max-w-sm shrink-0 shadow-2xl">
                 <div className="card-body">
-                    <h1 className="text-3xl font-bold">Create Account</h1>
+                    <h1 className="text-3xl font-bold text-center">Create Account</h1>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <fieldset className="fieldset">
-                            <label className="label dark:text-white">Upload Image</label>
+                           
                             <div className="flex flex-col items-center gap-2">
                                 <label className="cursor-pointer group">
                                     {profilePic ? (
@@ -97,13 +97,13 @@ const onSubmit = data => {
                             <label className="label">Your Name</label>
                             <input type="text"
                                 {...register('name', { required: true })}
-                                className="input bg-white dark:bg-transparent" placeholder="Your Name" required />
+                                className="input border-gray-200 bg-white " placeholder="Your Name" required />
                             {errors.name && <p className='text-red-500'>Name is required</p>}
 
                             <label className="label">Email</label>
                             <input type="email"
                                 {...register('email', { required: true })}
-                                className="input bg-white dark:bg-transparent" placeholder="Email"
+                                className="input border-gray-200 bg-white " placeholder="Email"
                                 required
                             />
                             {errors.email && <p className='text-red-500'>Email is required</p>}
@@ -111,13 +111,13 @@ const onSubmit = data => {
                             <label className="label">Phone Number</label>
                             <input type="text"
                                 {...register('phone', { required: true })}
-                                className="input bg-white dark:bg-transparent" placeholder="Phone Number" required />
+                                className="input border-gray-200 bg-white " placeholder="Phone Number" required />
                             {errors.phone && <p className='text-red-500'>Phone number is required</p>}
 
                             <label className="label">Address</label>
                             <input type="text"
                                 {...register('address', { required: true })}
-                                className="input bg-white dark:bg-transparent" placeholder="Address" required />
+                                className="input border-gray-200 bg-white " placeholder="Address" required />
                             {errors.address && <p className='text-red-500'>Address is required</p>}
 
                             <label className="label">Password</label>
@@ -130,7 +130,7 @@ const onSubmit = data => {
                                         minLength: 6,
                                         pattern: /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/
                                     })}
-                                    className="input w-full pr-10 bg-white dark:bg-transparent"
+                                    className="input w-full pr-10 border-gray-200 bg-white "
                                     required
                                 />
                                 <button

@@ -1,26 +1,4 @@
 @import "tailwindcss";
 
-@plugin "daisyui" {
-  /* themes: light --default; */
-}
+@plugin "daisyui"
 
-
-@plugin "daisyui/theme" {
-  name: "light";
-  default: true;
-  --color-primary: #F97316;
-  --color-secondary: #FACC15;
-  --color-base-200: #FFFFFF;
-  --color-base-300: #374151;
-  --color-accent: #F5F5F4;
-}
-
-
-@custom-variant dark (&:where(.dark, .dark *));
-
-
-
-
-html, body, #root {
-  overflow-x: hidden;
-}

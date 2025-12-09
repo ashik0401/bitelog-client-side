@@ -99,13 +99,13 @@ const UpdateMeal = () => {
   if (isLoading) return <div className='flex justify-center items-center h-64'><span className="loading loading-spinner loading-lg"></span></div>
 
   return (
-    <div className="md:max-w-xl md:mx-auto p-6 dark:text-white  dark:bg-transparent dark:border dark:border-gray-500 bg-orange-100 rounded shadow-xl mt-20 mx-5">
-      <h2 className="text-3xl font-bold mb-4 text-center">Update Meal</h2>
+    <div className="md:max-w-xl md:mx-auto 5 p-3">
+      <h2 className="text-3xl font-bold mb-4 text-center text-[#012200]">Update Meal</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <input type="text" {...register('title', { required: true })} placeholder="Meal Title" className="input input-bordered w-full" />
+        <input type="text" {...register('title', { required: true })} placeholder="Meal Title" className="input input-bordered bg-gray-200 w-full" />
         {errors.title && <p className="text-red-500">Title is required</p>}
 
-        <select {...register('category', { required: true })} className="select select-bordered w-full">
+        <select {...register('category', { required: true })} className="select select-bordered bg-gray-200 w-full">
           <option value="">Select Category</option>
           <option value="Breakfast">Breakfast</option>
           <option value="Lunch">Lunch</option>
@@ -113,22 +113,22 @@ const UpdateMeal = () => {
         </select>
         {errors.category && <p className="text-red-500">Category is required</p>}
 
-        <input type="file" onChange={handleImageUpload} className="file-input file-input-bordered w-full" />
+        <input type="file" onChange={handleImageUpload} className="file-input file-input-bordered bg-gray-200 w-full" />
         {imageURL && <img src={imageURL} alt="Meal" className="h-24 w-24 object-cover mt-2" />}
 
-        <input type="text" {...register('ingredients', { required: true })} placeholder="Ingredients (comma separated)" className="input input-bordered w-full" />
+        <input type="text" {...register('ingredients', { required: true })} placeholder="Ingredients (comma separated)" className="input input-bordered bg-gray-200 w-full" />
         {errors.ingredients && <p className="text-red-500">Ingredients are required</p>}
 
-        <textarea {...register('description', { required: true })} placeholder="Description" className="textarea textarea-bordered w-full" />
+        <textarea {...register('description', { required: true })} placeholder="Description" className="textarea textarea-bordered bg-gray-200 w-full" />
         {errors.description && <p className="text-red-500">Description is required</p>}
 
-        <input type="number" step="0.01" {...register('price', { required: true })} placeholder="Price" className="input input-bordered w-full" />
+        <input type="number" step="0.01" {...register('price', { required: true })} placeholder="Price" className="input input-bordered bg-gray-200 w-full" />
         {errors.price && <p className="text-red-500">Price is required</p>}
 
-        <input type="text" value={user?.displayName} readOnly className="input input-bordered w-full bg-gray-100 dark:bg-transparent" />
-        <input type="email" value={user?.email} readOnly className="input input-bordered w-full bg-gray-100 dark:bg-transparent" />
+        <input type="text" value={user?.displayName} readOnly className="input input-bordered bg-gray-200 w-full  " />
+        <input type="email" value={user?.email} readOnly className="input input-bordered bg-gray-200 w-full  " />
 
-        <button type="submit" className="btn btn-primary w-full" disabled={isUploading}>
+        <button type="submit" className="btn bg-[#012200]  w-full" disabled={isUploading}>
           {isUploading ? 'Updating...' : 'Update Meal'}
         </button>
       </form>

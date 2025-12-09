@@ -11,24 +11,24 @@ const stripePromise = loadStripe(import.meta.env.VITE_payment_key);
 const getStyles = (badge) => {
   if (badge === "Silver") {
     return {
-      bg: "bg-gray-100 dark:bg-transparent",
-      text: "text-black dark:text-white",
-      border: "border-[#012200]/20 dark:border-gray-500",
+      bg: "bg-gray-100",
+      text: "text-black",
+      border: "border-[#012200]/10",
       btn: "bg-[#066303] hover:bg-[#043f02]",
     };
   }
   if (badge === "Gold") {
     return {
-      bg: "bg-[#012200] dark:bg-transparent",
+      bg: "bg-[#012200]",
       text: "text-white",
       border: "border-[#012200]",
       btn: "bg-[#066303] hover:bg-[#043f02]",
     };
   }
   return {
-    bg: "bg-gray-100 dark:bg-transparent",
-    text: "text-black dark:text-white",
-    border: "border-[#012200]/20 dark:border-gray-500",
+    bg: "bg-gray-100",
+    text: "text-black",
+    border: "border-[#012200]/10",
     btn: "bg-[#066303] hover:bg-[#043f02]",
   };
 };
@@ -74,29 +74,29 @@ const MembershipPackages = () => {
 
   return (
     <div id="membership" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 text-[#012200] dark:text-white">
+      <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 text-[#012200]">
         Get Paid Membership
       </h2>
-      <div className="grid grid-cols-2 md:grid-cols-3 sm:gap-6 gap-2 justify-items-center">
+      <div className="grid grid-cols-2 md:grid-cols-3 sm:gap-6 gap-2 justify-items-center ">
         {packages.map((pkg) => {
           const styles = getStyles(pkg.badge);
           const isCurrent = userMembership?.membershipId === pkg._id;
           const featureTextColor =
-            pkg.badge === "Gold" ? "text-white" : "text-black dark:text-white";
+            pkg.badge === "Gold" ? "text-white " : "text-black ";
           const bgColorClass =
             pkg.badge === "Gold" ? "bg-[#012200]" : styles.bg;
 
           return (
             <div
               key={pkg._id}
-              className={`shadow-md border ${styles.border} ${bgColorClass} flex flex-col justify-between rounded-lg p-4 sm:p-5 w-full max-w-[16rem] sm:max-w-[18rem] md:max-w-[19rem] min-h-[20rem] hover:scale-105 transition-transform duration-300`}
+              className={`shadow-lg border ${styles.border} ${bgColorClass} flex flex-col justify-between rounded-lg p-4 sm:p-5 w-full max-w-[16rem] sm:max-w-[18rem] md:max-w-[19rem] min-h-[20rem] hover:scale-105 transition-transform duration-300`}
             >
               <div className="flex-1 flex flex-col">
                 <h3 className={`text-xl sm:text-2xl font-semibold mb-2 ${styles.text}`}>
                   {pkg.badge}
                 </h3>
                 <div className="w-full flex justify-center mb-4">
-                  <p className="text-2xl sm:text-3xl font-bold bg-[#015500] rounded-full w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center text-white">
+                  <p className="text-2xl sm:text-3xl font-bold bg-[#015500] rounded-full w-20 h-20 sm:w-24 sm:h-24 flex items-center shadow-lg justify-center text-white">
                     ${pkg.price}
                   </p>
                 </div>
@@ -109,8 +109,8 @@ const MembershipPackages = () => {
               <button
                 onClick={() => openModal(pkg)}
                 disabled={isCurrent}
-                className={`mt-auto w-full py-2 rounded-lg font-semibold text-white transition duration-300 ${
-                  isCurrent ? "bg-gray-300 cursor-not-allowed" : styles.btn
+                className={`mt-auto w-full py-2 rounded-lg font-semibold text-white transition duration-300  ${
+                  isCurrent  ? "bg-gray-300 cursor-not-allowed" : styles.btn
                 }`}
               >
                 {isCurrent ? "Current Plan" : "Choose"}
@@ -122,14 +122,14 @@ const MembershipPackages = () => {
 
       {selectedPackage && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-md w-full relative">
+          <div className="bg-white  p-6 rounded-lg shadow-lg max-w-md w-full relative">
             <button
               onClick={closeModal}
-              className="absolute top-2 right-3 text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white text-2xl"
+              className="absolute top-2 right-3 text-gray-600  hover:text-black  text-2xl"
             >
               &times;
             </button>
-            <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-center text-black dark:text-white">
+            <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-center text-black">
               Pay for {selectedPackage.badge} Plan
             </h3>
             <Elements stripe={stripePromise}>

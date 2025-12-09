@@ -32,16 +32,16 @@ const Login = () => {
 
   return (
     <div className="h-[87vh] flex justify-center items-center px-4">
-      <div className="card bg-green-100 dark:bg-transparent dark:text-white text-black w-full max-w-sm shadow-2xl">
+      <div className="card  text-black w-full max-w-sm shadow-2xl">
         <div className="card-body">
-          <h2 className="text-3xl font-bold text-center mb-4">Login to Your Account</h2>
+          <h2 className="text-3xl font-bold text-center mb-4">Welcome Back</h2>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
               <label className="label">Email</label>
               <input
                 type="email"
                 {...register('email', { required: 'Email is required' })}
-                className="input input-bordered w-full bg-white dark:bg-transparent "
+                className="input input-bordered w-full border border-gray-200 bg-white "
                 placeholder="Enter your email"
               />
               {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
@@ -58,7 +58,7 @@ const Login = () => {
                       message: 'Password must be at least 6 characters'
                     }
                   })}
-                  className="input input-bordered w-full pr-10 bg-white  dark:bg-transparent"
+                  className="input input-bordered w-full pr-10  border-gray-200 bg-white"
                   placeholder="Enter your password"
                 />
                 <button

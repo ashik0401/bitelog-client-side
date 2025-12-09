@@ -198,7 +198,7 @@ const MealDetail = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6 mt-15 ">
-      <div className="card dark:bg-transparent dark:text-white bg-green-100 text-black  shadow-xl ">
+      <div className="card   bg-green-100 text-gray-900  shadow-xl ">
         <figure>
           <img
             src={meal.image}
@@ -206,7 +206,7 @@ const MealDetail = () => {
             className="w-full h-64 md:h-96 object-cover rounded-t-lg"
           />
         </figure>
-        <div className="card-body">
+        <div className="card-body text-gray-900">
           <h2 className="card-title">{meal.title}</h2>
           <p className="text-sm font-semibold">
             Distributor:{" "}
@@ -224,27 +224,27 @@ const MealDetail = () => {
           <p className="font-bold">
             Price: <span className="font-semibold">${meal.price}</span>
           </p>
-          <p className="text-sm text-gray-500 mt-2">
+          <p className="text-sm text-gray-700 mt-2">
             Posted: {new Date(meal.postTime).toLocaleString()}
           </p>
           <p className="mt-1">Rating: {averageRating.toFixed(1)} ⭐</p>
-          <div className="flex gap-4 pt-4 border-t border-[#012200] dark:border-gray-400">
+          <div className="flex gap-4 pt-4 border-t border-[#012200] ">
             <button
               onClick={handleLike}
-              className=" text-black dark:text-white font-bold cursor-pointer border-none"
+              className=" text-gray-900  font-bold cursor-pointer border-none"
             >
               👍 Like ({meal.likes}){ " | "}
             </button>
             <button
               onClick={handleRequestMeal}
-              className={`cursor-pointer font-bold text-black dark:text-white  ${
+              className={`cursor-pointer font-bold text-gray-900   ${
                 requesting ? "loading" : ""
               }`}
               disabled={requesting}
             >
               Order {"|"}
             </button>
-            <button onClick={showRatingPopup} className="cursor-pointer font-bold text-black dark:text-white">
+            <button onClick={showRatingPopup} className="cursor-pointer font-bold text-gray-900 ">
               Rate Meal
             </button>
           </div>
@@ -257,7 +257,7 @@ const MealDetail = () => {
             <h3 className="text-xl font-semibold">Reviews ({reviewCount})</h3>
             <form onSubmit={handleReviewSubmit} className="my-4">
               <textarea
-                className="textarea textarea-bordered w-full bg-orange-50 dark:bg-transparent"
+                className="textarea textarea-bordered w-full bg-orange-50 "
                 placeholder="Write your review..."
                 value={reviewText}
                 onChange={(e) => setReviewText(e.target.value)}
@@ -273,7 +273,7 @@ const MealDetail = () => {
               {reviews.map((review) => (
                 <div
                   key={review._id}
-                  className="p-4 bg-gray-50 rounded shadow flex items-start gap-3 dark:bg-transparent border-b border-gray-600"
+                  className="p-4 bg-gray-50 rounded shadow flex items-start gap-3  border-b border-gray-600"
                 >
                   <img
                     src={
@@ -287,10 +287,10 @@ const MealDetail = () => {
                     <p className="font-semibold">
                       {review.username.toUpperCase()}
                     </p>
-                    <p className="text-xs text-gray-400">
+                    <p className="text-xs text-gray-600">
                       {new Date(review.createdAt).toLocaleString()}
                     </p>
-                    <p className="text-gray-700 dark:text-white">
+                    <p className="text-gray-700 ">
                       {review.text}
                     </p>
                   </div>

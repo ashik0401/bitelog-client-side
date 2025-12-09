@@ -50,31 +50,30 @@ const OverviewPage = () => {
     fetchStats();
   }, []);
 
-  const pieColors = ['#f87171', '#60a5fa'];
 
   return (
-    <div className="p-6  dark:text-white  rounded-lg shadow-md lg:max-w-11/12 lg:mx-auto mx-4 my-4">
-      <h1 className="text-2xl font-bold mb-6 text-center  dark:text-white ">Dashboard Overview</h1>
+    <div className="p-6   rounded-lg shadow-md lg:max-w-11/12 lg:mx-auto mx-4 my-4">
+      <h1 className="text-2xl font-bold mb-6 text-center text-[#012200]  ">Dashboard Overview</h1>
 
-      <div className="grid grid-cols-3 sm:gap-6 gap-2 mb-10 bg-green-50 dark:bg-transparent">
-        <div className="p-4  bg-green-100 dark:bg-transparent border border-gray-400 rounded-lg text-center">
+      <div className="grid grid-cols-3 sm:gap-6 gap-2 mb-10 bg-green-50 ">
+        <div className="p-4  bg-green-100  border border-gray-200 rounded-lg text-center">
           <h2 className="sm:text-xl font-semibold">Total Users</h2>
-          <p className="text-3xl font-bold dark:text-[#0ec708] ">{stats.totalUsers}</p>
+          <p className="text-3xl font-bold  ">{stats.totalUsers}</p>
         </div>
-        <div className="p-4 bg-green-100 dark:bg-transparent border border-gray-400 rounded-lg text-center">
+        <div className="p-4 bg-green-100  border border-gray-200 rounded-lg text-center">
           <h2 className="sm:text-xl font-semibold">Total Meals</h2>
-          <p className="text-3xl font-bold dark:text-[#0ec708] ">{stats.totalMeals}</p>
+          <p className="text-3xl font-bold  ">{stats.totalMeals}</p>
         </div>
-        <div className="p-4 bg-green-100 dark:bg-transparent border border-gray-400 rounded-lg text-center">
+        <div className="p-4 bg-green-100  border border-gray-200 rounded-lg text-center">
           <h2 className="sm:text-xl font-semibold">Total Members</h2>
-          <p className="text-3xl font-bold dark:text-[#0ec708] ">{stats.totalMembers}</p>
+          <p className="text-3xl font-bold  ">{stats.totalMembers}</p>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="">
         <div className="p-4  rounded-lg shadow-md md:shadow-none">
           <h2 className="text-lg font-semibold mb-4 text-center ">Meals Added Per Day</h2>
-          <ResponsiveContainer width="100%" height={300}>
+          <ResponsiveContainer width="100%" height={500}>
             <BarChart data={stats.mealsPerDay} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="date" />
@@ -86,28 +85,7 @@ const OverviewPage = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="p-4  rounded-lg shadow-md md:shadow-none">
-          <h2 className="text-lg font-semibold mb-4 text-center ">User Roles Distribution</h2>
-          <ResponsiveContainer width="100%" height={300}>
-            <PieChart>
-              <Pie
-                data={stats.userRoles}
-                dataKey="count"
-                nameKey="role"
-                cx="50%"
-                cy="50%"
-                outerRadius={100}
-                label
-              >
-                {stats.userRoles.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={pieColors[index % pieColors.length]} />
-                ))}
-              </Pie>
-              <Tooltip />
-              <Legend />
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
+     
       </div>
     </div>
   );

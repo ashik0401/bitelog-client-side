@@ -6,7 +6,7 @@ import ScrollToTop from '../Pages/shared/ScrollToTop';
 
 const RootLayout = () => {
     return (
-        <div className='bg-green-50 dark:bg-transparent '>
+        <div className='bg-green-50 '>
             <ScrollToTop />
             <Navbar />
             <div className='min-h-[93vh] w-full '>

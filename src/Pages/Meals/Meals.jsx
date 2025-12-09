@@ -31,7 +31,7 @@ const renderStars = (rating) => {
   for (let i = 1; i <= 5; i++) {
     if (rating >= i) stars.push(<FaStar key={i} className="text-yellow-400 inline-block" />)
     else if (rating >= i - 0.5) stars.push(<FaStarHalfAlt key={i} className="text-yellow-400 inline-block" />)
-    else stars.push(<FaRegStar key={i} className="text-gray-400 dark:text-gray-600 inline-block" />)
+    else stars.push(<FaRegStar key={i} className="text-gray-800  inline-block" />)
   }
   return stars
 }
@@ -92,18 +92,18 @@ const Meals = () => {
 
   return (
     <div className="p-4 lg:w-10/12 mx-auto pt-15">
-      <div className="flex flex-col md:flex-row-reverse gap-3 mb-4 md:w-11/12 mx-auto mt-10">
+      <div className="flex flex-col md:flex-row-reverse gap-3 mb-4 md:w-11/12 mx-auto mt-10 ">
         <div className="flex gap-2 w-full">
           <input
             value={input}
             onChange={e => setInput(e.target.value)}
             type="text"
             placeholder="Search by title"
-            className="border p-2 w-full mx-auto rounded border-black text-black dark:border-gray-500 dark:text-white"
+            className="border border-gray-400 p-2 w-full mx-auto rounded  text-black  "
           />
           <button
             onClick={handleSearch}
-            className="bg-[#066303] hover:bg-[#043f02] text-white px-4 rounded border-none btn dark:border-gray-500"
+            className="bg-[#066303] hover:bg-[#043f02] text-white px-4 rounded border-none btn "
           >
             Search
           </button>
@@ -112,7 +112,7 @@ const Meals = () => {
         <div className="flex gap-2 sm:hidden items-center">
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className="btn btn-sm btn-outline text-white bg-[#012200] hover:bg-[#015500] hover:text-white dark:border-gray-500"
+            className="btn btn-sm btn-outline text-white bg-[#012200] hover:bg-[#015500] hover:text-white "
           >
             <FaTags /> Filters
           </button>
@@ -121,22 +121,22 @@ const Meals = () => {
         <select
           value={category}
           onChange={e => handleCategoryChange(e.target.value)}
-          className={`border border-black text-black dark:border-white dark:text-white rounded p-2 w-full sm:w-1/4 ${showFilters ? '' : 'hidden sm:block'}`}
+          className={`border border-gray-400 text-black  rounded p-2 w-full sm:w-1/4 ${showFilters ? '' : 'hidden sm:block'}`}
         >
-          <option value="" className="dark:text-black">All Categories</option>
+          <option value="" >All Categories</option>
           {categories.map((cat, i) => (
-            <option key={i} value={cat} className="dark:text-black">{cat}</option>
+            <option key={i} value={cat} >{cat}</option>
           ))}
         </select>
 
         <select
           value={sortBy === 'price' ? order : ''}
           onChange={e => handlePriceSortChange(e.target.value)}
-          className={`border border-black text-black dark:border-white dark:text-white rounded p-2 w-full sm:w-1/4 ${showFilters ? '' : 'hidden sm:block'}`}
+          className={`border border-gray-400 text-black  rounded p-2 w-full sm:w-1/4 ${showFilters ? '' : 'hidden sm:block'}`}
         >
-          <option value="" className="dark:text-black">Sort by Price</option>
-          <option value="asc" className="dark:text-black">Low to High</option>
-          <option value="desc" className="dark:text-black">High to Low</option>
+          <option value="" >Sort by Price</option>
+          <option value="asc" >Low to High</option>
+          <option value="desc" >High to Low</option>
         </select>
       </div>
 
@@ -148,19 +148,19 @@ const Meals = () => {
           <p className="text-center"><span className="loading loading-ring loading-sm"></span></p>
         )}
       >
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-10 md:w-11/12 mx-auto mt-10">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:flex lg:flex-wrap gap-2 sm:gap-10 md:w-11/12 mx-auto mt-10 pb-5">
           {allMeals.map(meal => {
             const avgRating = calculateAverageRating(meal.ratings)
             return (
               <div
                 key={meal._id}
-                className="card rounded-2xl text-black dark:text-white shadow-xl dark:bg-transparent h-full flex flex-col border dark:border-gray-500 border-gray-100 w-full sm:max-w-[300px] mx-auto"
+                className="card rounded-lg  shadow-lg   flex flex-col border  border-gray-200 w-full sm:max-w-[300px] mx-auto"
               >
                 <figure>
                   <img
                     src={meal.image}
                     alt={meal.title}
-                    className="w-full md:h-52 h-48 sm:h-58 object-cover rounded-t-2xl"
+                    className="w-full md:h-52 h-36 sm:h-58 object-cover "
                   />
                 </figure>
 
@@ -169,13 +169,13 @@ const Meals = () => {
                     <div className="flex gap-1">
                       {renderStars(avgRating)}
                     </div>
-                    <h2 className="card-title text-lg md:text-xl font-bold mb-1 line-clamp-2">
+                    <h2 className="card-title text-lg md:text-xl font-bold mb-1 line-clamp-2 text-gray-900 ">
                       {meal.title}
                     </h2>
                   </div>
 
                   <div className="mt-4 flex items-center justify-between">
-                    <p className="font-bold text-xl">${meal.price}</p>
+                    <p className="font-bold text-xl text-gray-900 ">${meal.price}</p>
 
                     <Link to={`/Meals/${meal._id}`}>
                       <button className="flex items-center justify-between cursor-pointer">
@@ -184,7 +184,7 @@ const Meals = () => {
                           fill="none"
                           viewBox="0 0 24 24"
                           strokeWidth="1.5"
-                          stroke="currentColor"
+                          stroke="black"
                           className="w-6 h-6"
                         >
                           <path

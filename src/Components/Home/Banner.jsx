@@ -43,11 +43,11 @@ const Banner = ({ onSearch }) => {
               placeholder="Search meals ..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              className="px-4 py-3 rounded-md md:w-64 h-10 md:h-full outline-none text-white border border-white/60 bg-transparent"
+              className="px-4 py-3 rounded-md md:w-64 h-10 md:h-full outline-none text-white border border-white/40 bg-transparent"
             />
             <button
               onClick={handleSearchClick}
-              className=" md:px-6 md:py-3 rounded-md font-semibold ] bg-[#066303] hover:text-white transition cursor-pointer btn md:h-full"
+              className=" md:px-6 md:py-3 rounded-md font-semibold bg-[#066303] text-white transition cursor-pointer btn md:h-full border-none shadow-none"
             >
               Search
             </button>

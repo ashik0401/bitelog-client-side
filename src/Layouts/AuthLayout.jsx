@@ -7,7 +7,7 @@ import Footer from '../Pages/shared/Footer';
 
 const AuthLayout = () => {
     return (
-        <div className="  bg-green-50 dark:bg-transparent">
+        <div className="  bg-green-50">
             <ScrollToTop />
             <Navbar />
             <div className="flex min-h-screen items-center justify-center">

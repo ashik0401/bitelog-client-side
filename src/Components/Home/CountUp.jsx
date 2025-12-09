@@ -14,7 +14,7 @@ const CountUp = ({ target, duration = 1.5 }) => {
   }, [target])
 
   return (
-    <motion.span className="text-3xl font-bold text-primary">
+    <motion.span className="text-3xl font-bold  text-[#012200]">
       {display.toLocaleString()}
     </motion.span>
   )

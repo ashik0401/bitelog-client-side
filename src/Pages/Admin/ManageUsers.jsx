@@ -70,19 +70,19 @@ const ManageUsers = () => {
   };
 
   return (
-    <div className="p-4">
-      <h2 className="text-3xl font-bold mb-4">Manage Users</h2>
+    <div className="sm:p-4 p-2">
+      <h2 className="text-3xl font-bold mb-4 text-[#012200] ">Manage Users</h2>
 
-      <form onSubmit={handleSearch} className="mb-4 flex flex-wrap gap-2 items-center">
+      <form onSubmit={handleSearch} className="mb-4 flex  gap-2 items-center">
         <input
           type="text"
           placeholder="Search by name or email"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="input  bg-white border border-black w-full md:w-1/2"
+          className="input  bg-white border border-gray-300 w-full md:w-1/2"
           autoComplete="off"
         />
-        <button type="submit" className="btn text-white  bg-[#066303] ]  border-none">
+        <button type="submit" className="btn text-white  bg-[#066303]  border-none">
           Search
         </button>
       </form>
@@ -95,10 +95,10 @@ const ManageUsers = () => {
 
       {!isFetching && users.length > 0 && (
         <>
-          <div className="overflow-x-auto border rounded-xl border-gray-300 shadow-xl dark:text-white">
+          <div className="overflow-x-auto border rounded-xl border-gray-300 shadow-xl ">
             <table className="table w-full border border-gray-300">
               <thead>
-                <tr className='text-black dark:text-white'>
+                <tr className='text-black bg-gray-200'>
                   <th className="border border-gray-300 text-center">User Name</th>
                   <th className="border border-gray-300 text-center">Email</th>
                   <th className="border border-gray-300 text-center">Subscription</th>
@@ -108,11 +108,11 @@ const ManageUsers = () => {
               <tbody>
                 {users.map((user) => (
                   <tr key={user._id}>
-                    <td className="border border-gray-200 text-center font-medium">
+                    <td className="border border-gray-200 text-center font-medium whitespace-nowrap">
                       {user.name?.toUpperCase()}
                     </td>
                     <td className="border border-gray-200 text-center">{user.email}</td>
-                    <td className="border border-gray-200 text-center">
+                    <td className="border whitespace-nowrap border-gray-200 text-center">
                       {user.subscriptionStatus || 'Not Subscribed'}
                     </td>
                     <td className="border border-gray-200 text-center">
@@ -120,7 +120,7 @@ const ManageUsers = () => {
                         <span className="text-green-600 font-semibold">Admin</span>
                       ) : (
                         <button
-                          className="btn btn-warning"
+                          className="btn btn-warning btn-sm whitespace-nowrap"
                           onClick={() => makeAdmin(user._id, user.name)}
                         >
                           Make Admin

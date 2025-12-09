@@ -11,7 +11,7 @@ const AllReviewsTable = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const [sortOrder, setSortOrder] = useState("asc"); // ⬅️ initially least reviews first
+  const [sortOrder, setSortOrder] = useState("asc"); // ⬅️ 
   const [currentPage, setCurrentPage] = useState(1);
 
   const { data = {}, isLoading } = useQuery({
@@ -66,19 +66,19 @@ const AllReviewsTable = () => {
     );
 
   return (
-    <div className="p-6">
+    <div className="dm:p-6 p-2">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-2xl font-bold dark:text-white">All Meal Reviews</h2>
-        <button onClick={toggleSortOrder} className="btn btn-sm  bg-transparent text-black dark:text-white dark:border dark:border-gray-400">
+        <h2 className="text-2xl font-bold text-[#012200] ">All Meal Reviews</h2>
+        <button onClick={toggleSortOrder} className="btn btn-sm  bg-transparent text-black  ">
           {sortOrder === "asc"
-            ? "Sort by Most Reviews ↓"
-            : "Sort by Least Reviews ↑"}
+            ? " Most Reviews ↓"
+            : " Least Reviews ↑"}
         </button>
       </div>
       <div className="overflow-x-auto shadow-xl border border-gray-200 rounded-xl">
-        <table className="table  w-full dark:bg-transparent">
+        <table className="table  w-full ">
           <thead>
-            <tr className="text-black dark:text-white ">
+            <tr className="text-black  bg-gray-200">
               <th className="text-center">Title</th>
               <th className="text-center">Likes</th>
               <th className="text-center">Reviews</th>
@@ -87,19 +87,19 @@ const AllReviewsTable = () => {
           </thead>
           <tbody>
             {meals.map((meal) => (
-              <tr key={meal._id} className="border-none dark:text-white dark:bg-transparent bg-white ">
-                <td className=" dark:bg-transparent text-center">{meal.title}</td>
+              <tr key={meal._id} className="border-none whitespace-nowrap bg-white ">
+                <td className="  text-center">{meal.title}</td>
                 <td className=" text-center">{meal.likes}</td>
                 <td className=" text-center">{meal.reviews_count}</td>
-                <td className="sm:flex items-center justify-center sm:gap-1 min-w-full h-full space-y-1 sm:space-y-0">
+                <td className="flex items-center justify-center gap-1 min-w-full h-full ">
                   <button
-                    className="btn btn-info  "
+                    className="btn btn-info btn-xs  "
                     onClick={() => navigate(`/Meals/${meal._id}`)}
                   >
                     View
                   </button>
                   <button
-                    className="btn  btn-error "
+                    className="btn btn-xs  btn-error "
                     onClick={() => deleteMeal(meal._id)}
                   >
                     Delete

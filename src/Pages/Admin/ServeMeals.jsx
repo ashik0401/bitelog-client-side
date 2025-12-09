@@ -46,12 +46,12 @@ const ServeMeals = () => {
   };
 
   return (
-    <div className="p-4">
-      <h2 className="text-3xl font-bold mb-4 dark:text-white">Requested Meals</h2>
+    <div className="sm:p-4 p-2">
+      <h2 className="text-3xl font-bold mb-4 ">Requested Meals</h2>
       <div className="flex gap-2 mb-4">
         <input
           type="text"
-          className="input border-black border w-full max-w-xs bg-white"
+          className="input border border-gray-300 bg-white w-full max-w-xs "
           placeholder="Search by name or email"
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
@@ -67,9 +67,9 @@ const ServeMeals = () => {
       ) : (
         <>
           <div className="overflow-x-auto shadow-xl border border-gray-200 rounded-xl">
-            <table className="table table-zebra w-full">
+            <table className="table whitespace-nowrap w-full">
               <thead>
-                <tr className="text-black bg-white dark:bg-transparent dark:text-white">
+                <tr className="text-black  bg-gray-200">
                   <th className="text-center">Meal Title</th>
                   <th className="text-center">User Name</th>
                   <th className="text-center">User Email</th>
@@ -80,14 +80,14 @@ const ServeMeals = () => {
               <tbody>
                 {requests.map((req) => (
                   <tr key={req._id}>
-                    <td className="bg-white dark:bg-transparent dark:text-white text-center">{req.mealTitle}</td>
-                    <td className="bg-white dark:bg-transparent dark:text-white text-center">{req.userName.toUpperCase()}</td>
-                    <td className="bg-white dark:bg-transparent dark:text-white text-center">{req.userEmail}</td>
-                    <td className="bg-white dark:bg-transparent dark:text-white text-center">{req.status}</td>
-                    <td className="bg-white dark:bg-transparent dark:text-white text-center">
+                    <td className=" text-center">{req.mealTitle}</td>
+                    <td className=" text-center">{req.userName.toUpperCase()}</td>
+                    <td className=" text-center">{req.userEmail}</td>
+                    <td className=" text-center">{req.status}</td>
+                    <td className=" text-center">
                       {req.status !== 'delivered' ? (
                         <button
-                          className="btn btn-sm btn-success"
+                          className="btn btn-xs btn-success"
                           onClick={() => handleServe(req._id)}
                         >
                           Serve
