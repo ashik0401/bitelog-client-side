@@ -60,7 +60,7 @@ const MealsTable = () => {
   if (isLoading) return <div className='flex items-center justify-center h-screen'><span className="loading loading-ring loading-md"></span></div>
 
   return (
-    <div className="sm:p-4 p-2 mt-5">
+    <div className="sm:p-4 p-2 mt-5 max-w-5xl mx-auto">
       <div className="flex gap-4 mb-2">
         <button className="btn btn-sm bg-transparent text-black  " onClick={() => handleSortChange('postTime')}>
            Latest {sortBy === 'postTime' ? (order === 'asc' ? '↑' : '↓') : ''}
@@ -76,7 +76,7 @@ const MealsTable = () => {
         <table className="table w-full whitespace-nowrap">
           <thead >
             <tr className='text-black bg-gray-200'>
-              <th className='text-center'>Title</th>
+              <th className=''>Title</th>
               <th className='text-center'>Likes</th>
               <th className='text-center'>Reviews</th>
               <th className='text-center'>Rating</th>
@@ -87,7 +87,7 @@ const MealsTable = () => {
           <tbody>
             {meals.map((meal) => (
               <tr key={meal._id}>
-                <td className='text-center font-bold'>{meal.title}</td>
+                <td className='font-bold'>{meal.title}</td>
                 <td className='text-center'>{meal.likes}</td>
                 <td className='text-center'>{meal.reviews_count}</td>
                 <td className='text-center'>
@@ -104,7 +104,7 @@ const MealsTable = () => {
                   }</p>
                 </td>
                 <td className='text-center'>{meal.distributorName.toUpperCase()}</td>
-                <td className="space-x-2 flex items-center justify-center md:text-center">
+                <td className="space-x-2 flex items-center justify-center md:text-center ">
                   <button className="btn btn-xs btn-info" onClick={() => navigate(`/Meals/${meal._id}`)}>View</button>
                   <button className="btn btn-xs btn-warning" onClick={() => navigate(`/dashboard/updateMeals/${meal._id}`)}>Update</button>
                   <button className="btn btn-xs btn-error" onClick={() => deleteMeal(meal._id)}>Delete</button>
