@@ -77,7 +77,7 @@ const MembershipPackages = () => {
       <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 text-[#012200]">
         Get Paid Membership
       </h2>
-      <div className="grid grid-cols-2 md:grid-cols-3 sm:gap-6 gap-2 justify-items-center ">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 sm:gap-6 gap-5 justify-items-center ">
         {packages.map((pkg) => {
           const styles = getStyles(pkg.badge);
           const isCurrent = userMembership?.membershipId === pkg._id;
@@ -89,7 +89,7 @@ const MembershipPackages = () => {
           return (
             <div
               key={pkg._id}
-              className={`shadow-lg border ${styles.border} ${bgColorClass} flex flex-col justify-between rounded-lg p-4 sm:p-5 w-full max-w-[16rem] sm:max-w-[18rem] md:max-w-[19rem] min-h-[20rem] hover:scale-105 transition-transform duration-300`}
+              className={`shadow-lg border ${styles.border} ${bgColorClass} flex flex-col justify-between rounded-lg p-4 sm:p-5 w-full  sm:max-w-[18rem] md:max-w-[19rem] min-h-[20rem] hover:scale-105 transition-transform duration-300`}
             >
               <div className="flex-1 flex flex-col">
                 <h3 className={`text-xl sm:text-2xl font-semibold mb-2 ${styles.text}`}>

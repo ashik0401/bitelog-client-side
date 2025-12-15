@@ -47,7 +47,7 @@ export function Newsletter() {
       <div className="max-w-4xl mx-auto px-4 text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#012200] ">📩 Subscribe to our Newsletter</h2>
         <p className="mb-6">Stay updated with new meals, offers, and updates.</p>
-        <div className="flex flex-col sm:flex-row justify-center gap-4">
+        <div className="flex  justify-center sm:gap-4 gap-2">
           <input
             type="email"
             placeholder="Enter your email"
