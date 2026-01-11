@@ -31,8 +31,8 @@ const Login = () => {
 };
 
   return (
-    <div className="h-[87vh] flex justify-center items-center px-4">
-      <div className="card  text-black w-full max-w-sm shadow-2xl">
+    <div className="h-[87vh] flex justify-center items-center md:px-4">
+      <div className="card  text-black w-full max-w-sm md:shadow-2xl">
         <div className="card-body">
           <h2 className="text-3xl font-bold text-center mb-4">Welcome Back</h2>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -75,7 +75,7 @@ const Login = () => {
               <a className="link link-hover text-sm">Forgot password?</a>
             </div>
             {loginError && <p className="text-red-500 text-sm text-center">{loginError}</p>}
-            <button type="submit" className="btn w-full   bg-[#066303] border-none hover:bg-[#043f02]">Login</button>
+            <button type="submit" className="btn w-full  text-white bg-[#066303] border-none hover:bg-[#043f02]">Login</button>
           </form>
           <p className="text-center mt-4 text-sm">
             New here?

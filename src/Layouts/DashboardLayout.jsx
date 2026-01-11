@@ -90,7 +90,7 @@ const DashboardLayout = () => {
           <div className="flex-none">
             <label
               htmlFor="my-drawer-2"
-              className="btn btn-square btn-ghost bg-transparent border-none"
+              className="btn btn-square btn-ghost bg-transparent border-none text-white"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -123,7 +123,7 @@ const DashboardLayout = () => {
         <div className="w-80 bg-[#012200] h-screen flex flex-col">
           <DashboardHome />
 
-          <ul className="menu bg-[#012200] text-base-content w-80 p-4">
+          <ul className="menu text-white bg-[#012200] w-80 p-4">
             {(isAdmin ? adminMenu : userMenu).map((item, i) => (
               <li key={i}>
                 <NavLink

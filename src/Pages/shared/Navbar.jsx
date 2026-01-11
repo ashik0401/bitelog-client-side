@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, NavLink } from 'react-router';
 import logo from '../../assets/B.png'
 import useAuth from '../../hooks/useAuth';
+import { UserRoundCog } from 'lucide-react';
 
 const Navbar = () => {
   const { user, loading: authLoading, logOut } = useAuth();
@@ -16,15 +17,15 @@ const Navbar = () => {
 
   const links = (
     <>
-      <li><NavLink to="/" className={({ isActive }) => isActive ? 'text-white font-bold border-b ' : ''}>Home</NavLink></li>
+      <li><NavLink to="/" className={({ isActive }) => isActive ? 'text-white font-bold border-b rounded-none' : 'text-white'}>Home</NavLink></li>
 
-      <li><NavLink to="/Meals" className={({ isActive }) => isActive ? 'text-white font-bold border-b' : ''}>All Meal</NavLink></li>
+      <li><NavLink to="/Meals" className={({ isActive }) => isActive ? 'text-white font-bold border-b rounded-none' : 'text-white'}>All Meal</NavLink></li>
 
-      {user && <li><NavLink to="/upComingMeal" className={({ isActive }) => isActive ? 'text-white font-bold border-b' : ''}>Upcoming Meals</NavLink></li>}
+      {user && <li><NavLink to="/upComingMeal" className={({ isActive }) => isActive ? 'text-white font-bold border-b rounded-none' : 'text-white'}>Upcoming Meals</NavLink></li>}
 
-      {user && <li><NavLink to="/dashboard" className={({ isActive }) => isActive ? 'text-white font-bold border-b' : ''}>Dashboard</NavLink></li>}
+      {user && <li><NavLink to="/dashboard" className={({ isActive }) => isActive ? 'text-white font-bold border-b rounded-none' : 'text-white'}>Dashboard</NavLink></li>}
 
-       <li><NavLink to="/aboutUs" className={({ isActive }) => isActive ? 'text-white font-bold border-b' : ''}>About Us</NavLink></li>
+       <li><NavLink to="/aboutUs" className={({ isActive }) => isActive ? 'text-white font-bold border-b rounded-none' : 'text-white'}>About Us</NavLink></li>
     </>
 
   );
@@ -69,7 +70,9 @@ const Navbar = () => {
               </div>
             </>
           ) : (
-            <Link to='/login' className="btn  shadow-none rounded-md bg-transparent hover:bg-[#043f02] border-none text-white ">Login</Link>
+            <Link to='/login' className="btn  shadow-none rounded-md bg-transparent hover:bg-[#043f02] border-none text-white ">
+             <UserRoundCog />
+              </Link>
           )}
         </div>
       </div>

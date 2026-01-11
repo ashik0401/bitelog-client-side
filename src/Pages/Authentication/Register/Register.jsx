@@ -66,10 +66,10 @@ const onSubmit = data => {
     };
 
     return (
-        <div className="h-[87vh] flex justify-center items-center px-4">
-            <div className="card  text-black w-full max-w-sm shrink-0 shadow-2xl">
+        <div className=" flex justify-center items-center my-15 md:px-4 ">
+            <div className="card  text-black w-full max-w-sm shrink-0 md:shadow-2xl md:mt-10">
                 <div className="card-body">
-                    <h1 className="text-3xl font-bold text-center">Create Account</h1>
+                    <h1 className="md:text-3xl font-bold text-center text-2xl">Create Account</h1>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <fieldset className="fieldset">
                            
@@ -79,10 +79,10 @@ const onSubmit = data => {
                                         <img
                                             src={profilePic}
                                             alt="Profile"
-                                            className="w-24 h-24 rounded-full object-cover border-2 border-gray-300 group-hover:opacity-80 transition"
+                                            className="md:w-24 w-20 h-20 md:h-24 rounded-full object-cover border-2 border-gray-300 group-hover:opacity-80 transition"
                                         />
                                     ) : (
-                                        <div className="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 group-hover:bg-gray-300 transition">
+                                        <div className="md:w-24 md:h-24 w-20 h-20 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 group-hover:bg-gray-300 transition">
                                             Upload
                                         </div>
                                     )}
